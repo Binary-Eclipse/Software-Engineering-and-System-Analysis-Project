@@ -1,0 +1,15 @@
+SavePaws Club
+By Team 4 Bytes
+
+Introduction
+
+At SavePaws Club, we believe every life matters — no matter how small, voiceless, or vulnerable. Our project is built with a simple but powerful goal: to create a space where people can come together to protect, rescue, and care for animals in need.
+
+Too often, injured or abandoned animals go unnoticed. With SavePaws Club, anyone who witnesses an animal in distress can easily reach out for help. The platform connects users with nearby rescue teams, volunteers, and even animal doctors who are ready to step in.
+
+But it doesn’t stop there. SavePaws Club is also about building awareness and compassion. Through shared updates, resources, and community support, we hope to inspire people to take action and make a difference in the lives of animals around them.
+
+This project isn’t just about technology — it’s about kindness, responsibility, and giving every paw a chance to be saved.
+
+
+“Together, we can be the voice for the voiceless.”
