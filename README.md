@@ -23,5 +23,46 @@ Community forum for animal lovers.
 Donation portal for trusted NGOs.  
 
 <h3>Impact:</h3>Encourage responsible pet ownership, reduce stray suffering, and build a rescue-support network.  
-
 <h3>Future Scope:</h3> GPS rescue vans, volunteer training, mobile app, and multi-language support.  
+
+
+<h2># SavePaws Club – Software Requirements Specification (SRS)</h2>
+
+<h3>## Overview</h3>
+SavePaws Club is a web-based platform focused on animal rescue, protection, and welfare. This repository contains the Software Requirements Specification (SRS) for the project, developed as part of a university course.
+
+<h3>## Purpose</h3>
+The SRS outlines:
+- Functional and non-functional requirements
+- User roles and interactions
+- System environment and constraints
+- Revenue and sustainability model
+
+<h3>## Scope</h3>
+The system will provide:
+- Emergency rescue reporting with GPS
+- Guest mode for urgent access
+- Veterinary assistance and clinic locator
+- Pet adoption and rehoming
+- Knowledge hub with articles and tips
+- Abuse reporting tools
+- Marketplace for pet products
+- Community forum
+- Donation portal
+
+<h3>## Technology</h3>
+- Frontend: HTML5, CSS3, JavaScript
+- Backend: Node.js / Express.js
+- Database: MySQL or Firebase
+- APIs: Google Maps, SMS Gateway
+
+<h3>## Repository Contents</h3>
+- `SavePaws_Club_SRS.pdf` — Main document
+- `README.md` — Repository overview
+
+<h3>## Contributors</h3>
+Team SavePaws Club (University Project)
+
+<h3>## License</h3>
+Academic use only. All rights reserved.
+
