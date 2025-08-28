@@ -10,7 +10,7 @@ The idea is to build a website/app that focuses on animal rescue, protection, an
 I want to create a platform where people can immediately help injured or harassed animals, find treatment support, adopt or rehome pets, and connect with a strong community of animal lovers.  
 
 <h4>## Proposal Overview</h4>
-<h3>Objective:</h3>Reduce animal harassment and provide real-time rescue and welfare solutions.  
+<h4>Objective:</h4>Reduce animal harassment and provide real-time rescue and welfare solutions.  
 
 <h4>Key Features:</h4>
 Emergency rescue system with both online and offline help.  
