@@ -3,7 +3,7 @@
 This web-based project, SavePaws Club, helps report and rescue animals by sharing live locations and contacting rescue teams. It offers offline emergency info, pet adoption, a marketplace, vet consultations, blogs, and volunteering. Built with modern web tech, it promotes animal welfare through community and tech.
 
 
-<h4># SavePaws Club – Project Proposal</h4>
+<h3># SavePaws Club – Project Proposal</h3>
 
 This repository contains my project proposal for SavePaws Club.  
 The idea is to build a website/app that focuses on animal rescue, protection, and welfare.  
