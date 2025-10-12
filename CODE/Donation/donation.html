@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavePaws</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body class="bg-[#f5f2e4]">
+
+<!-- NAVBAR -->
+  <nav class="flex flex-wrap justify-between items-center px-4 md:px-6 py-4 bg-white shadow-lg">
+    <ul class="hidden lg:flex mx-auto justify-evenly space-x-2 flex-wrap">
+      <li><a href="/Home/guest.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
+      <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
+      <li><a href="/Clinic/clinics.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
+      <li><a href="/Rescue/rescue.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
+      <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
+      <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
+      <li><a href="/Donation/donation.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
+    </ul>
+
+    <div class="flex items-center space-x-2 lg:space-x-10">
+      <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
+        <i class="fa-brands fa-twitch text-lg lg:text-xl mr-2" style="color: #9146FF;"></i>
+        <span>Join Community</span>
+      </a>
+      <div class="flex justify-center items-center">
+      <a href="/log_in/log_in.html" class="text-sm lg:text-2xl font-bold text-black hover:text-indigo-600">Login/</a>
+          <a href="/log_in/sign_up.html" class="text-sm lg:text-2xl font-bold text-black hover:text-indigo-600">Signup</a>
+          </div>
+      <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
+    </div>
+
+    <button id="menu-btn" class="lg:hidden text-2xl text-black ml-4">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown -->
+  <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
+    <li><a href="/Home/guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+    <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+    <li><a href="/Clinic/clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+    <li><a href="/Rescue/rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+    <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+    <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+    <li><a href="/Donation/donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+  </ul>
+<!-- HERO SECTION -->
+<section class="relative bg-[url('/img/banner.jpg')] bg-cover bg-center bg-no-repeat min-h-screen flex items-center justify-center px-4 md:px-6">
+    <div class="absolute inset-0 bg-black/40"></div>
+
+    <div class="relative text-center flex flex-col items-center z-10 px-4 sm:px-6 lg:px-20">
+        <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight mb-6 bg-gradient-to-l from-indigo-500 via-red-500 to-blue-500 text-transparent bg-clip-text">
+            "Donate & Save Souls"
+        </h1>
+        <p class="text-base sm:text-lg md:text-2xl text-white leading-relaxed mb-6 max-w-2xl">
+            See the face of hope. Your donation makes their tail wag.
+        </p>
+    </div>
+</section>
+
+<!-- BOX 1 -->
+<div class="grid md:grid-cols-2 grid-cols-1 max-w-full">
+    <div class="max-w-[100%] bg-gradient-to-r from-emerald-800 via-green-800 to-emerald-900 pt-20 rounded-3xl shadow-2xl shadow-black flex flex-col items-center justify-center gap-6 m-4 md:m-20">
+        <h2 class="text-white mx-auto text-3xl font-semibold text-center">Donation Progress</h2>
+        <div class="w-80 md:w-2xl h-4 rounded-2xl bg-[linear-gradient(90deg,rgba(104,156,93,1)_0%,rgba(166,168,88,1)_13%,rgba(212,146,40,1)_23%)]"></div>
+        <h3 class="text-white mx-auto text-xl">Raised: &#2547; 345,780 / 75,000 Goal</h3>
+
+    <div class="flex flex-wrap justify-evenly items-center gap-6">
+  <a href="#" class="w-20 h-20 rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black  transition">
+    &#2547;25
+  </a>
+  
+  <a href="#" class="w-20 h-20 bg-left rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center hover:bg-white hover:text-black transition">
+    &#2547;50
+  </a>
+  
+  <a href="#" class="w-20 h-20 rounded-full border-green-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black  transition">
+    &#2547;1000
+  </a>
+  
+  <a href="#" class="w-20 h-20 rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black transition ">
+    Others
+  </a>
+</div>
+
+
+        <div class="flex flex-wrap justify-around items-center gap-8 mt-4">
+            <label class="flex items-center text-white text-xl cursor-pointer">
+                <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+                OneTime
+            </label>
+
+            <label class="flex items-center text-white text-xl cursor-pointer">
+                <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+                Monthly
+            </label>
+        </div>
+
+        <textarea placeholder="Support A Specific Cause Rescue Mission" class="text-white placeholder:text-white w-full md:w-[600px] bg-[#1b332a] shadow-xl rounded-xl p-2 mt-4"></textarea>
+        <button type="submit"  title="Bkash, Nagad, Rocket, Visa, Mastercard" class="bg-orange-400 text-white w-32 h-12 rounded-2xl text-2xl mb-10 mt-4 cursor-pointer  hover:bg-orange-500">Donate</button>
+    </div>
+
+    <!-- BOX 2 -->
+    <div class="max-w-[100%] bg-gradient-to-r from-white via-slate-300 to-slate-400 pt-20 rounded-3xl pb-5 shadow-2xl shadow-black flex flex-col items-center justify-start gap-10 m-4 md:m-20">
+        <h2 class="text-black mx-auto text-3xl font-semibold text-center">How Your Funds Help</h2>
+
+        <!-- Circles -->
+        <div class="flex flex-wrap justify-evenly items-center gap-8">
+            <div class="flex flex-col gap-2 items-center">
+                <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-emerald-800 to-amber-500 flex items-center justify-center">
+                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                        <h3 class="text-slate-700 text-xl font-semibold">70%</h3>
+                    </div>
+                </div>
+                <h3 class="text-black text-lg font-semibold text-center">Medical Animal Care</h3>
+            </div>
+
+            <div class="flex flex-col gap-2 items-center">
+                <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-amber-500 to-amber-500 flex items-center justify-center">
+                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                        <h3 class="text-slate-700 text-xl font-semibold">50%</h3>
+                    </div>
+                </div>
+                <h3 class="text-black text-lg font-semibold text-center">Animal Shelter Support</h3>
+            </div>
+
+            <div class="flex flex-col gap-2 items-center">
+                <div class="p-[10px] rounded-full bg-gradient-to-r from-amber-500 via-amber-500 to-amber-500 flex items-center justify-center">
+                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
+                        <h3 class="text-slate-700 text-xl font-semibold">30%</h3>
+                    </div>
+                </div>
+                <h3 class="text-black text-lg font-semibold text-center">Food & Supplies</h3>
+            </div>
+        </div>
+
+        <!-- Icons -->
+        <div class="flex flex-wrap justify-evenly items-center gap-6 mt-6">
+            <div class="rounded-full border-2 bg-slate-500 flex flex-wrap justify-center items-center gap-6 px-4 py-2">
+               <i class="fa-solid fa-shield-dog text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0s]"></i>
+                <i class="fa-solid fa-cat text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.2s]"></i>
+                <i class="fa-solid fa-dog text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.4s]"></i>
+                <i class="fa-solid fa-dove text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.6s]"></i>
+                 <i class="fa-solid fa-shield-cat text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.8s]"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CARDS SECTION -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full p-6 md:p-20 bg-white">
+    <div class="flex items-center gap-6 shadow-2xl shadow-black rounded-2xl p-5">
+        <div class="w-24 h-24 rounded-full bg-slate-700 flex items-center justify-center text-white">
+            IMG
+        </div>
+        <p class="text-sm text-black">
+            Example text for card one goes here.
+        </p>
+    </div>
+
+    <div class="flex items-center gap-6 shadow-2xl shadow-black rounded-2xl p-5">
+        <div class="w-24 h-24 rounded-full bg-slate-700 flex items-center justify-center text-white">
+            IMG
+        </div>
+        <p class="text-sm text-black">
+            Another example text goes here for card two.
+        </p>
+    </div>
+
+    <div class="flex items-center gap-6 shadow-2xl shadow-black rounded-2xl p-5">
+        <div class="w-24 h-24 rounded-full bg-slate-700 flex items-center justify-center text-white">
+            IMG
+        </div>
+        <p class="text-sm text-black">
+            Final example text goes here for card three.
+        </p>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="bg-[#1A253DF0] text-white py-12 px-4 lg:px-50 w-full">
+    <div class="container mx-auto max-w-7xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-8">
+            <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">About Us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Why Choose us</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Pricing</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Testimonial</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Terms and Condition</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Blog</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Project management</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Time tracker</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Time schedule</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Lead generate</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors duration-300">Remote Collaboration</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
+                <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
+                <form class="flex flex-col sm:flex-row gap-2">
+                    <input type="text" placeholder="Drop Your Feedback"
+                        class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white">
+                    <button class="bg-white text-[#2D2F4A] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors duration-300">Feedback</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="mt-10 pt-4 flex flex-col sm:flex-row items-center justify-center text-gray-300 text-sm">
+            <p class="text-xl mb-4 sm:mb-0 mx-4">Copyright &copy; 2025</p>
+            <div class="flex space-x-4">
+                <a href="#"><i class="fab fa-facebook-f text-2xl hover:text-white transition-colors duration-300"></i></a>
+                <a href="#"><i class="fab fa-twitter text-2xl hover:text-white transition-colors duration-300"></i></a>
+                <a href="#"><i class="fab fa-instagram text-2xl hover:text-white transition-colors duration-300"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in text-2xl hover:text-white transition-colors duration-300"></i></a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="/js/j.js"></script>
+
+
+</body>
+</html>
