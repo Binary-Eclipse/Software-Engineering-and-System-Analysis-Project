@@ -64,93 +64,89 @@
 </section>
 
 <!-- BOX 1 -->
-<div class="grid md:grid-cols-2 grid-cols-1 max-w-full">
-    <div class="max-w-[100%] bg-gradient-to-r from-emerald-800 via-green-800 to-emerald-900 pt-20 rounded-3xl shadow-2xl shadow-black flex flex-col items-center justify-center gap-6 m-4 md:m-20">
-        <h2 class="text-white mx-auto text-3xl font-semibold text-center">Donation Progress</h2>
-        <div class="w-80 md:w-2xl h-4 rounded-2xl bg-[linear-gradient(90deg,rgba(104,156,93,1)_0%,rgba(166,168,88,1)_13%,rgba(212,146,40,1)_23%)]"></div>
-        <h3 class="text-white mx-auto text-xl">Raised: &#2547; 345,780 / 75,000 Goal</h3>
+<section class="grid grid-cols-1 md:grid-cols-2 w-full px-4 md:px-10 lg:px-20 py-10 bg-transparent gap-10">
+  <!-- LEFT BOX -->
+  <div class="bg-gradient-to-r from-emerald-800 via-green-800 to-emerald-900 rounded-3xl shadow-2xl shadow-black flex flex-col items-center justify-center gap-6 p-6 md:p-10 lg:p-16 mt-6 md:mt-0">
+    <h2 class="text-white text-2xl sm:text-3xl md:text-4xl font-semibold text-center">Donation Progress</h2>
 
-    <div class="flex flex-wrap justify-evenly items-center gap-6">
-  <a href="#" class="w-20 h-20 rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black  transition">
-    &#2547;25
-  </a>
-  
-  <a href="#" class="w-20 h-20 bg-left rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center hover:bg-white hover:text-black transition">
-    &#2547;50
-  </a>
-  
-  <a href="#" class="w-20 h-20 rounded-full border-green-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black  transition">
-    &#2547;1000
-  </a>
-  
-  <a href="#" class="w-20 h-20 rounded-full border-orange-400 border-4 bg-transparent text-white text-xl flex justify-center items-center  hover:bg-white hover:text-black transition ">
-    Others
-  </a>
-</div>
+    <!-- Progress Bar -->
+    <div class="w-full max-w-md h-4 rounded-2xl bg-[linear-gradient(90deg,rgba(104,156,93,1)_0%,rgba(166,168,88,1)_30%,rgba(212,146,40,1)_60%)]"></div>
 
+    <h3 class="text-white text-base sm:text-lg md:text-xl font-medium text-center">Raised: &#2547; 345,780 / 75,000 Goal</h3>
 
-        <div class="flex flex-wrap justify-around items-center gap-8 mt-4">
-            <label class="flex items-center text-white text-xl cursor-pointer">
-                <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
-                OneTime
-            </label>
-
-            <label class="flex items-center text-white text-xl cursor-pointer">
-                <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
-                Monthly
-            </label>
-        </div>
-
-        <textarea placeholder="Support A Specific Cause Rescue Mission" class="text-white placeholder:text-white w-full md:w-[600px] bg-[#1b332a] shadow-xl rounded-xl p-2 mt-4"></textarea>
-        <button type="submit"  title="Bkash, Nagad, Rocket, Visa, Mastercard" class="bg-orange-400 text-white w-32 h-12 rounded-2xl text-2xl mb-10 mt-4 cursor-pointer  hover:bg-orange-500">Donate</button>
+    <!-- Donation Amount Buttons -->
+    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
+      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;25</a>
+      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;50</a>
+      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-green-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;1000</a>
+      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">Others</a>
     </div>
 
-    <!-- BOX 2 -->
-    <div class="max-w-[100%] bg-gradient-to-r from-white via-slate-300 to-slate-400 pt-20 rounded-3xl pb-5 shadow-2xl shadow-black flex flex-col items-center justify-start gap-10 m-4 md:m-20">
-        <h2 class="text-black mx-auto text-3xl font-semibold text-center">How Your Funds Help</h2>
+    <!-- Radio Buttons -->
+    <div class="flex flex-wrap justify-center items-center gap-6 mt-4">
+      <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
+        <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+        One Time
+      </label>
 
-        <!-- Circles -->
-        <div class="flex flex-wrap justify-evenly items-center gap-8">
-            <div class="flex flex-col gap-2 items-center">
-                <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-emerald-800 to-amber-500 flex items-center justify-center">
-                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                        <h3 class="text-slate-700 text-xl font-semibold">70%</h3>
-                    </div>
-                </div>
-                <h3 class="text-black text-lg font-semibold text-center">Medical Animal Care</h3>
-            </div>
-
-            <div class="flex flex-col gap-2 items-center">
-                <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-amber-500 to-amber-500 flex items-center justify-center">
-                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                        <h3 class="text-slate-700 text-xl font-semibold">50%</h3>
-                    </div>
-                </div>
-                <h3 class="text-black text-lg font-semibold text-center">Animal Shelter Support</h3>
-            </div>
-
-            <div class="flex flex-col gap-2 items-center">
-                <div class="p-[10px] rounded-full bg-gradient-to-r from-amber-500 via-amber-500 to-amber-500 flex items-center justify-center">
-                    <div class="w-24 h-24 rounded-full bg-white flex items-center justify-center">
-                        <h3 class="text-slate-700 text-xl font-semibold">30%</h3>
-                    </div>
-                </div>
-                <h3 class="text-black text-lg font-semibold text-center">Food & Supplies</h3>
-            </div>
-        </div>
-
-        <!-- Icons -->
-        <div class="flex flex-wrap justify-evenly items-center gap-6 mt-6">
-            <div class="rounded-full border-2 bg-slate-500 flex flex-wrap justify-center items-center gap-6 px-4 py-2">
-               <i class="fa-solid fa-shield-dog text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0s]"></i>
-                <i class="fa-solid fa-cat text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.2s]"></i>
-                <i class="fa-solid fa-dog text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.4s]"></i>
-                <i class="fa-solid fa-dove text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.6s]"></i>
-                 <i class="fa-solid fa-shield-cat text-4xl hover:scale-125 duration-100 text-slate-800 hover:text-black animate-bounce [animation-delay:0.8s]"></i>
-            </div>
-        </div>
+      <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
+        <input type="radio" name="payment" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+        Monthly
+      </label>
     </div>
-</div>
+
+    <!-- Text Area -->
+    <textarea placeholder="Support A Specific Cause or Rescue Mission" class="w-full max-w-md bg-[#1b332a] text-white placeholder:text-white rounded-xl p-3 shadow-lg mt-4 focus:outline-none focus:ring-2 focus:ring-amber-500"></textarea>
+
+    <!-- Donate Button -->
+    <button type="submit" title="Bkash, Nagad, Rocket, Visa, Mastercard" class="bg-orange-400 hover:bg-orange-500 text-white w-32 sm:w-36 h-12 rounded-2xl text-xl sm:text-2xl mt-4 mb-6 transition">Donate</button>
+  </div>
+
+  <!-- RIGHT BOX -->
+  <div class="bg-gradient-to-r from-white via-slate-300 to-slate-400 rounded-3xl shadow-2xl shadow-black flex flex-col items-center justify-start gap-8 p-6 md:p-10 lg:p-16 mt-10 md:mt-0">
+    <h2 class="text-black text-2xl sm:text-3xl md:text-4xl font-semibold text-center">How Your Funds Help</h2>
+
+    <!-- Percentage Circles -->
+    <div class="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
+      <div class="flex flex-col items-center gap-2">
+        <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-emerald-800 to-amber-500 flex items-center justify-center">
+          <div class="w-20 sm:w-24 h-20 sm:h-24 rounded-full bg-white flex items-center justify-center">
+            <h3 class="text-slate-700 text-lg sm:text-xl font-semibold">70%</h3>
+          </div>
+        </div>
+        <h3 class="text-black text-sm sm:text-lg font-semibold text-center">Medical Animal Care</h3>
+      </div>
+
+      <div class="flex flex-col items-center gap-2">
+        <div class="p-[10px] rounded-full bg-gradient-to-r from-green-800 via-amber-500 to-amber-500 flex items-center justify-center">
+          <div class="w-20 sm:w-24 h-20 sm:h-24 rounded-full bg-white flex items-center justify-center">
+            <h3 class="text-slate-700 text-lg sm:text-xl font-semibold">50%</h3>
+          </div>
+        </div>
+        <h3 class="text-black text-sm sm:text-lg font-semibold text-center">Animal Shelter Support</h3>
+      </div>
+
+      <div class="flex flex-col items-center gap-2">
+        <div class="p-[10px] rounded-full bg-gradient-to-r from-amber-500 via-amber-500 to-amber-500 flex items-center justify-center">
+          <div class="w-20 sm:w-24 h-20 sm:h-24 rounded-full bg-white flex items-center justify-center">
+            <h3 class="text-slate-700 text-lg sm:text-xl font-semibold">30%</h3>
+          </div>
+        </div>
+        <h3 class="text-black text-sm sm:text-lg font-semibold text-center">Food & Supplies</h3>
+      </div>
+    </div>
+
+    <!-- Animal Icons -->
+    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6 mt-4 sm:mt-6 border-2 border-slate-500 rounded-full px-4 py-2 bg-slate-400/50">
+      <i class="fa-solid fa-shield-dog text-3xl sm:text-4xl text-slate-800 hover:text-black hover:scale-125 duration-150"></i>
+      <i class="fa-solid fa-cat text-3xl sm:text-4xl text-slate-800 hover:text-black hover:scale-125 duration-150"></i>
+      <i class="fa-solid fa-dog text-3xl sm:text-4xl text-slate-800 hover:text-black hover:scale-125 duration-150"></i>
+      <i class="fa-solid fa-dove text-3xl sm:text-4xl text-slate-800 hover:text-black hover:scale-125 duration-150"></i>
+      <i class="fa-solid fa-shield-cat text-3xl sm:text-4xl text-slate-800 hover:text-black hover:scale-125 duration-150"></i>
+    </div>
+  </div>
+</section>
+
 
 <!-- CARDS SECTION -->
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-full p-6 md:p-20 bg-white">
