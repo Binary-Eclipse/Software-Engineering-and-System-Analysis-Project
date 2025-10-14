@@ -38,11 +38,3 @@ const btn = document.getElementById('menu-btn');
 
 
   //clinic counter
-      let counter = 0;
-    const button = document.getElementById('clickBtn');
-    const countDisplay = document.getElementById('count');
-
-    button.addEventListener('click', () => {
-      counter++; 
-      countDisplay.textContent = counter; 
-    });
