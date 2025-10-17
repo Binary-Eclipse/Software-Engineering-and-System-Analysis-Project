@@ -17,7 +17,7 @@
       <li><a href="guest.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
       <li><a href="clinics.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
-      <li><a href="rescue.php" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
+      <li><a href="rescue.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
       <li><a href="donation.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
@@ -45,7 +45,7 @@
     <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
     <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-    <li><a href="rescue.php"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+    <li><a href="rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
     <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
@@ -111,13 +111,13 @@
   <h1 class="text-3xl md:text-5xl font-bold mb-6">Rescue Form:</h1>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
     <span class="flex flex-col text-black font-semibold text-lg">Your Name:
-      <input type="text" name="name" placeholder="Enter your Name" class="bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
+      <input type="text" name="name" required placeholder="Enter your Name" class="bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
     </span>
     <span class="flex flex-col text-black font-semibold text-lg">Your Contact:
-      <input type="number" name="phn" placeholder="Enter your Contact" class="bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
+      <input type="number" required name="phn" placeholder="Enter your Contact" class="bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
     </span>
     <span class="flex flex-col text-black font-semibold text-lg">Animal type:
-      <input  name="animal_t" list="animals" placeholder="Type to search..." class="w-full px-4 h-10 border focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-700 placeholder:text-gray-100 rounded-2xl text-white">
+      <input required name="animal_t" list="animals" placeholder="Type to search..." class="w-full px-4 h-10 border focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-700 placeholder:text-gray-100 rounded-2xl text-white">
       <datalist id="animals">
         <option value="Cat">
         <option value="Dog">
@@ -128,7 +128,7 @@
     </span>
   </div>
   <span class="flex flex-col text-black font-semibold text-lg mt-6">Description:
-    <textarea name="des" placeholder="Describe Here..." class=" place-content-center bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-24 rounded-2xl w-full"></textarea>
+    <textarea name="des" required placeholder="Describe Here..." class=" place-content-center bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-24 rounded-2xl w-full"></textarea>
   </span>
   <div class="flex justify-center mt-8">
     <input type="hidden" name="loc" id="location">
@@ -256,7 +256,7 @@
 
             <div>
                 <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
-                <ul class="space-y-2 text-gray-300">
+                <ul class="space-y-2 text-gray-300" >
                     <li><a href="#" class="hover:text-white transition-colors duration-300">Project management</a></li>
                     <li><a href="#" class="hover:text-white transition-colors duration-300">Time tracker</a></li>
                     <li><a href="#" class="hover:text-white transition-colors duration-300">Time schedule</a></li>
@@ -298,6 +298,18 @@ const submitBtn = document.getElementById("submitBtn");
 
 form.addEventListener("submit", function(e) {
   e.preventDefault();
+
+  const name = form.elements["name"].value.trim();
+  const phn = form.elements["phn"].value.trim();
+  const type = form.elements["animal_t"].value.trim();
+  const des = form.elements["des"].value.trim();  
+
+  // Check if any field is empty
+  if (!name || !phn || !type || !des) {
+    alert("Please fill in all fields before submitting!");
+    return; // stop submission
+  }
+
 
   submitBtn.disabled = true;
   submitBtn.textContent = "Getting location...";
