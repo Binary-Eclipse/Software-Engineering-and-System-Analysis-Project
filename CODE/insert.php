@@ -1,9 +1,6 @@
 <?php
-$conn = new mysqli("localhost", "root", "", "rescue");
-
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+session_start();
+include_once "config.php";
 
 $name = $_POST['name'] ?? '';
 $phn  = $_POST['phn'] ?? '';
