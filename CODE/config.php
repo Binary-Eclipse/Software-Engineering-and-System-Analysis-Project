@@ -1,12 +1,16 @@
 <?php
-$host = "localhost"; 
-$user = "root";      
-$pass = "";           
-$db   = "savepaws";  
+// config.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "savepaws";
 
-$conn = mysqli_connect($host, $user, $pass, $db);
-
-if (!$conn) {
-    die("Database Connection Failed: " . mysqli_connect_error());
+// Create mysqli connection (object oriented)
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Database Connection Failed: " . $conn->connect_error);
 }
+
+// Optional: set charset
+$conn->set_charset("utf8mb4");
 ?>
