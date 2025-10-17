@@ -62,6 +62,13 @@ COMMIT;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 
 
+
+
+
+/*rescue */
+
+
+
 CREATE TABLE `res` (
   `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
