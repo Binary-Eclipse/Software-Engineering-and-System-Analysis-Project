@@ -1,9 +1,4 @@
-<?php
-session_start();
-if (!isset($_SESSION['user_id'])) {
-    header("Location: log_in.php");
-    exit();
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +20,7 @@ if (!isset($_SESSION['user_id'])) {
       <li><a href="guest.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
       <li><a href="clinics.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
-      <li><a href="rescue.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
+      <li><a href="rescue.php" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
       <li><a href="donation.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
@@ -53,7 +48,7 @@ if (!isset($_SESSION['user_id'])) {
     <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
     <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-    <li><a href="rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+    <li><a href="rescue.php"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
     <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>

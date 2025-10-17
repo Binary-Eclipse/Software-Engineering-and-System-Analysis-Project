@@ -45,7 +45,7 @@ if ($stmt->num_rows === 1) {
         // Optional: set a role if you have one
         // $_SESSION['role'] = 'user';
 
-        header("Location: guest.php"); // change to your protected page
+        header("Location: guest.html"); // change to your protected page
         exit();
     } 
     else {
