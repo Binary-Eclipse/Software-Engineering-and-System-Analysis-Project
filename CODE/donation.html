@@ -78,13 +78,38 @@
     <h3 class="text-white text-base sm:text-lg md:text-xl font-medium text-center">Raised: &#2547; 345,780 / 75,000 Goal</h3>
 
     <!-- Donation Amount Buttons -->
-    <div class="flex flex-wrap justify-center items-center gap-4 sm:gap-6">
-      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;25</a>
-      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;50</a>
-      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-green-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">&#2547;1000</a>
-      <a href="#" class="w-16 sm:w-20 h-16 sm:h-20 rounded-full border-4 border-orange-400 bg-transparent text-white text-lg sm:text-xl flex justify-center items-center hover:bg-white hover:text-black transition">Others</a>
-    </div>
+    
+    <form method="POST" action="donation.php" class="flex flex-col items-center gap-6">
+    <div class="flex flex-wrap justify-evenly items-center gap-6">
+  <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
+    <input type="radio" name="amount" value="25" class="hidden peer">
+    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
+      &#2547;25
+    </span>
+  </label>
 
+  <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
+    <input type="radio" name="amount" value="50" class="hidden peer">
+    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
+      &#2547;50
+    </span>
+  </label>
+
+  <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-green-400 hover:bg-white hover:text-black">
+    <input type="radio" name="amount" value="1000" class="hidden peer">
+    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
+      &#2547;1000
+    </span>
+  </label>
+
+  <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
+    <input type="radio" name="amount" value="others" class="hidden peer">
+    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
+      Others
+    </span>
+  </label>
+</form>
+</div>
     <!-- Radio Buttons -->
     <div class="flex flex-wrap justify-center items-center gap-6 mt-4">
       <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
