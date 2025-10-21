@@ -106,7 +106,7 @@
 </div>
 
 <!-- RESCUE FORM -->
-<form id="rescueForm" action="rescue.php" method="POST">
+<form id="rescueForm" action="resQ.php" method="POST">
 <div class="max-w-[105rem] mx-auto my-10 p-6 md:p-10 bg-[#ECEEED] rounded-2xl border-2 border-gray-400">
   <h1 class="text-3xl md:text-5xl font-bold mb-6">Rescue Form:</h1>
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -304,10 +304,10 @@ form.addEventListener("submit", function(e) {
   const type = form.elements["animal_t"].value.trim();
   const des = form.elements["des"].value.trim();  
 
-  // Check if any field is empty
+
   if (!name || !phn || !type || !des) {
     alert("Please fill in all fields before submitting!");
-    return; // stop submission
+    return;
   }
 
 
@@ -332,7 +332,7 @@ navigator.geolocation.getCurrentPosition(
   },
   function(error) {
     console.warn("Could not get precise location, using fallback.");
-    // Fallback: approximate location using IP or default coordinates
+
     const fallbackLink = "https://www.google.com/maps?q=0,0"; 
     document.getElementById("location").value = fallbackLink;
     form.submit();
