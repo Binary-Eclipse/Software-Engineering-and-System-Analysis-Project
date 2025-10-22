@@ -15,7 +15,7 @@ $description=$_POST['des'] ?? '';
   $stmt->execute();
   $stmt->close();
   
-  // Show alert and redirect using JS
+
 
   echo '<script>
           alert("Info Inserted Successfully");
