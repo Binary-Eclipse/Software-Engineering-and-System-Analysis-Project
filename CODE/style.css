@@ -29,3 +29,23 @@
 
 }
 
+
+
+/*remove spinner from fields*/
+
+  @layer utilities {
+    /* Hide number input arrows in Chrome, Safari, Edge, Opera */
+    .no-spinner::-webkit-inner-spin-button,
+    .no-spinner::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    /* Hide number input arrows in Firefox */
+    .no-spinner[type=number] {
+      -moz-appearance: textfield;
+    }
+  }
+
+
+

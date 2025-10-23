@@ -18,7 +18,7 @@
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
       <li><a href="clinics.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
       <li><a href="rescue.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
-      <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
+      <li><a href="blog.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
       <li><a href="#" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
       <li><a href="donation.html" class="text-lg lg:text-2xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
     </ul>
@@ -46,10 +46,11 @@
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
     <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
     <li><a href="rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
-    <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+    <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
     <li><a href="#" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
     <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
   </ul>
+
 
 
 <!-- HERO SECTION -->
@@ -82,27 +83,27 @@
     <form method="POST" action="donation.php" class="flex flex-col items-center gap-6" id="donationForm">
     <div class="flex flex-wrap justify-evenly items-center gap-6">
   <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
-    <input type="radio" name="amount" value="100" class="hidden peer">
+    <input type="radio" name="amount" value="100" class="hidden peer"  onclick="fillamount(this.value)">
     <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
       &#2547;100
     </span>
   </label>
 
   <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-green-400 hover:bg-white hover:text-black">
-    <input type="radio" name="amount" value="500" class="hidden peer">
-    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
+    <input type="radio" name="amount" value="500" class="hidden peer"  onclick="fillamount(this.value)">
+    <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center ">
       &#2547;500
     </span>
   </label>
 
   <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
-    <input type="radio" name="amount" value="1000" class="hidden peer">
+    <input type="radio" name="amount" value="1000" class="hidden peer" onclick="fillamount(this.value)">
     <span class="peer-checked:bg-white peer-checked:text-black w-full h-full rounded-full flex justify-center items-center">
       &#2547;1000
     </span>
   </label>
 </div>
-<input type="text" placeholder="Custom amount" name="custom_amount" id="custom_amount" class="max-w-full placeholder:text-center text-center placeholder:text-white text-white text-2xl pl-5 pr-4 py-3 border border-2 border-green-400 rounded-3xl focus:ring-4 focus:ring-orange-500">
+<input type="number" id="t_field"  placeholder="Custom amount" name="custom_amount" id="custom_amount" class="no-spinner max-w-full placeholder:text-center text-center placeholder:text-white text-white text-2xl pl-5 pr-4 py-3 border border-2 border-green-400 rounded-3xl focus:ring-4 focus:ring-orange-500">
     <!-- Radio Buttons -->
     <div class="flex flex-wrap justify-center items-center gap-6 mt-4">
       <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
@@ -223,8 +224,8 @@
                 <ul class="space-y-2 text-gray-300">
                     <li><a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
                     <li><a href="#" class="hover:text-white transition-colors duration-300">Terms and Condition</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Blog</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                    <li><a href="blog.html" class="hover:text-white transition-colors duration-300">Blog</a></li>
+                    <li><a href="tel:+8801727898421" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
                 </ul>
             </div>
 
@@ -264,6 +265,15 @@
 
 <script src="j.js"></script>
 
+
+
+<script>
+function fillamount(amount){
+  document.getElementById('t_field').value = amount;
+}
+
+
+</script>
 
 </body>
 </html>
