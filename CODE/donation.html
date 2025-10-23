@@ -79,7 +79,7 @@
 
     <!-- Donation Amount Buttons -->
     
-    <form method="POST" action="donation.php" class="flex flex-col items-center gap-6">
+    <form method="POST" action="donation.php" class="flex flex-col items-center gap-6" id="donationForm">
     <div class="flex flex-wrap justify-evenly items-center gap-6">
   <label class="w-20 h-20 rounded-full border-4 bg-transparent text-white text-xl flex justify-center items-center cursor-pointer transition border-orange-400 hover:bg-white hover:text-black">
     <input type="radio" name="amount" value="100" class="hidden peer">
@@ -101,21 +101,17 @@
       &#2547;1000
     </span>
   </label>
-
-
-  
-
 </div>
-<input type="text" placeholder="Others" name="custom_amount" class="max-w-full placeholder:text-center text-center placeholder:text-white text-white text-2xl pl-5 pr-4 py-3 border border-2 border-green-400 rounded-3xl focus:ring-4 focus:ring-orange-500">
+<input type="text" placeholder="Custom amount" name="custom_amount" id="custom_amount" class="max-w-full placeholder:text-center text-center placeholder:text-white text-white text-2xl pl-5 pr-4 py-3 border border-2 border-green-400 rounded-3xl focus:ring-4 focus:ring-orange-500">
     <!-- Radio Buttons -->
     <div class="flex flex-wrap justify-center items-center gap-6 mt-4">
       <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
-        <input type="radio" name="type" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+        <input type="radio" name="type" value="One Time" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" required/>
         One Time
       </label>
 
       <label class="flex items-center text-white text-lg sm:text-xl cursor-pointer">
-        <input type="radio" name="type" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" />
+        <input type="radio" name="type" value="Monthly" class="appearance-none w-5 h-5 mr-2 rounded-full border-2 border-white checked:bg-white checked:border-green-500" required/>
         Monthly
       </label>
     </div>
