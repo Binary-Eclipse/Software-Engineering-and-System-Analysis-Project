@@ -23,10 +23,6 @@ if($_SERVER["REQUEST_METHOD"]=="POST"){
         $custom_amount=$_POST["custom_amount"];
         $amount = $custom_amount;
     }
-    else if(!empty($_POST["amount"]) && !empty($_POST["custom_amount"])){
-        echo"<script>alert('Donation Failed!\\n\\nPlease select specific donation option.'); window.location.href='donation.html';</script>";
-        exit();
-    }
     
     if(!is_numeric($amount) || $amount<=0){
     echo"<script>alert('Please enter a valid donation amount.');window.history.back();</script>";
