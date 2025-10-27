@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Under Development</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://kit.fontawesome.com/a2e0e6ad65.js" crossorigin="anonymous"></script>
+
+  <style>
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #ff9800; }
+      50% { box-shadow: 0 0 25px #ffa726; }
+      100% { box-shadow: 0 0 10px #ff9800; }
+    }
+  </style>
+</head>
+
+<body class="bg-gray-900 min-h-screen">
+
+   <nav class="flex flex-wrap justify-between items-center px-4 md:px-6 py-4 bg-white shadow-lg">
+    <ul class="hidden lg:flex mx-auto justify-evenly space-x-2 flex-wrap">
+      <li><a href="guest.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
+      <li><a href="unde.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
+      <li><a href="clinics.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
+      <li><a href="rescue.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Rescue</a></li>
+      <li><a href="blog.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
+      <li><a href="adopt.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
+      <li><a href="donation.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
+    </ul>
+
+    <div class="flex items-center space-x-2 lg:space-x-10">
+      <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
+        <i class="fa-brands fa-twitch text-lg lg:text-xl mr-2" style="color: #9146FF;"></i>
+        <span>Join Community</span>
+      </a>
+      <div class="flex justify-center items-center">
+      <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+          <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+          </div>
+      <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
+    </div>
+
+    <button id="menu-btn" class="lg:hidden text-2xl text-black ml-4">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+  </nav>
+
+  <!-- Mobile Dropdown -->
+  <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
+    <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+    <li><a href="unde.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+    <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+    <li><a href="rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+    <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+    <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+    <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+  </ul>
+  <div class="flex items-center justify-center mt-20 p-6">
+    <div class="max-w-md text-center p-8 rounded-2xl border-2 border-orange-400 animate-[glow_2s_infinite]">
+      <div class="text-6xl mb-4 animate-bounce">🚧</div>
+      <h1 class="text-3xl font-bold text-orange-300 mb-2">Page Under Development</h1>
+      <p class="text-gray-300 text-lg mb-6">
+        We’re working hard to launch this page soon. Stay tuned!
+      </p>
+      <a href="guest.html" class="px-6 py-2 bg-orange-500 hover:bg-orange-600 text-white rounded-full transition">
+        Go Back
+      </a>
+    </div>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
