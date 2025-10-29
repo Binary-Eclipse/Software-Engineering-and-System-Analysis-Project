@@ -1,28 +1,33 @@
 <?php
-session_start();
-include_once "config.php";
+$conn = new mysqli("localhost", "root", "", "rescue_db");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
-$name = $_POST['name'] ?? '';
-$phn  = $_POST['phn'] ?? '';
-$loc  = $_POST['loc'] ?? '';
-$type= $_POST['animal_t'] ?? '';
-$description=$_POST['des'] ?? '';
+$name   = $_POST['name'] ?? '';
+$email  = $_POST['email'] ?? '';
+$animal = $_POST['animal_t'] ?? '';
+$desc   = $_POST['des'] ?? '';
+$loc    = $_POST['loc'] ?? '';
 
+$imagePath = "";
+if (!empty($_FILES['image']['name'])) {
+    $targetDir = "uploads/";
+    if (!is_dir($targetDir)) mkdir($targetDir, 0777, true);
+    $imagePath = $targetDir . basename($_FILES["image"]["name"]);
+    move_uploaded_file($_FILES["image"]["tmp_name"], $imagePath);
+}
 
+// ✅ Use prepared statement
+$stmt = $conn->prepare("INSERT INTO rescue_requests (name, email, animal_type, description, location, image_path) VALUES (?, ?, ?, ?, ?, ?)");
+$stmt->bind_param("ssssss", $name, $email, $animal, $desc, $loc, $imagePath);
 
-  $stmt = $conn->prepare("INSERT INTO res (name, phn, loc, type, des) VALUES (?, ?, ?, ?, ?)");
-  $stmt->bind_param("sssss", $name, $phn, $loc, $type, $description);
-  $stmt->execute();
-  $stmt->close();
-  
+if ($stmt->execute()) {
+    echo "<script>alert('✅ Rescue Request Submitted Successfully!'); window.location.href='report.html';</script>";
+} else {
+    echo "❌ Error: " . $stmt->error;
+}
 
-
-  echo '<script>
-          alert("Info Inserted Successfully");
-          window.location.href = "rescue.html";
-        </script>';
-exit();
-
-
+$stmt->close();
 $conn->close();
 ?>

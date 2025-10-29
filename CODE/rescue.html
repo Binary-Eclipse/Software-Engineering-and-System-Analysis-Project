@@ -53,183 +53,444 @@
   </ul>
 
 
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Rescue & Report Center</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Use Inter font family -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7; /* Light gray background */
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a202c',
+                        'danger-red': '#ef4444',
+                        'light-red': '#fee2e2',
+                        'input-bg': '#f3f4f6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen antialiased">
 
+    <!-- Main Application Container -->
+    <div class="max-w-4xl mx-auto p-4 sm:p-6 lg:p-8">
 
-<!-- HERO -->
-<section class="relative h-min flex items-center justify-start px-4 sm:px-6 lg:px-20 py-10">
-  <div class="absolute inset-0 bg-[#f5f2e4] border-t-2"></div>
-  <div class="relative flex flex-col items-start">
-    <h1 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight text-black">
-      In an Emergency? Share Your
-    </h1>
-    <h1 class="font-serif font-bold text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight -mt-2 text-black">
-      Location
-    </h1>
-  </div>
-</section>
+        <!-- Header and Navigation Tabs -->
+        <nav class="flex justify-center mb-10 mt-4">
+            <div class="flex space-x-2 p-1 bg-white rounded-full shadow-lg border border-gray-100">
+                <button id="tab-teams" onclick="switchView('teams')"
+                        class="nav-tab py-2 px-4 text-sm font-semibold rounded-full transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                    Find Rescue Teams
+                </button>
+                <button id="tab-report" onclick="switchView('report')"
+                        class="nav-tab py-2 px-4 text-sm font-semibold rounded-full transition-all duration-200 text-gray-700 hover:bg-gray-50">
+                    Report a Pet
+                </button>
+                <button id="tab-abuse" onclick="switchView('abuse')"
+                        class="nav-tab py-2 px-4 text-sm font-semibold rounded-full transition-all duration-200 flex items-center text-gray-700 hover:bg-gray-50">
+                    <span class="w-2 h-2 mr-2 rounded-full bg-danger-red"></span>
+                    Report Abuse
+                </button>
+            </div>
+        </nav>
 
-<!-- MAP + INFO -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 lg:gap-20 max-w-full px-4 md:px-10 lg:px-20 my-10">
-  <!-- Map -->
-  <div class="w-full h-[250px] sm:h-[350px] md:h-[500px]">
-    <iframe class="w-full h-full border-2 border-gray-400 rounded-xl" 
-      allowfullscreen="" loading="lazy"
-      src="https://www.google.com/maps/embed/v1/directions?origin=Uits&destination=Mugda&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8"
-         >
-    </iframe>
-  </div>
+        <!-- VIEWS Container -->
+        <main class="space-y-8">
+            <!-- 1. Find Rescue Teams View -->
+            <section id="view-teams" class="hidden">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">Search Nearby Rescue Teams</h2>
+                    <p class="text-sm text-gray-500 mb-4">Location, City or ZIP Code</p>
 
-  <!-- Instructions -->
-  <div class="w-full md:w-[85%] lg:w-[70%] mx-auto bg-[#9FD2EF] p-6 md:p-10 rounded-3xl flex flex-col items-start gap-8 shadow-lg shadow-black">
-    <h2 class="text-black text-2xl md:text-3xl font-semibold text-center w-full">Offline Access Instructions</h2>
-    <div class="flex flex-col gap-6 md:gap-10">
-      <div class="flex flex-row gap-3 items-center">
-        <i class="fa-solid fa-location-dot text-2xl md:text-4xl"></i>
-        <h3 class="text-lg md:text-2xl">Secure The Animal Safely</h3>
-      </div>
-      <div class="flex flex-row gap-3 items-center">
-        <i class="fa-solid fa-droplet text-2xl md:text-4xl"></i>
-        <h3 class="text-lg md:text-2xl">Provide Water</h3>
-      </div>
-      <div class="flex flex-row gap-3 items-center">
-        <i class="fa-solid fa-kit-medical text-2xl md:text-4xl"></i>
-        <h3 class="text-lg md:text-2xl">Give Basic First Aid</h3>
-      </div>
+                    <!-- Search Bar -->
+                    <div class="flex space-x-2">
+                        <input type="text" placeholder="Enter city name or ZIP code..."
+                               class="flex-grow p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                        <button class="flex items-center justify-center px-5 text-white bg-primary-dark rounded-lg hover:bg-gray-700 transition">
+                            <!-- Magnifying Glass Icon (lucide-react: Search) -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        </button>
+                    </div>
 
-         <div class="flex flex-row gap-3 items-center">
-        <i class="fa-solid fa-kit-medical text-2xl md:text-4xl"></i>
-        <h3 class="text-lg md:text-2xl">Give Basic First Aid</h3>
-      </div>
-              <div class="flex flex-row gap-3 items-center">
-        <i class="fa-solid fa-kit-medical text-2xl md:text-4xl"></i>
-        <h3 class="text-lg md:text-2xl">Give Basic First Aid</h3>
-      </div>
-    </div>
-  </div>
-</div>
+                    <div class="flex justify-center items-center text-sm text-gray-500 my-4">
+                        <span class="mr-2">or</span>
+                        <hr class="flex-grow border-t border-gray-300">
+                    </div>
 
-<!-- RESCUE FORM -->
-<form id="rescueForm" action="resQ.php" method="POST">
-<div class="max-w-[105rem] mx-auto my-10 p-6 md:p-10 bg-[#ECEEED] rounded-2xl border-2 border-gray-400">
-  <h1 class="text-3xl md:text-5xl font-bold mb-6">Rescue Form:</h1>
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <span class="flex flex-col text-black font-semibold text-lg">Your Name:
-      <input type="text" name="name" required placeholder="Enter your Name" class="bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
-    </span>
-    <span class="flex flex-col text-black font-semibold text-lg">Your Contact:
-      <input type="number" required name="phn" placeholder="Enter your Contact" class= "no-spinner bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-10 rounded-2xl w-full">
-    </span>
-    <span class="flex flex-col text-black font-semibold text-lg">Animal type:
-      <input required name="animal_t" list="animals" placeholder="Type to search..." class="w-full px-4 h-10 border focus:outline-none focus:ring-2 focus:ring-red-500 bg-gray-700 placeholder:text-gray-100 rounded-2xl text-white">
-      <datalist id="animals">
-        <option value="Cat">
-        <option value="Dog">
-        <option value="Bird">
-        <option value="Reptile">
-        <option value="Rabbit">
-      </datalist>
-    </span>
-  </div>
-  <span class="flex flex-col text-black font-semibold text-lg mt-6">Description:
-    <textarea name="des" required placeholder="Describe Here..." class=" place-content-center bg-gray-700 border focus:outline-none focus:ring-2 focus:ring-red-500 placeholder:text-gray-100 px-4 text-white h-24 rounded-2xl w-full"></textarea>
-  </span>
-  <div class="flex justify-center mt-8">
-    <input type="hidden" name="loc" id="location">
-    <button type="submit" id="submitBtn" class="flex items-center gap-2 text-[#ECEEED] bg-red-700 px-6 py-3 border-2 border-black rounded-3xl hover:bg-red-800 transition">
-      <i class="fa-solid fa-location-dot text-lg md:text-2xl animate-pulse"></i>
-      <span class="font-semibold text-lg">Share Location</span>
-    </button>
-  </div>
-</div>
- </form>
+                    <!-- Use Current Location Button -->
+                    <button class="w-full py-2 flex items-center justify-center text-sm font-semibold text-primary-dark border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition">
+                        <!-- Compass Icon (lucide-react: Compass) -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m16.24 7.76-1.93 1.93"/><path d="m11.97 4.05-1.93 1.93"/><path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/><path d="m15.56 12.75-2.22 2.22"/><path d="M12.75 8.44-2.22 2.22"/></svg>
+                        Use My Current Location
+                    </button>
+                </div>
 
-<!-- EMERGENCY CONTACTS -->
-<div class="max-w-[105rem] mx-auto my-20 p-6 md:p-20 bg-[#ECEEED] rounded-2xl border-2 border-gray-400">
-  <h1 class="text-4xl md:text-6xl font-bold mb-10">Emergency Contacts</h1>
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <h3 class="text-lg font-bold text-gray-700 mt-8 mb-4">6 Rescue Teams Found</h3>
 
-    <!-- Box 1 -->
-    <div class="flex items-center gap-6 shadow-2xl rounded-2xl p-5 min-h-[300px] hover:scale-105 hover:bg-gray-500 duration-200 transition">
-      <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-white border-2 border-black">
-        <img src="img/siren.png" alt="Emergency Siren" class="max-w-20">
-      </div>
-      <div class="flex flex-col items-start gap-6 p-5">
-        <div class="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-phone text-2xl md:text-4xl"></i>
-          <h3 class="text-xl md:text-2xl">333</h3>
+                <!-- Rescue Team Cards Grid -->
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Card 1: Paws & Hearts -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                        <img src="https://placehold.co/400x250/E5E7EB/1F2937?text=Paws+&+Hearts" onerror="this.src='https://placehold.co/400x250/E5E7EB/1F2937?text=Placeholder'" alt="Child rescuing a dog" class="w-full h-32 object-cover">
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Paws & Hearts Animal Rescue</h4>
+                                    <p class="text-xs text-gray-500">Animal Shelter & Rescue</p>
+                                </div>
+                                <span class="text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">2.3 mi</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs mb-3">
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Dogs</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Cats</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Emergency Care</span>
+                            </div>
+
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                                    1234 Main Street, Springfield, 12345
+                                </li>
+                                <li class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2Z"/></svg>
+                                    (555) 123-4567
+                                </li>
+                                <li class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/><path d="M12 11h4"/></svg>
+                                    Visit Website
+                                </li>
+                                <li class="flex items-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                                    Mon-Sat: 9 AM - 6 PM
+                                </li>
+                            </ul>
+
+                            <div class="flex mt-4 space-x-2">
+                                <button class="flex-1 py-2 text-sm font-semibold text-white bg-primary-dark rounded-lg hover:bg-gray-700 transition">Call Now</button>
+                                <button class="flex-1 py-2 text-sm font-semibold text-primary-dark border border-gray-300 rounded-lg hover:bg-gray-100 transition">Email</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2: Safe Haven Pet Shelter (Mockup) -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                        <img src="https://placehold.co/400x250/E5E7EB/1F2937?text=Safe+Haven+Dog" onerror="this.src='https://placehold.co/400x250/E5E7EB/1F2937?text=Placeholder'" alt="Dog placeholder" class="w-full h-32 object-cover">
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Safe Haven Pet Shelter</h4>
+                                    <p class="text-xs text-gray-500">Non-Profit Animal Shelter</p>
+                                </div>
+                                <span class="text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">3.7 mi</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs mb-3">
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">All Pets</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Rehabilitation</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Adoption</span>
+                            </div>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>5678 Oak Avenue, Springfield, 12345</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2Z"/></svg>(555) 234-5678</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/><path d="M12 11h4"/></svg>Visit Website</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Daily: 10 AM - 5 PM</li>
+                            </ul>
+                            <div class="flex mt-4 space-x-2">
+                                <button class="flex-1 py-2 text-sm font-semibold text-white bg-primary-dark rounded-lg hover:bg-gray-700 transition">Call Now</button>
+                                <button class="flex-1 py-2 text-sm font-semibold text-primary-dark border border-gray-300 rounded-lg hover:bg-gray-100 transition">Email</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3: Emergency Pet Care Center (Mockup) -->
+                    <div class="bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden">
+                        <img src="https://placehold.co/400x250/E5E7EB/1F2937?text=Chihuahua+Vet" onerror="this.src='https://placehold.co/400x250/E5E7EB/1F2937?text=Placeholder'" alt="Chihuahua with vet" class="w-full h-32 object-cover">
+                        <div class="p-4">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+                                    <h4 class="font-semibold text-gray-900">Emergency Pet Care Center</h4>
+                                    <p class="text-xs text-gray-500">24/7 Veterinary Emergency</p>
+                                </div>
+                                <span class="text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">4.2 mi</span>
+                            </div>
+                            <div class="flex flex-wrap gap-2 text-xs mb-3">
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Emergency Care</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Surgery</span>
+                                <span class="px-2 py-0.5 bg-gray-100 rounded text-gray-600">Critical Care</span>
+                            </div>
+                            <ul class="text-xs text-gray-600 space-y-1">
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>9012 Elm Street, Springfield, 12345</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2Z"/></svg>(555) 345-6789</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V5H4a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2Z"/><path d="M12 11h4"/></svg>Visit Website</li>
+                                <li class="flex items-center"><svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 mr-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>24/7 Emergency Services</li>
+                            </ul>
+                            <div class="flex mt-4 space-x-2">
+                                <button class="flex-1 py-2 text-sm font-semibold text-white bg-primary-dark rounded-lg hover:bg-gray-700 transition">Call Now</button>
+                                <button class="flex-1 py-2 text-sm font-semibold text-primary-dark border border-gray-300 rounded-lg hover:bg-gray-100 transition">Email</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+           
+           
+            <!-- 2. Report a Pet in Need View (Default Active View) -->
+
+  <section id="view-report" class="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-gray-200 w-full max-w-3xl">
+    <h2 class="text-3xl font-bold text-gray-800 mb-3">🐾 Report a Pet in Need</h2>
+    <p class="text-gray-500 mb-8 text-sm md:text-base">
+      Fill out this form to alert nearby rescue teams about a pet that needs urgent help.
+    </p>
+
+    <form id="rescueForm" action="resQ.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+
+      <!-- Live Location -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">
+          Live Location <span class="text-red-600">*</span>
+        </label>
+        <div class="border border-gray-300 bg-gray-50 rounded-lg p-3 text-sm text-gray-600">
+          <button type="button" id="shareLocationBtn"
+            class="w-full py-2 flex items-center justify-center font-semibold text-indigo-700 hover:text-indigo-900 transition">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="18" cy="5" r="3" />
+              <circle cx="6" cy="12" r="3" />
+              <circle cx="18" cy="19" r="3" />
+              <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+              <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+            </svg>
+            Share Live Location
+          </button>
+          <input type="hidden" name="loc" id="location" required>
         </div>
-        <div class="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-shield-cat text-2xl md:text-4xl"></i>
-          <h3 class="text-xl md:text-2xl">For Animal Rescue</h3>
-        </div>
-        <a href="#" class="text-lg text-sky-400 font-bold hover:underline">Read more →</a>
+        <p id="locationStatus" class="text-xs text-gray-500 mt-1"></p>
       </div>
-    </div>
 
-    <!-- Box 2 -->
-    <div class="flex items-center gap-6 shadow-2xl rounded-2xl p-5 min-h-[300px] hover:scale-105 hover:bg-gray-500 duration-200 transition">
-      <div class="w-24 h-24 rounded-full bg-gray-300 flex items-center justify-center text-white border-2 border-black">
-        <img src="img/policeman.png" alt="Police" class="max-w-20">
+      <!-- Name -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">
+          Your Name <span class="text-red-600">*</span>
+        </label>
+        <input type="text" name="name" placeholder="John Doe" required
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
       </div>
-      <div class="flex flex-col items-start gap-6 p-5">
-        <div class="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-phone text-2xl md:text-4xl"></i>
-          <h3 class="text-xl md:text-2xl">999</h3>
-        </div>
-        <div class="flex flex-row gap-2 items-center">
-          <i class="fa-solid fa-shield-cat text-2xl md:text-4xl"></i>
-          <h3 class="text-xl md:text-2xl">For Police Department</h3>
-        </div>
-        <a href="#" class="text-lg text-sky-400 font-bold hover:underline">Read more →</a>
+
+      <!-- Email -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">
+          Your Email <span class="text-red-600">*</span>
+        </label>
+        <input type="email" name="email" placeholder="john@example.com" required
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
       </div>
+
+      <!-- Pet Type -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">
+          Pet Type <span class="text-red-600">*</span>
+        </label>
+        <select name="animal_t" required
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+          <option value="">Select pet type</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="bird">Bird</option>
+          <option value="other">Other / Wildlife</option>
+        </select>
+      </div>
+
+      <!-- Description -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">
+          Situation Description <span class="text-red-600">*</span>
+        </label>
+        <textarea name="des" rows="4" required
+          placeholder="Please describe the pet's condition, location details, and any immediate concerns..."
+          class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"></textarea>
+      </div>
+
+      <!-- Image Upload -->
+      <div>
+        <label class="block text-sm font-semibold text-gray-700 mb-1">Pet Image (Optional)</label>
+        <div class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-400 mb-2" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+            <path d="M12 12v9" />
+            <path d="m16 16-4-4-4 4" />
+          </svg>
+          <p class="text-sm text-gray-600">Click to upload an image</p>
+          <p class="text-xs text-gray-400">PNG, JPG, up to 5MB</p>
+          <input type="file" name="image" class="sr-only" accept="image/*">
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit"
+        class="w-full py-3 text-lg font-bold text-white bg-indigo-700 rounded-xl shadow-md hover:bg-indigo-900 transition">
+        Submit Rescue Request
+      </button>
+
+    </form>
+  </section>
+
+
+
+
+
+
+            <!-- 3. Report Abuse View -->
+            <section id="view-abuse" class="hidden">
+                 <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">Report Animal Abuse (Confidential)</h2>
+                    <p class="text-sm text-gray-500 mb-6">Submit a confidential report about suspected animal abuse or neglect. The report will be sent to local authorities.</p>
+
+                    <!-- Danger Alert -->
+                    <div class="p-4 mb-6 text-sm text-danger-red rounded-lg bg-light-red" role="alert">
+                        <span class="font-bold">Urgency!</span> Please note that we prioritize reports where the animal's life is immediately endangered.
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); showMessage('Abuse Report Submitted!');" class="space-y-6">
+
+                        <!-- TIP-OFF INFORMATION SECTION -->
+                        <fieldset class="border-t border-gray-200 pt-6">
+                            <legend class="text-lg font-semibold text-gray-700">Tip-Off Information</legend>
+                            <p class="text-xs text-gray-500 mb-4">Your information (optional)</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="abuse-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                                    <input type="text" id="abuse-name" placeholder="John Doe"
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                </div>
+                                <div>
+                                    <label for="abuse-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                                    <input type="email" id="abuse-email" placeholder="john@example.com"
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                </div>
+                                <div>
+                                    <label for="abuse-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number (Optional)</label>
+                                    <input type="tel" id="abuse-phone" placeholder="(555) 555-5555"
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- INCIDENT LOCATION SECTION -->
+                         <fieldset class="border-t border-gray-200 pt-6">
+                            <legend class="text-lg font-semibold text-gray-700">Incident Location</legend>
+                            <div class="grid grid-cols-1 gap-4">
+                                <div>
+                                    <label for="street-address" class="block text-sm font-medium text-gray-700 mb-1">Street Address <span class="text-danger-red">*</span></label>
+                                    <input type="text" id="street-address" required
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                                    <div>
+                                        <label for="abuse-city" class="block text-sm font-medium text-gray-700 mb-1">City <span class="text-danger-red">*</span></label>
+                                        <input type="text" id="abuse-city" required
+                                            class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                    </div>
+                                    <div>
+                                        <label for="abuse-state" class="block text-sm font-medium text-gray-700 mb-1">State <span class="text-danger-red">*</span></label>
+                                        <input type="text" id="abuse-state" required
+                                            class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                    </div>
+                                    <div>
+                                        <label for="abuse-zip" class="block text-sm font-medium text-gray-700 mb-1">ZIP Code <span class="text-danger-red">*</span></label>
+                                        <input type="text" id="abuse-zip" required
+                                            class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                    </div>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <!-- INCIDENT DETAILS SECTION (Simplified for mockup) -->
+                        <fieldset class="border-t border-gray-200 pt-6">
+                            <legend class="text-lg font-semibold text-gray-700">Incident Details</legend>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="date-incident" class="block text-sm font-medium text-gray-700 mb-1">Date of Incident <span class="text-danger-red">*</span></label>
+                                    <input type="date" id="date-incident" required
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                </div>
+                                <div>
+                                    <label for="type-incident" class="block text-sm font-medium text-gray-700 mb-1">Type of Incident <span class="text-danger-red">*</span></label>
+                                    <select id="type-incident" required
+                                            class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg appearance-none focus:ring-2 focus:ring-danger-red focus:border-danger-red">
+                                        <option value="">Select type</option>
+                                        <option>Neglect (Lack of food/water/shelter)</option>
+                                        <option>Physical Harm/Cruelty</option>
+                                        <option>Abandonment</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <label for="detailed-description" class="block text-sm font-medium text-gray-700 mb-1">Detailed Description of Incident <span class="text-danger-red">*</span></label>
+                                <textarea id="detailed-description" rows="4" required
+                                        placeholder="Provide a complete and detailed account of the events. Include dates, times, names, frequency, and any other relevant information."
+                                        class="w-full p-3 border border-gray-200 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red focus:border-danger-red"></textarea>
+                            </div>
+                        </fieldset>
+
+                        <!-- SUBMIT BUTTON -->
+                        <div class="flex items-start pt-4">
+                            <input id="acknowledgement" type="checkbox" required
+                                class="h-4 w-4 text-danger-red border-gray-300 rounded focus:ring-danger-red mt-1">
+                            <label for="acknowledgement" class="ml-2 block text-xs text-gray-700">
+                                I agree to the <a href="#" class="text-danger-red hover:underline">Terms & Policy</a> and confirm the information is true to my knowledge.
+                            </label>
+                        </div>
+                        <button type="submit"
+                                class="w-full py-3 text-lg font-bold text-white bg-danger-red rounded-xl shadow-lg hover:bg-red-700 transition">
+                            Submit Confidential Report
+                        </button>
+                    </form>
+                </div>
+            </section>
+        </main>
     </div>
 
-  </div>
-</div>
-
-<!-- LAW SECTION -->
-<div class="max-w-[105rem] mx-auto my-20 p-6 md:p-20 bg-[#F5F7F6] rounded-2xl border-2 border-gray-400">
-  <h1 class="text-4xl md:text-6xl font-bold mb-10">Animal Protection Laws</h1>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-
-    <!-- Law 1 -->
-    <div class="group shadow-xl rounded-2xl p-6 bg-white hover:scale-105 transition duration-200 hover:bg-gray-700">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Prevention of Cruelty to Animals Act</h2>
-      <p class="text-lg text-gray-700 mb-4 group-hover:text-white">
-        This law prohibits cruelty towards animals, ensuring their welfare, and provides penalties for violations.
-      </p>
-      <a href="#" class="text-sky-500 font-semibold group-hover:text-white group-hover:underline">Read More →</a>
+    <!-- Custom Message Box for alerts (instead of alert()) -->
+    <div id="message-box" class="fixed inset-0 bg-gray-600 bg-opacity-50 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full">
+            <h3 class="text-xl font-bold mb-3 text-gray-800">Success!</h3>
+            <p id="message-content" class="text-gray-600 mb-4"></p>
+            <button onclick="document.getElementById('message-box').classList.add('hidden')"
+                    class="w-full py-2 bg-primary-dark text-white font-semibold rounded-lg hover:bg-gray-700 transition">
+                Close
+            </button>
+        </div>
     </div>
 
-    <!-- Law 2 -->
-    <div class="group shadow-xl rounded-2xl p-6 bg-white hover:scale-105 transition duration-200 hover:bg-gray-700">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Wildlife Protection Act</h2>
-      <p class="text-lg text-gray-700 mb-4 group-hover:text-white">
-        This act provides protection to wild animals, birds, and plants, with strict punishments for poaching and illegal trade.
-      </p>
-      <a href="#" class="text-sky-500 font-semibold group-hover:text-white group-hover:underline">Read More →</a>
-    </div>
 
-    <!-- Law 3 -->
-    <div class="group shadow-xl rounded-2xl p-6 bg-white hover:scale-105 transition duration-200 hover:bg-gray-700">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Local Animal Welfare Guidelines</h2>
-      <p class="text-lg text-gray-700 mb-4 group-hover:text-white">
-        Local authorities issue guidelines for pet ownership, stray animal care, and community involvement in animal safety.
-      </p>
-      <a href="#" class="text-sky-500 font-semibold group-hover:text-white group-hover:underline">Read More →</a>
-    </div>
+  
 
-    <!-- Law 4 -->
-    <div class="group shadow-xl rounded-2xl p-6 bg-white hover:scale-105 transition duration-200 hover:bg-gray-700">
-      <h2 class="text-2xl md:text-3xl font-bold mb-4 group-hover:text-white">Emergency Rescue Protocols</h2>
-      <p class="text-lg text-gray-700 mb-4 group-hover:text-white">
-        Laws that define proper protocols for rescuing animals in accidents, natural disasters, and abuse cases.
-      </p>
-      <a href="#" class="text-sky-500 font-semibold group-hover:text-white group-hover:underline">Read More →</a>
-    </div>
 
-  </div>
-</div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!-- FOOTER -->
@@ -346,10 +607,114 @@ navigator.geolocation.getCurrentPosition(
 });
 </script>
 
+  <script>
+        /**
+         * Simple function to display a custom message box.
+         * @param {string} message The message to display.
+         */
+        function showMessage(message) {
+            document.getElementById('message-content').textContent = message;
+            document.getElementById('message-box').classList.remove('hidden');
+            document.getElementById('message-box').classList.add('flex');
+        }
+
+        /**
+         * Handles the switching of views based on the navigation tabs.
+         * @param {string} viewName 'teams', 'report', or 'abuse'.
+         */
+        function switchView(viewName) {
+            const views = {
+                teams: document.getElementById('view-teams'),
+                report: document.getElementById('view-report'),
+                abuse: document.getElementById('view-abuse')
+            };
+            const tabs = {
+                teams: document.getElementById('tab-teams'),
+                report: document.getElementById('tab-report'),
+                abuse: document.getElementById('tab-abuse')
+            };
+
+            // Reset all views and tabs
+            Object.values(views).forEach(v => v.classList.add('hidden'));
+            Object.values(tabs).forEach(t => {
+                t.classList.remove('bg-gray-100', 'text-primary-dark', 'font-bold');
+                t.classList.add('text-gray-700');
+                const redCircle = t.querySelector('.bg-danger-red');
+                if (redCircle) redCircle.classList.add('hidden');
+            });
+
+
+            // Set active view and tab
+            const activeView = views[viewName];
+            const activeTab = tabs[viewName];
+
+            if (activeView) activeView.classList.remove('hidden');
+            if (activeTab) {
+                // Apply active styling
+                activeTab.classList.add('bg-gray-100', 'font-bold', 'text-primary-dark');
+                activeTab.classList.remove('text-gray-700', 'hover:bg-gray-50');
+
+                // Special handling for the 'Report Abuse' red circle
+                if (viewName === 'abuse') {
+                    const redCircle = activeTab.querySelector('.bg-danger-red');
+                    if (redCircle) redCircle.classList.remove('hidden');
+                    activeTab.classList.remove('bg-gray-100');
+                    activeTab.classList.add('bg-light-red', 'text-danger-red');
+                } else {
+                     activeTab.classList.add('bg-gray-100');
+                }
+
+            }
+        }
+
+        // Initialize the view on load (default to 'report')
+        document.addEventListener('DOMContentLoaded', () => {
+            switchView('report');
+        });
+    </script>
 
 
 
-  
+
+  <script>
+    // 🗺️ Share Live Location Script
+    document.getElementById('shareLocationBtn').addEventListener('click', () => {
+      const status = document.getElementById('locationStatus');
+      const locInput = document.getElementById('location');
+
+      if (!navigator.geolocation) {
+        status.textContent = "Geolocation is not supported by your browser.";
+        return;
+      }
+
+      status.textContent = "Fetching your live location...";
+
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lon = position.coords.longitude;
+          const googleLink = `https://www.google.com/maps?q=${lat},${lon}`;
+
+          locInput.value = googleLink;
+          status.innerHTML = `✅ Location captured: <a href="${googleLink}" target="_blank" class="text-indigo-600 underline">View on Map</a>`;
+        },
+        (error) => {
+          status.textContent = "Unable to retrieve your location. Please allow access.";
+        }
+      );
+    });
+
+    // 🚫 Prevent submission without location
+    document.getElementById('rescueForm').addEventListener('submit', (e) => {
+      const loc = document.getElementById('location').value.trim();
+      if (!loc) {
+        e.preventDefault();
+        alert('Please share your live location before submitting.');
+      }
+    });
+  </script>
+
+
 
 </body>
 </html>
