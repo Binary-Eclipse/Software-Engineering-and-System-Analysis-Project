@@ -1,22 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Save Paws Home</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="style.css">
+    <title>Save Paws Home - Rescue, Heal, Protect, Love</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        .faq-item .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .faq-item.open .faq-answer {
+            max-height: 200px;
+        }
+        .faq-item.open .icon-plus {
+            transform: rotate(45deg);
+        }
+        
+        /* RESPONSIVE CAROUSEL STYLES */
+        .gallery-section {
+            position: relative;
+            background: #fdfdff;
+            padding-bottom: 4rem; 
+            overflow: hidden;
+        }
+        .swiper {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 80px;
+        }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 280px;
+            height: 380px;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease-in-out;
+            position: relative;
+        }
+        @media (min-width: 768px) {
+            .swiper-slide {
+                width: 320px;
+                height: 420px;
+            }
+        }
+        .swiper-slide-active {
+             box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+        }
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 1rem;
+        }
+        .swiper-slide .play-icon {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            pointer-events: none;
+            border-radius: 1rem;
+        }
+        .swiper-slide-active .play-icon, 
+        .swiper-slide:hover .play-icon {
+            opacity: 1;
+        }
+        
+        .swiper-button-prev, .swiper-button-next {
+            position: absolute;
+            bottom: 20px;
+            top: auto;
+            width: 44px;
+            height: 44px;
+            background-color: white;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            color: #555;
+            z-index: 10;
+        }
+        .swiper-button-prev:hover, .swiper-button-next:hover {
+            color: #4f46e5;
+        }
+        .swiper-button-prev:after, .swiper-button-next:after {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .swiper-button-prev {
+            left: 50%;
+            transform: translateX(-120%);
+        }
+        .swiper-button-next {
+            left: 50%;
+            transform: translateX(20%);
+        }
+        
+        /* Filter Buttons (Shared style for gallery and blog) */
+        .category-filter-btn, .blog-filter-btn {
+            background-color: white;
+            color: #555;
+            font-weight: 500;
+            padding: 0.5rem 1.25rem;
+            border-radius: 9999px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.2s ease;
+            border: 1px solid #ddd;
+        }
+        .category-filter-btn.active, .blog-filter-btn.active {
+            background-color: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+        }
+    </style>
 </head>
 
-<body class="bg-white">
-
-
-    <!-- Navbar -->
+<body class="bg-gray-50">
 
     <nav class="flex flex-wrap justify-between items-center px-4 md:px-6 py-4 bg-white shadow-lg">
+        <a href="guest.html" class="text-2xl font-bold text-indigo-600 lg:hidden">SavePaws</a>
         <ul class="hidden lg:flex mx-auto justify-evenly space-x-2 flex-wrap">
             <li><a href="guest.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
             <li><a href="unde.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
@@ -32,498 +147,168 @@
                 <i class="fa-brands fa-twitch text-lg lg:text-xl mr-2" style="color: #9146FF;"></i>
                 <span>Join Community</span>
             </a>
-            <div class="flex justify-center items-center">
+            <div class="hidden md:flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
                 <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
+            <div class="hidden md:flex rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 items-center justify-center text-xs lg:text-base">Img</div>
         </div>
 
         <button id="menu-btn" class="lg:hidden text-2xl text-black ml-4">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
-
-    <!-- Mobile Dropdown -->
     <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="unde.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="rescue.html"  class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
-
-
-
-
-    <!-- Hero Section -->
-    <section class="grid lg:grid-cols-2 sm:grid-cols-1 items-center gap-6 px-4 md:px-6 bg-[#D9D9D982]">
-        <img src="img/hero_1.png" alt="Rescue animals" class="w-full max-w-full lg:max-w-2xl mx-auto rounded-2xl object-cover">
-
-        <div class="text-center flex flex-col items-center">
-            <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl leading-tight mb-6">
-                "Rescue. Heal. Protect. Love"
-            </h1>
-            <p class="text-base sm:text-lg md:text-xl text-black leading-relaxed mb-6 max-w-2xl">
-                A community to save animals in need — from rescue & medical help to volunteer support, awareness, and donations.
-            </p>
-
-            <!-- Emergency Rescue Button -->
-            <button class=" animate-pulse px-8 py-5 bg-red-600 text-white font-bold rounded-2xl shadow hover:bg-red-700">
-        Explore More
-      </button>
+    <header class="relative bg-gray-800 text-white py-20 md:py-32">
+        <div class="absolute inset-0"><img src="https://images.unsplash.com/photo-1599529452445-d4a1c1251e60?q=80&w=2070&auto=format&fit=crop" alt="Happy rescued dog" class="w-full h-full object-cover opacity-40"></div>
+        <div class="relative container mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Rescue. Heal. Protect. Love.</h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200">A community dedicated to saving animals in need — from emergency rescue and medical help to finding them a forever home.</p>
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4"><a href="rescue.html" class="w-full sm:w-auto px-8 py-4 bg-red-600 text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition transform hover:scale-105 animate-pulse"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Emergency</a><a href="adopt.html" class="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition transform hover:scale-105"><i class="fa-solid fa-heart mr-2"></i> Adopt a Friend</a></div>
         </div>
-    </section>
+    </header>
 
-    <!-- Rescue Form -->
-    <div class="flex flex-wrap gap-4 justify-center items-center px-4 md:px-6 py-5 mt-4 bg-[#0460B7] opacity-80 shadow-md">
-
-    </div>
-
-    <!-- Advertisement -->
-    <section id="op" class="container mx-auto px-4 my-12 max-w-full">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-40 mt-6">
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="img/da8e87e00d8411a095775f6cdb6536ea392c0d27.png" alt="Advertisement 1" class="w-full h-auto object-cover transform transition duration-500 hover:scale-110">
+    <section class="py-16 bg-gradient-to-br from-indigo-50 to-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Mission & Services</h2>
+                <p class="text-gray-600 mt-2 max-w-3xl mx-auto">Discover the core features of SavePaws and how we work to support animal welfare, connect communities, and make a difference.</p>
             </div>
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="img/caf68756088f2dbe823a85d843ac030024f39343.png" alt="Advertisement 2" class="w-full h-auto object-cover transform transition duration-500 hover:scale-110">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <a href="guest.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-home text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Home</h3><p class="text-gray-700">Explore the heart of SavePaws. Get an overview of our mission, latest updates, and quick access to all features.</p></a>
+                <a href="unde.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-store text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Shop</h3><p class="text-gray-700">Find quality pet supplies. Every purchase directly supports our rescue and rehabilitation efforts.</p></a>
+                <a href="clinics.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-stethoscope text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Clinics</h3><p class="text-gray-700">Locate nearby veterinary clinics and essential pet care services. Connect with trusted professionals.</p></a>
+                <a href="rescue.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-truck-medical text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Rescue</h3><p class="text-gray-700">Report animals in distress and find local rescue teams. Your timely reports save lives.</p></a>
+                <a href="blog.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-blog text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Blog</h3><p class="text-gray-700">Read inspiring success stories, get expert pet care tips, and stay updated on community events.</p></a>
+                <a href="adopt.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-hand-heart text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Adopt</h3><p class="text-gray-700">Browse lovable pets seeking forever homes. Find your perfect companion through a caring process.</p></a>
+                <a href="donation.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-donate text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Donate</h3><p class="text-gray-700">Support our mission financially. Your contributions directly fund animal rescues, medical care, and shelter operations.</p></a>
+                <a href="#" class="group bg-gradient-to-r from-indigo-500 to-purple-600 text-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-users-line text-4xl mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold mb-2">Community Forum</h3><p class="text-indigo-100">Connect with fellow animal lovers, share experiences, ask questions, and build a stronger community.</p></a>
             </div>
         </div>
     </section>
 
-    <!-- Services -->
-
-
-    <section class="container max-w-full px-4 md:px-6 bg-[#f9f8f9] relative py-20">
-
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 px-10">
-            <a href="#"><img src="img/icon.png" alt="Gallery Icon" class="mx-auto size-20 animate-bounce"></a>
-            <h2 class="text-xl md:text-4xl font-bold text-blue-600 mb-0 text-center md:text-left">
-                SavePaws Club Services
-            </h2>
-        </div>
-
-        <!-- Main content -->
-        <div class="bg-[url('img/our_s.PNG')] bg-no-repeat bg-center bg-contain w-full">
-
-            <!-- Row 1 -->
-            <div class="flex flex-wrap justify-center md:justify-between gap-6 md:gap-40 px-4 md:px-0">
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/0168b876e0f0502cdf8e8849d9a774e69a8309f9.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/1556101e27e23294c2bb4d77f8c6e7e84f7c5ed7.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
+    <section class="gallery-section py-16">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Happy Tails Gallery</h2>
+                <p class="text-gray-600 mt-2">Stories of hope, rescue, and love in pictures and videos.</p>
             </div>
-
-            <!-- Row 2 -->
-            <div class="flex flex-wrap justify-center md:justify-between gap-6 md:gap-40 mt-6 px-4 md:px-90">
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/2045fe70e642813738095a7a06b10662c3b00305.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/2cc364c391932c6e66219b0f3cffa1be10c3dbfb.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
+            <div id="gallery-filters" class="flex justify-center items-center gap-2 mb-8">
+                <button class="category-filter-btn active" data-filter="image">Images</button>
+                <button class="category-filter-btn" data-filter="video">Videos</button>
             </div>
-
-            <!-- Row 3 -->
-            <div class="flex flex-wrap justify-center md:justify-between gap-6 md:gap-60 mt-6 px-4 md:px-0">
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/2d12bd3b4563dc6cbe7fea37081ce2babcc539dd.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
-
-                <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                    <a href="#"><img src="icon/54a533371bef77f2a040f30dc7d7f33b0b97fdc9.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl"></a>
-                    <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                        <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                        <h2 class="text-sm md:text-2xl font-light text-black">
-                            TheLaravel Schema facade provides database agnostic
-                        </h2>
-                    </div>
-                </div>
+            <div class="swiper">
+                <div class="swiper-wrapper"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
-        </div>
-        <!-- Row 4 -->
-
-
-        <div class="flex flex-wrap justify-center md:justify-between gap-6 md:gap-20 px-4 md:px-0 md:mt-32 md:pb-5">
-            <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                <a href="#"><img src="icon/89e1a59c878dd99f7ed45f0156b40dae7d22ce74.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl"></a>
-                <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                    <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                    <h2 class="text-sm md:text-2xl font-light text-black">
-                        TheLaravel Schema facade provides database agnostic
-                    </h2>
-                </div>
+            <div class="text-center mt-8">
+                <button id="show-gallery-btn" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition">See Full Gallery</button>
             </div>
-
-            <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                <a href="#"><img src="icon/99a0b381ae33e85060e47e697116cdf8b6d280ec.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl"></a>
-                <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                    <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                    <h2 class="text-sm md:text-2xl font-light text-black">
-                        TheLaravel Schema facade provides database agnostic
-                    </h2>
-                </div>
-            </div>
-
-
-            <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                <a href="#"><img src="icon/d1db5900ceb49f76b7d8a4ec2db22778d454973d.png" alt="Gallery Icon" class="mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                    <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                    <h2 class="text-sm md:text-2xl font-light text-black">
-                        TheLaravel Schema facade provides database agnostic
-                    </h2>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row items-center gap-4 px-6 py-1">
-                <a href="#"><img src="icon/ee00be8440fd7305139511ad7dc608b101b05bbb.png" alt="Gallery Icon" class=" size-40 mx-auto w-20 md:w-25 lg:w-28 transition-transform duration-500 hover:scale-125  rounded-xl "></a>
-                <div class="max-w-xs md:max-w-[200px] text-center md:text-left">
-                    <h1 class="text-lg md:text-3xl font-bold text-black mb-2">Doctor Help</h1>
-                    <h2 class="text-sm md:text-2xl font-light text-black">
-                        TheLaravel Schema facade provides database agnostic
-                    </h2>
-                </div>
-            </div>
-        </div>
-
-    </section>
-
-
-
-
-
-
-    <!-- Gallery -->
-    <section id="op" class="container mx-auto px-4  py-14 max-w-full bg-[#FDF3DC]">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 px-6 py-4 ">
-            <a href="#"><img src="img/d9c67fb58f596f137923ab59022a582905454952.png" alt="Gallery Icon" class="mx-auto size-20"></a>
-            <h2 class="text-xl md:text-4xl font-bold text-blue-600 mb-2">Save Paws Gallery</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-40 mt-6">
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="img/5a12240c614989129f00565907d30ba740759deb.jpg" alt="Gallery Image 1" class="w-full h-auto object-fill transform transition duration-500 hover:scale-110">
-            </div>
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="img/6d5a7373ca1b7b6c95ca01c0c79b81b6d50d472f.jpg" alt="Gallery Image 2" class="w-full h-auto object-cover transform transition duration-500 hover:scale-110">
-            </div>
-            <div class="rounded-xl overflow-hidden shadow-lg">
-                <img src="img/ad7838122e5e1dbcdd5193d64adc145a32416bd2.jpg" alt="Gallery Image 3" class="w-full h-auto object-cover transform transition duration-500 hover:scale-110">
-            </div>
-        </div>
-
-        <div class="max-w-80 mx-auto hover:text-white mt-10">
-            <button class="w-full sm:w-auto hover:bg-sky-600 hover:border-white hover:text-white hover:duration-700 px-20 py-5 bg-white border-5 border-solid border-blue-600 text-blue-400 font-bold rounded-3xl shadow">
-        See Gallery <i class="fa-solid fa-arrow-right text-2xl" style="color: #74C0FC;"></i>
-      </button>
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="op" class="container mx-auto px-4 my-12 max-w-full shadow-sm">
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 px-6 py-4 bg-white rounded-lg">
-            <a href="#"><img src="img/blog.png" alt="Gallery Icon" class="size-16 sm:size-20 animate-bounce"></a>
-            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 md:mb-0 text-center md:text-left">SavePaws Club Blog</h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        The smallest paws leave the biggest prints on your heart....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">11 January 2025</p>
-                </div>
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">What Our Community Says</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Hear from the people who make our mission possible and the lives we've touched.</p>
             </div>
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        Share Their Story. You Might Just Find Them a Home....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">24 March 2025</p>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">John Doe</h3><p class="text-sm text-gray-500 mb-3">Adoptive Parent</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div><p class="text-gray-700 italic">"SavePaws made adopting our beloved dog, Max, such a smooth and joyous experience. They truly care about these animals!"</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Jane Smith</h3><p class="text-sm text-gray-500 mb-3">Volunteer</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"Volunteering with SavePaws has been incredibly rewarding. It's an amazing team, and every day I see the difference we make."</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Michael Brown</h3><p class="text-sm text-gray-500 mb-3">Donor</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"I'm proud to support SavePaws. Their transparency and dedication to animal welfare are truly inspiring. Keep up the great work!"</p></div>
             </div>
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        This Empty Kennel Could Be Full of Hope. Help Us Fill It....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">20 April 2025</p>
-                </div>
+            <div class="text-center mt-8">
+                <button id="show-feedback-btn" class="px-6 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition">Show All Feedback</button>
             </div>
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        Responsible Pet Ownership Starts with Knowledge....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">8 June 2025</p>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        Responsible Pet Ownership Starts with Knowledge.....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">10 August 2025</p>
-                </div>
-            </div>
-            <div class="flex flex-col sm:flex-row items-start bg-white shadow-lg p-4 sm:p-6 md:p-8 rounded-lg">
-                <img src="img/adorable-golden-retriever-puppy-playful-cat-and-friendly-parrot-posing-together-on-white-background-photo.jpg" alt="Blog post image" class="w-full sm:w-1/2 md:w-2/5 lg:w-1/3 h-auto mr-0 sm:mr-6 object-cover mb-4 sm:mb-0 rounded-lg">
-                <div class="flex-1">
-                    <h1 class="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800 line-clamp-3">
-                        Don't Shop. Adopt. Change a Life. Be Their Hero. Adopt, Donate, Foster....
-                    </h1>
-                    <p class="text-sm sm:text-md md:text-lg text-gray-600 mt-2">31 October 2025</p>
-                </div>
-            </div>
-        </div>
-
-        <div class="flex justify-center mt-10">
-            <button class="w-full sm:w-auto px-12 py-4 bg-white border-2 border-solid border-blue-600 text-blue-600 font-bold rounded-3xl shadow transition-colors duration-700 hover:bg-sky-600 hover:border-sky-600 hover:text-white">
-            See More <i class="fa-solid fa-arrow-right ml-2 text-xl" style="color: inherit;"></i>
-        </button>
         </div>
     </section>
-
-    <!-- User feedback -->
-    <section class="max-w-full shadow-sm bg-gray-300 mx-auto">
-
-        <!-- Header -->
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 px-6 py-4 bg-gray-300 rounded-lg mx-auto">
-            <a href="#"><img src="img/user-removebg-preview.png" alt="Gallery Icon" class="size-16 sm:size-20 animate-bounce"></a>
-            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 md:mb-0 text-center md:text-left">
-                User Feedback
-            </h2>
-        </div>
-
-        <!-- Feedback cards wrapper -->
-        <div class="flex flex-col lg:flex-row justify-center items-start gap-40 mt-8 px-4 hover:transition-transform duration-500 hover:scale-125  rounded-xl ">
-
-            <!-- Card 1 -->
-            <div class="flex flex-col sm:flex-row items-center gap-6">
-                <div class="w-50 h-50 flex items-center justify-center">
-                    <img src="img/men.jpg" alt="" class="rounded-full shadow-lg w-full h-full object-cover">
-                </div>
-                <div class="text-center sm:text-left max-w-80">
-                    <h4 class="text-2xl font-semibold mb-3">Shamiur Hasan</h4>
-                    <p class="text-lg mb-3">“This platform made it so easy for me to get quick help when I needed it the most.<br>The process is simple, fast, and very reliable!”</p>
-                    <a href="#" class="text-sky-600 block mb-2">Students, Department of CSE at UITS</a>
-                    <div class="flex justify-center sm:justify-start gap-1">
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                    </div>
-                </div>
+    
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Latest From Our Blog</h2>
+                <p class="text-gray-600 mt-2 max-w-2xl mx-auto">Get the latest news, stories, and tips from the world of pet care.</p>
             </div>
 
-            <!-- Card 2 -->
-            <div class="flex flex-col sm:flex-row items-center gap-6">
-                <div class="w-50 h-50 flex items-center justify-center">
-                    <img src="img/men.jpg" alt="" class="rounded-full shadow-lg w-full h-full object-cover">
-                </div>
-                <div class="text-center sm:text-left max-w-80">
-                    <h4 class="text-2xl font-semibold mb-3">Joy Goswami</h4>
-                    <p class="text-lg mb-3">“This platform made it so easy for me to get quick help when I needed it the most.<br>The process is simple, fast, and very reliable!”</p>
-                    <a href="#" class="text-sky-600 block mb-2">Students, Department of CSE at UITS</a>
-                    <div class="flex justify-center sm:justify-start gap-1">
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                        <i class="fa-solid fa-star text-yellow-400"></i>
-                    </div>
-                </div>
+            <div id="blog-filters" class="flex justify-center flex-wrap gap-2 mb-8">
+                <button class="blog-filter-btn active" data-filter="all">All Posts</button>
+                <button class="blog-filter-btn" data-filter="health">Health & Wellness</button>
+                <button class="blog-filter-btn" data-filter="training">Training Tips</button>
+                <button class="blog-filter-btn" data-filter="stories">Success Stories</button>
             </div>
 
-        </div>
-
-        <!-- See More Button -->
-        <div class="max-w-xs mx-auto py-20">
-            <button class="w-full sm:w-auto text-2xl hover:bg-sky-600 hover:border-white hover:text-white transition px-10 py-2 bg-white border border-blue-600 text-blue-400 font-bold rounded-3xl shadow">
-      See More <i class="fa-solid fa-arrow-right text-lg ml-2 text-sky-400"></i>
-    </button>
-        </div>
-    </section>
-
-
-
-    <!-- FAQ -->
-    <section class="faq-section  scroll-animate container mx-auto px-4 max-w-full bg-gray-300 py-30  mt-15">
-        <!-- Heading -->
-        <div class="flex flex-col md:flex-row justify-center items-center gap-4 px-6 py-4 bg-gray-300 rounded-lg">
-            <a href="#"><img src="img/100-1004000_faq-icon-removebg-preview.png" alt="Gallery Icon" class="size-16 sm:size-20 animate-spin"></a>
-            <h2 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-blue-600 mb-2 md:mb-0 text-center md:text-left">
-                Frequently Asked Question
-            </h2>
-        </div>
-
-        <!-- Main Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-y-8 lg:gap-x-96 mt-6 max-w-7xl mx-auto items-start">
-
-            <!-- Left: FAQ List -->
-            <div class="space-y-10 self-start">
-                <div class="bg-white text-lg px-5 py-4 shadow-lg rounded-lg cursor-pointer faq-item">
-                    <div class="flex items-center justify-between">
-                        <span>How long until we deliver your first blog post?</span>
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-black transition">
-                            <i class="fa-solid fa-plus text-sm text-white"></i>
+            <div id="blog-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col" data-category="health">
+                    <a href="blog.html#post1" class="block"><img src="https://images.unsplash.com/photo-1541364983171-a8ba01e95cfc?q=80&w=1887&auto=format&fit=crop" alt="A healthy dog smiling" class="w-full h-56 object-cover"></a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="inline-block bg-indigo-100 text-indigo-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2 self-start">Health & Wellness</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-indigo-600 transition-colors"><a href="blog.html#post1">The 5 Signs of a Healthy Pet</a></h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Learn how to spot key indicators of your pet's well-being, from their coat to their energy levels.</p>
+                        <div class="flex items-center text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
+                            <p>By Dr. Jane Foster - Oct 28, 2025</p>
                         </div>
                     </div>
-                    <p class="hidden mt-3 text-gray-600">We typically deliver your first blog post within 3-5 business days after setup.</p>
                 </div>
 
-                <div class="bg-white text-lg px-5 py-4 shadow-lg rounded-lg cursor-pointer faq-item">
-                    <div class="flex items-center justify-between">
-                        <span>Do you provide SEO optimization?</span>
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-black transition">
-                            <i class="fa-solid fa-plus text-sm text-white"></i>
+                <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col" data-category="training">
+                    <a href="blog.html#post2" class="block"><img src="https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?q=80&w=1894&auto=format&fit=crop" alt="A person training a dog" class="w-full h-56 object-cover"></a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="inline-block bg-purple-100 text-purple-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2 self-start">Training Tips</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-indigo-600 transition-colors"><a href="blog.html#post2">Positive Reinforcement: The Key to a Happy Pet</a></h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Discover effective and kind training techniques that build trust and strengthen your bond.</p>
+                        <div class="flex items-center text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
+                            <p>By Alex Chen - Oct 25, 2025</p>
                         </div>
                     </div>
-                    <p class="hidden mt-3 text-gray-600">Yes! All our blog posts are SEO-optimized by default.</p>
                 </div>
 
-                <div class="bg-white text-lg px-5 py-4 shadow-lg rounded-lg cursor-pointer faq-item">
-                    <div class="flex items-center justify-between">
-                        <span>Can I request revisions?</span>
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-black transition">
-                            <i class="fa-solid fa-plus text-sm text-white"></i>
+                <div class="blog-card bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col" data-category="stories">
+                    <a href="blog.html#post3" class="block"><img src="https://images.unsplash.com/photo-1596792348312-0855a8226162?q=80&w=1887&auto=format&fit=crop" alt="A cat resting comfortably in a home" class="w-full h-56 object-cover"></a>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <span class="inline-block bg-green-100 text-green-800 text-xs font-semibold px-2.5 py-0.5 rounded-full mb-2 self-start">Success Stories</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-indigo-600 transition-colors"><a href="blog.html#post3">From Street to Sweetheart: Luna's Journey</a></h3>
+                        <p class="text-gray-600 text-sm mb-4 flex-grow">Read the heartwarming story of how a timid stray cat found her forever home and learned to trust again.</p>
+                        <div class="flex items-center text-sm text-gray-500 mt-auto pt-4 border-t border-gray-100">
+                            <p>By Maria Rodriguez - Oct 22, 2025</p>
                         </div>
                     </div>
-                    <p class="hidden mt-3 text-gray-600">Absolutely. We provide up to 2 free revisions per blog post.</p>
-                </div>
-
-                <div class="bg-white text-lg px-5 py-4 shadow-lg rounded-lg cursor-pointer faq-item">
-                    <div class="flex items-center justify-between">
-                        <span>What niches do you cover?</span>
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-black transition">
-                            <i class="fa-solid fa-plus text-sm text-white"></i>
-                        </div>
-                    </div>
-                    <p class="hidden mt-3 text-gray-600">We cover most niches including tech, health, lifestyle, and finance.</p>
-                </div>
-
-                <div class="bg-white text-lg px-5 py-4 shadow-lg rounded-lg cursor-pointer faq-item">
-                    <div class="flex items-center justify-between">
-                        <span>Do you handle images as well?</span>
-                        <div class="w-7 h-7 rounded-full flex items-center justify-center bg-black transition">
-                            <i class="fa-solid fa-plus text-sm text-white"></i>
-                        </div>
-                    </div>
-                    <p class="hidden mt-3 text-gray-600">Yes, we can include royalty-free images on request.</p>
                 </div>
             </div>
 
-            <!-- Right: Image + Content -->
-            <div class="flex flex-col items-center lg:items-start space-y-3 self-start">
-                <img src="img/qus-removebg-preview.png" alt="" class="lg:w-80 md:w-80 sm:w-80 mx-auto">
-
-                <div class="text-center lg:text-left">
-                    <h1 class="font-bold text-2xl text-center">Any Question?</h1>
-                    <p class="font-light text-xl">You can ask anything you want to know. Feedback is welcome!</p>
-                </div>
-
-                <div class="w-full max-w-md">
-                    <p class="font-semibold text-lg mb-2">Let me know</p>
-                    <input type="text" placeholder="Enter Here" class="shadow-lg font-medium w-full h-12 px-5 rounded-lg bg-white">
-                </div>
+            <div class="text-center mt-12">
+                <a href="blog.html" class="px-8 py-3 bg-indigo-600 text-white font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105">
+                    View All Posts
+                </a>
             </div>
-
         </div>
     </section>
 
-
-
-
-
-    <!-- upper_footer -->
-
-
-    <section class="relative pt mt-0 bg-[#5A3BB3] pt-25 sm:pt-10 md:pt-15 md:text-sm lg:w-full ">
-        <div class="container mx-auto max-w-full flex flex-col items-center text-center  z-10 lg:w-full">
-
-
-
-            <!-- Heading -->
-            <h1 class="text-xl sm:text-4xl md:text-4xl lg:text-5xl text-white font-bold mb-15">
-                Ready to use our services?
-            </h1>
-
-            <!-- Button -->
-            <a href="#" class="rounded-3xl mb-8 inline-block font-serif bg-[#FBE2AC] text-black text-base sm:text-lg md:text-xl lg:text-2xl px-6 py-3 hover:bg-red-700 shadow-md">
-      Request Services
-    </a>
+    <hr class="container mx-auto px-6 border-t border-gray-200 my-8">
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12"><h2 class="text-3xl md:text-4xl font-bold text-gray-800">Frequently Asked Questions</h2></div>
+            <div class="max-w-3xl mx-auto space-y-4"><div class="faq-item border border-gray-200 rounded-lg"><div class="faq-question flex justify-between items-center p-5 cursor-pointer"><h4 class="font-semibold text-lg text-gray-800">How do I report an animal in need?</h4><i class="fa-solid fa-plus icon-plus text-indigo-600 transition-transform"></i></div><div class="faq-answer px-5 pb-5 text-gray-600"><p>Click the red "Report an Emergency" button on our homepage or navigate to the 'Rescue' page. Fill out the form with as much detail as possible, including the location and condition of the animal.</p></div></div><div class="faq-item border border-gray-200 rounded-lg"><div class="faq-question flex justify-between items-center p-5 cursor-pointer"><h4 class="font-semibold text-lg text-gray-800">What is the adoption process like?</h4><i class="fa-solid fa-plus icon-plus text-indigo-600 transition-transform"></i></div><div class="faq-answer px-5 pb-5 text-gray-600"><p>Visit our 'Adopt' page to see available pets. You can fill out an application form online. Our team will review it and contact you to arrange a meet-and-greet to ensure it's a perfect match for both you and the pet.</p></div></div><div class="faq-item border border-gray-200 rounded-lg"><div class="faq-question flex justify-between items-center p-5 cursor-pointer"><h4 class="font-semibold text-lg text-gray-800">How can I volunteer?</h4><i class="fa-solid fa-plus icon-plus text-indigo-600 transition-transform"></i></div><div class="faq-answer px-5 pb-5 text-gray-600"><p>We'd love to have you! Please visit our 'Get Involved' page or contact us directly. We have many roles available, from helping at shelters to assisting with transport and administrative tasks.</p></div></div></div>
         </div>
-
-        <!-- Decorative Images -->
-        <!-- Dog -->
-
-        <div class="sc absolute left-2 sm:bottom-60  md:-bottom-25 lg:-bottom-26  z-50">
-            <img src="img/bedi.png" class="w-30 sm:w-96 md:-w-80 lg:w-96 h-auto ">
-        </div>
-
-        <!-- Cat -->
-        <div class="sc absolute right-2 bottom-20 sm:bottom-28 md:-bottom-32 lg:-bottom-28 z-50 ">
-            <img src="img/cat.png" class="w-30 sm:w-96 md:w-44 lg:w-85 h-auto mb-20">
-        </div>
-
-
-        <!-- Wave Curve -->
-
-
-
-
-
     </section>
-    <!-- footer -->
+    
+    <section class="bg-indigo-700 text-white">
+        <div class="container mx-auto px-6 py-16 text-center"><h2 class="text-3xl md:text-4xl font-bold mb-4">Join Our Mission to Save Lives</h2><p class="text-indigo-200 max-w-2xl mx-auto mb-8">Whether you choose to adopt, donate, or volunteer, your support makes a world of difference. Together, we can give them a second chance.</p><div class="flex flex-col sm:flex-row justify-center items-center gap-4"><a href="donation.html" class="w-full sm:w-auto px-8 py-4 bg-yellow-400 text-gray-900 font-bold rounded-lg shadow-lg hover:bg-yellow-300 transition transform hover:scale-105">Donate Now</a><a href="#" class="w-full sm:w-auto px-8 py-4 bg-white text-indigo-700 font-bold rounded-lg shadow-lg hover:bg-gray-100 transition transform hover:scale-105">Become a Volunteer</a></div></div>
+    </section>
 
-
-    <footer class="bg-[#1A253DF0] text-white py-12 px-8 lg:px-50 md:px-8 w-full md:w-full sm:w-full  ">
+    <footer class="bg-[#1A253DF0] text-white py-12 px-4 w-full">
         <div class="container mx-auto max-w-7xl">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4  w-full">
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-8 text-center sm:text-left">
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
                     <ul class="space-y-2 text-gray-300">
@@ -533,17 +318,15 @@
                         <li><a href="#" class="hover:text-white transition-colors duration-300">Testimonial</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
                     <ul class="space-y-2 text-gray-300">
                         <li><a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-white transition-colors duration-300">Terms and Condition</a></li>
                         <li><a href="blog.html" class="hover:text-white transition-colors duration-300">Blog</a></li>
-                        <li><a href="+8801727898421" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
+                        <li><a href="tel:+8801727898421" class="hover:text-white transition-colors duration-300">Contact Us</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
                     <ul class="space-y-2 text-gray-300">
@@ -554,18 +337,16 @@
                         <li><a href="#" class="hover:text-white transition-colors duration-300">Remote Collaboration</a></li>
                     </ul>
                 </div>
-
                 <div>
                     <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
                     <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
-                    <form class="flex flex-col  sm:flex-row gap-2">
-                        <input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white">
+                    <form class="flex flex-col sm:flex-row gap-2">
+                        <input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white text-white">
                         <button class="bg-white text-[#2D2F4A] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors duration-300">Feedback</button>
                     </form>
                 </div>
             </div>
-
-            <div class="mt-10 pt-4  flex flex-col sm:flex-row items-center justify-center text-gray-300 text-sm">
+            <div class="mt-10 pt-4 flex flex-col sm:flex-row items-center justify-center text-gray-300 text-sm">
                 <p class="text-xl mb-4 sm:mb-0 mx-4">Copyright &copy; 2025</p>
                 <div class="flex space-x-4">
                     <a href="#"><i class="fab fa-facebook-f text-2xl hover:text-white transition-colors duration-300"></i></a>
@@ -576,11 +357,239 @@
             </div>
         </div>
     </footer>
+    
+    <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[9999] hidden">
+        <div id="lightbox-content" class="relative max-w-4xl max-h-[90vh]"></div>
+        <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
+    </div>
+    
+    <section id="full-gallery-page" class="fixed inset-0 bg-white z-[100] p-6 overflow-y-auto hidden transition-opacity duration-300 opacity-0">
+        <div class="container mx-auto max-w-7xl">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Our Full Gallery</h2>
+                <button id="close-gallery-btn" class="text-3xl text-gray-500 hover:text-gray-800 transition">&times;</button>
+            </div>
+            <div id="full-gallery-grid" class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"></div>
+        </div>
+    </section>
 
-    <!-- JS -->
-    <script src="j.js">
+    <section id="full-feedback-page" class="fixed inset-0 bg-white z-[100] p-6 overflow-y-auto hidden transition-opacity duration-300 opacity-0">
+        <div class="container mx-auto max-w-7xl">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Community Feedback</h2>
+                <button id="close-feedback-btn" class="text-3xl text-gray-500 hover:text-gray-800 transition">&times;</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">John Doe</h3><p class="text-sm text-gray-500 mb-3">Adoptive Parent</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div><p class="text-gray-700 italic">"SavePaws made adopting our beloved dog, Max, such a smooth and joyous experience. They truly care about these animals!"</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Jane Smith</h3><p class="text-sm text-gray-500 mb-3">Volunteer</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"Volunteering with SavePaws has been incredibly rewarding. It's an amazing team, and every day I see the difference we make."</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/men/75.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Michael Brown</h3><p class="text-sm text-gray-500 mb-3">Donor</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"I'm proud to support SavePaws. Their transparency and dedication to animal welfare are truly inspiring. Keep up the great work!"</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/women/8.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Emily Wilson</h3><p class="text-sm text-gray-500 mb-3">Foster Parent</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"The support from the community forum was invaluable when I fostered my first kitten. Everyone is so helpful and knowledgeable."</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/men/22.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">David Lee</h3><p class="text-sm text-gray-500 mb-3">Rescuer</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="far fa-star"></i></div><p class="text-gray-700 italic">"Using the rescue feature, I was able to get help for a stray dog in my neighborhood within an hour. The system works flawlessly."</p></div>
+                <div class="bg-gray-50 p-6 rounded-xl shadow-md flex flex-col items-center text-center"><img src="https://randomuser.me/api/portraits/women/65.jpg" alt="User Avatar" class="w-20 h-20 rounded-full object-cover mb-4 ring-2 ring-indigo-600"><h3 class="text-xl font-semibold text-gray-900 mb-1">Sarah Garcia</h3><p class="text-sm text-gray-500 mb-3">Blog Reader</p><div class="flex text-yellow-400 mb-4"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div><p class="text-gray-700 italic">"I love reading the success stories on the blog. It brightens my day and reinforces my belief in the good people are doing."</p></div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            let swiper = null;
+
+            const allSlidesData = [
+                { category: 'image', type: 'image', src: 'https://images.unsplash.com/photo-1503756234508-e32369269deb?q=80&w=1935&auto=format&fit=crop', alt: 'Happy rescued dog' },
+                { category: 'image', type: 'image', src: 'https://images.unsplash.com/photo-1548681528-6a5c45b66b42?q=80&w=1887&auto=format&fit=crop', alt: 'Rescued cat' },
+                { category: 'image', type: 'image', src: 'https://images.unsplash.com/photo-1588939463745-01e9a3b65893?q=80&w=1887&auto=format&fit=crop', alt: 'Happy adopted dog' },
+                { category: 'image', type: 'image', src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1862&auto=format&fit=crop', alt: 'Cute puppy' },
+                { category: 'video', type: 'video', src: 'https://www.youtube.com/embed/M1djO19a08Q?autoplay=1&mute=1&loop=1&playlist=M1djO19a08Q', thumbnail: 'https://img.youtube.com/vi/M1djO19a08Q/0.jpg', alt: 'Playful puppy video' },
+                { category: 'video', type: 'video', src: 'https://www.youtube.com/embed/3n_9n6K-hRc?autoplay=1&mute=1&loop=1&playlist=3n_9n6K-hRc', thumbnail: 'https://img.youtube.com/vi/3n_9n6K-hRc/0.jpg', alt: 'Kittens playing video' },
+                { category: 'video', type: 'video', src: 'https://www.youtube.com/embed/IO6oFddc03w?autoplay=1&mute=1&loop=1&playlist=IO6oFddc03w', thumbnail: 'https://img.youtube.com/vi/IO6oFddc03w/0.jpg', alt: 'Rescue story video' }
+            ];
+
+            const createSlideElement = (slideData) => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide';
+                slide.dataset.category = slideData.category;
+                slide.dataset.type = slideData.type;
+                slide.dataset.src = slideData.src;
+
+                const img = document.createElement('img');
+                img.src = slideData.type === 'image' ? slideData.src : slideData.thumbnail;
+                img.alt = slideData.alt;
+                slide.appendChild(img);
+
+                if (slideData.type === 'video') {
+                    const playIcon = document.createElement('div');
+                    playIcon.className = 'play-icon absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center';
+                    playIcon.innerHTML = `<i class="fa-solid fa-play text-white text-5xl"></i>`;
+                    slide.appendChild(playIcon);
+                }
+                return slide;
+            };
+            
+            const initializeSwiper = (slidesData) => {
+                if (swiper) swiper.destroy(true, true);
+                const swiperWrapper = document.querySelector('.swiper-wrapper');
+                swiperWrapper.innerHTML = '';
+                slidesData.forEach(data => swiperWrapper.appendChild(createSlideElement(data)));
+
+                swiper = new Swiper('.swiper', {
+                    effect: 'coverflow',
+                    grabCursor: true,
+                    centeredSlides: true,
+                    slidesPerView: 'auto',
+                    loop: slidesData.length > 2,
+                    coverflowEffect: {
+                        rotate: 0,
+                        stretch: -20,
+                        depth: 100,
+                        modifier: 1.5,
+                        slideShadows: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            };
+
+            const filterSlides = (filter) => {
+                const slidesToDisplay = allSlidesData.filter(slide => slide.category === filter);
+                initializeSwiper(slidesToDisplay);
+            };
+
+            const categoryFilterButtons = document.querySelectorAll('.category-filter-btn');
+            categoryFilterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    filterSlides(button.dataset.filter);
+                });
+            });
+
+            // --- BLOG FILTER LOGIC ---
+            const blogFilterButtons = document.querySelectorAll('.blog-filter-btn');
+            const blogCards = document.querySelectorAll('.blog-card');
+
+            blogFilterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    blogFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    const filter = button.dataset.filter;
+                    blogCards.forEach(card => {
+                        if (filter === 'all' || card.dataset.category === filter) {
+                            card.style.display = 'flex';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // --- LIGHTBOX LOGIC ---
+            const lightbox = document.getElementById('lightbox');
+            const lightboxContent = document.getElementById('lightbox-content');
+            const lightboxClose = document.getElementById('lightbox-close');
+
+            const openLightbox = (type, src) => {
+                lightboxContent.innerHTML = '';
+                if (type === 'image') {
+                    lightboxContent.innerHTML = `<img src="${src}" class="max-w-full max-h-[90vh] rounded-lg">`;
+                }
+                if (type === 'video') {
+                    lightboxContent.innerHTML = `<iframe src="${src}" class="w-[80vw] h-[45vw] max-w-4xl max-h-[80vh] rounded-lg" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
+                }
+                lightbox.classList.remove('hidden');
+            }
+
+            document.querySelector('.swiper')?.addEventListener('click', (e) => {
+                const clickedSlide = e.target.closest('.swiper-slide-active');
+                if (clickedSlide) {
+                    openLightbox(clickedSlide.dataset.type, clickedSlide.dataset.src);
+                }
+            });
+
+            const closeLightbox = () => {
+                lightbox.classList.add('hidden');
+                lightboxContent.innerHTML = '';
+            }
+
+            lightboxClose.addEventListener('click', closeLightbox);
+            lightbox.addEventListener('click', (e) => e.target === lightbox && closeLightbox());
+
+            // --- FULL PAGE OVERLAY LOGIC ---
+            const showGalleryBtn = document.getElementById('show-gallery-btn');
+            const fullGalleryPage = document.getElementById('full-gallery-page');
+            const closeGalleryBtn = document.getElementById('close-gallery-btn');
+            const fullGalleryGrid = document.getElementById('full-gallery-grid');
+            
+            const showFeedbackBtn = document.getElementById('show-feedback-btn');
+            const fullFeedbackPage = document.getElementById('full-feedback-page');
+            const closeFeedbackBtn = document.getElementById('close-feedback-btn');
+
+            const openOverlay = (page) => {
+                page.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                setTimeout(() => page.classList.remove('opacity-0'), 10);
+            }
+            const closeOverlay = (page) => {
+                page.classList.add('opacity-0');
+                document.body.style.overflow = '';
+                setTimeout(() => page.classList.add('hidden'), 300);
+            }
+
+            showGalleryBtn.addEventListener('click', () => {
+                fullGalleryGrid.innerHTML = '';
+                allSlidesData.forEach(data => {
+                    const item = document.createElement('div');
+                    item.className = 'relative cursor-pointer group break-inside-avoid';
+                    item.dataset.type = data.type;
+                    item.dataset.src = data.src;
+                    const img = document.createElement('img');
+                    img.src = data.type === 'image' ? data.src : data.thumbnail;
+                    img.alt = data.alt;
+                    img.className = 'rounded-lg shadow-md';
+                    item.appendChild(img);
+
+                    if(data.type === 'video') {
+                        const playIcon = document.createElement('div');
+                        playIcon.className = 'absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg';
+                        playIcon.innerHTML = `<i class="fa-solid fa-play text-white text-4xl"></i>`;
+                        item.appendChild(playIcon);
+                    }
+                    fullGalleryGrid.appendChild(item);
+                });
+                openOverlay(fullGalleryPage);
+            });
+            closeGalleryBtn.addEventListener('click', () => closeOverlay(fullGalleryPage));
+            fullGalleryGrid.addEventListener('click', (e) => {
+                const item = e.target.closest('[data-type]');
+                if (item) {
+                    openLightbox(item.dataset.type, item.dataset.src);
+                }
+            });
+
+            showFeedbackBtn.addEventListener('click', () => openOverlay(fullFeedbackPage));
+            closeFeedbackBtn.addEventListener('click', () => closeOverlay(fullFeedbackPage));
+
+            // --- MENU & FAQ LOGIC ---
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            if(menuBtn && mobileMenu) {
+                menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+            }
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const q = item.querySelector('.faq-question');
+                q?.addEventListener('click', () => {
+                    document.querySelectorAll('.faq-item').forEach(other => other !== item && other.classList.remove('open'));
+                    item.classList.toggle('open');
+                });
+            });
+
+            // Initial filter application for gallery
+            document.querySelector('.category-filter-btn[data-filter="image"]').click();
+        });
     </script>
-
 </body>
-
 </html>
