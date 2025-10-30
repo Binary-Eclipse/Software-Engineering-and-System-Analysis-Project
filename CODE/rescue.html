@@ -41,40 +41,41 @@
 </head>
 <body class="bg-white font-sans antialiased">
 
-    <nav class="flex flex-wrap justify-between items-center px-4 md:px-6 py-4 bg-white shadow-lg">
-        <a href="guest.html" class="text-2xl font-bold text-indigo-600 lg:hidden">SavePaws</a>
-        <ul class="hidden lg:flex mx-auto justify-evenly space-x-2 flex-wrap">
-            <li><a href="guest.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Home</a></li>
-            <li><a href="unde.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Shop</a></li>
-            <li><a href="clinics.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Clinics</a></li>
-            <li><a href="rescue.html" class="text-lg lg:text-xl font-bold text-indigo-600 border-b-2 border-indigo-600 lg:p-8">Rescue</a></li>
-            <li><a href="blog.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Blog</a></li>
-            <li><a href="adopt.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Adopt</a></li>
-            <li><a href="donation.html" class="text-lg lg:text-xl font-bold text-black hover:text-indigo-600 lg:p-8">Donate</a></li>
-        </ul>
+     <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg">
+  <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
+  <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+  <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+  <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+  <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+  <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+  <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+  <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+</ul>
 
-        <div class="flex items-center space-x-2 lg:space-x-10">
+
+        <div class="flex items-center space-x-2 lg:space-x-5">
             <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
-                <i class="fa-brands fa-twitch text-lg lg:text-xl mr-2" style="color: #9146FF;"></i>
+                <i class="fa-brands fa-twitch text-sm lg:text-sm mr-2" style="color: #9146FF;"></i>
                 <span>Join Community</span>
             </a>
-            <div class="hidden md:flex justify-center items-center">
-                <a href="log_in.html" class="text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            <div class="flex justify-center items-center">
+                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
-            <div class="hidden md:block rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex-shrink-0 flex items-center justify-center text-xs lg:text-base">Img</div>
+            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
 
-        <button id="menu-btn" class="lg:hidden text-2xl text-black ml-4">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+        <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     </nav>
 
+    <!-- Mobile Dropdown -->
     <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="unde.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinics.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-indigo-600">Rescue Team</a></li>
+        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
@@ -190,10 +191,81 @@
             <button id="message-close-btn" class="w-full py-2 bg-primary-dark text-white font-semibold rounded-lg hover:bg-gray-700 transition">Close</button>
         </div>
     </div>
+<footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
+  <div class="max-w-6xl mx-auto">
+    <!-- Footer Top -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
+      
+      <!-- Company -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li>
+        </ul>
+      </section>
 
-    <footer class="bg-[#1A253DF0] text-white py-12 px-4 w-full">
-        <div class="container mx-auto max-w-7xl"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full gap-8"><div><h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors duration-300">About Us</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Why Choose us</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Pricing</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Testimonial</a></li></ul></div><div><h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors duration-300">Privacy Policy</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Terms and Condition</a></li><li><a href="blog.html" class="hover:text-white transition-colors duration-300">Blog</a></li><li><a href="tel:+8801727898421" class="hover:text-white transition-colors duration-300">Contact Us</a></li></ul></div><div><h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors duration-300">Project management</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Time tracker</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Time schedule</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Lead generate</a></li><li><a href="#" class="hover:text-white transition-colors duration-300">Remote Collaboration</a></li></ul></div><div><h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3><p class="text-gray-300 mb-4">Subscribe to our Newsletter</p><form class="flex flex-col sm:flex-row gap-2"><input type="email" placeholder="Enter your email" class="bg-black text-white flex-1 px-4 py-3 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"><button class="bg-white text-[#2D2F4A] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors duration-300">Subscribe</button></form></div></div><div class="mt-10 pt-4 border-t border-gray-600 flex flex-col sm:flex-row items-center justify-center text-gray-400 text-sm"><p class="text-lg mb-4 sm:mb-0 mx-4">Copyright © 2025</p><div class="flex space-x-4"><a href="#" aria-label="Facebook"><i class="fab fa-facebook-f text-2xl hover:text-white transition-colors duration-300"></i></a><a href="#" aria-label="Twitter"><i class="fab fa-twitter text-2xl hover:text-white transition-colors duration-300"></i></a><a href="#" aria-label="Instagram"><i class="fab fa-instagram text-2xl hover:text-white transition-colors duration-300"></i></a><a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in text-2xl hover:text-white transition-colors duration-300"></i></a></div></div></div>
-    </footer>
+      <!-- Resources -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+          <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </section>
+
+      <!-- Product -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Project Management</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li>
+        </ul>
+      </section>
+
+      <!-- Newsletter -->
+      <section>
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
+        <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
+        <form class="flex flex-col sm:flex-col gap-2">
+          <input 
+            type="text" 
+            placeholder="Drop Your Feedback" 
+            class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"
+          >
+          <button 
+            type="submit" 
+            class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors"
+          >
+            Feedback
+          </button>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-gray-700 my-10">
+
+    <!-- Footer Bottom -->
+    <div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm">
+      <p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p>
+      <div class="flex space-x-5 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
     // --- GOOGLE MAPS SCRIPT ---

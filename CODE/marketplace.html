@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pet Marketplace - SavePaws</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="/assets/css/style.css" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        @layer components {
+            .bg-best-seller-red { background-color: #ef4444; }
+            .bg-sale-green { background-color: #10b981; } 
+            .bg-new-yellow { background-color: #f59e0b; } 
+            .text-primary-indigo { color: #4f46e5; } 
+            .bg-primary-indigo { background-color: #4f46e5; } 
+            .hover\:bg-indigo-600:hover { background-color: #4f46e5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-['Poppins',_sans-serif] text-gray-800 ">
+
+     <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg">
+  <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
+  <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+  <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+  <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+  <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+  <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+  <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+  <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+</ul>
+
+
+        <div class="flex items-center space-x-2 lg:space-x-5">
+            <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
+                <i class="fa-brands fa-twitch text-sm lg:text-sm mr-2" style="color: #9146FF;"></i>
+                <span>Join Community</span>
+            </a>
+            <div class="flex justify-center items-center">
+                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            </div>
+            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
+        </div>
+
+        <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    </nav>
+
+    <!-- Mobile Dropdown -->
+    <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
+        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+    </ul>
+
+    <section class="relative w-full h-screen bg-center bg-cover bg-no-repeat flex items-center px-4 sm:px-6 lg:px-8"
+        style="background-image: url('img/Gemini_Generated_Image_6xvxwn6xvxwn6xvx (1).png');">
+        
+        <div class="absolute inset-0 bg-black/40"></div>
+
+        <div class="relative z-10 max-w-5xl  flex flex-col items-start text-left py-20">
+            <h1 class="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white leading-tight mb-6 max-w-4xl">
+                "Rescue. Heal. Protect. Love"
+            </h1>
+            <p class="text-base sm:text-lg md:text-xl text-white leading-relaxed mb-8 max-w-2xl">
+                A community to save animals in need — from rescue & medical help to volunteer 
+                support, awareness, and donations.
+            </p>
+
+            <div class="flex gap-4 sm:gap-6">
+                <button class="px-6 py-3 sm:px-8 sm:py-4 bg-white text-primary-indigo font-bold rounded-2xl shadow hover:bg-gray-200 transition text-sm sm:text-base">
+                    Shop Now
+                </button>
+
+                <button class="px-6 py-3 sm:px-8 sm:py-4 bg-transparent text-white font-bold rounded-2xl shadow hover:bg-white border-white border-2 hover:text-black transition text-sm sm:text-base">
+                    View Details
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative my-10 py-5">
+        <input type="text" id="search-input" placeholder="Search for toys, treats, and more..." class="rounded-xl w-full py-4 pl-8 pr-12 text-lg border-2 border-black shadow-sm focus:ring-primary-indigo focus:ring-2 focus:border-primary-indigo">
+        <svg class="h-6 w-6 absolute top-1/2 right-10 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+    </div>
+
+    <div id="toast-container" class="fixed top-5 right-5 z-[100]"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-left font-bold text-black text-2xl mt-10">Shop By Category</div>
+
+        <div class="grid gap-4 sm:gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-6 my-6 sm:my-10 shadow-lg p-4 sm:p-5 rounded-xl bg-white">
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-bowl-food text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Pet Food</h1>
+            </div>
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-bone text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Treats</h1>
+            </div>
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-syringe text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Health</h1>
+            </div>
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-house-chimney text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Beds</h1>
+            </div>
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-baseball-bat-ball text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Toys</h1>
+            </div>
+            <div class="border-gray-400 rounded-lg text-center p-4 sm:p-6 bg-white hover:scale-105 duration-300 hover:border-blue-700 border-2 transition cursor-pointer">
+                <h1 class="font-medium text-lg md:text-xl text-center mb-2"><i class="fa-solid fa-vest-patches text-blue-700 text-3xl sm:text-4xl"></i></h1>
+                <h1 class="text-sm sm:text-base font-semibold">Apparel</h1>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 my-10">
+        <div class="w-full">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">All Products</h2>
+            <p class="text-gray-500 mb-6">20 products found</p>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+              <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 hover:shadow-xl group">
+                <div class="relative">
+                    <img src="https://placehold.co/600x400/1f2937/ffffff?text=Premium+Kibble" 
+                        alt="Premium Dog Kibble" 
+                        class="w-full h-48 object-cover group-hover:scale-[1.03] transition duration-300">
+                    
+                    <span class="absolute top-2 left-2 bg-best-seller-red text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">Best Seller</span>
+                    <span class="absolute top-2 right-2 bg-sale-green text-white text-xs font-semibold px-2 py-0.5 rounded-full shadow-md">-38% OFF</span>
+                </div>
+                <div class="p-4">
+                    <p class="text-xs text-gray-400 uppercase">PET FOOD</p>
+                    <h3 class="text-lg font-semibold text-gray-800 leading-tight mb-2"> Dog Food (2.5kg)</h3>
+                    
+                    <div class="flex items-center text-sm text-yellow-500 mb-3">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                        <i class="far fa-star text-gray-300"></i>
+                        <span class="text-xs text-gray-500 ml-2">(234)</span>
+                    </div>
+                    
+                    <p class="text-xl font-bold text-primary-indigo">&#2547;5,500</p>
+                    <p class="text-sm text-gray-400 line-through mb-2">&#2547;7,999</p>
+                    <p class="text-xs text-sale-green font-medium">Save &#2547;2,499 vs market price</p>
+                </div>
+                <div class="p-4 pt-0">
+                    <button class="w-full bg-indigo-600 text-white font-semibold py-2 rounded-lg shadow-md hover:bg-indigo-800 transition duration-150">
+                        <i class="fas fa-cart-plus mr-2"></i>Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
+  <div class="max-w-6xl mx-auto">
+    <!-- Footer Top -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
+      
+      <!-- Company -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li>
+        </ul>
+      </section>
+
+      <!-- Resources -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+          <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+          <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
+        </ul>
+      </section>
+
+      <!-- Product -->
+      <section>
+        <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
+        <ul class="space-y-2 text-gray-300">
+          <li><a href="#" class="hover:text-white transition-colors">Project Management</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li>
+        </ul>
+      </section>
+
+      <!-- Newsletter -->
+      <section>
+        <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
+        <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
+        <form class="flex flex-col sm:flex-col gap-2">
+          <input 
+            type="text" 
+            placeholder="Drop Your Feedback" 
+            class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"
+          >
+          <button 
+            type="submit" 
+            class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors"
+          >
+            Feedback
+          </button>
+        </form>
+      </section>
+
+    </div>
+
+    <!-- Divider -->
+    <hr class="border-gray-700 my-10">
+
+    <!-- Footer Bottom -->
+    <div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm">
+      <p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p>
+      <div class="flex space-x-5 mt-4 sm:mt-0">
+        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
