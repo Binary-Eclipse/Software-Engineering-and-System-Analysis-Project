@@ -35,8 +35,8 @@
         .faq-item.open .icon-plus {
             transform: rotate(45deg);
         }
-        /* RESPONSIVE CAROUSEL STYLES */
         
+        /* MAIN CAROUSEL STYLES */
         .gallery-section {
             position: relative;
             background: #fdfdff;
@@ -57,7 +57,7 @@
             height: 380px;
             border-radius: 1rem;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            transition: transform 0.4s ease-in-out;
+            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
             position: relative;
         }
         
@@ -70,6 +70,7 @@
         
         .swiper-slide-active {
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transform: scale(1.05);
         }
         
         .swiper-slide img {
@@ -126,8 +127,8 @@
             left: 50%;
             transform: translateX(20%);
         }
-        /* Filter Buttons (Shared style for gallery and blog) */
         
+        /* FILTER BUTTON STYLES (for main page and overlays) */
         .category-filter-btn,
         .blog-filter-btn {
             background-color: white;
@@ -177,16 +178,15 @@
         </div>
 
         <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
 
-    <!-- Mobile Dropdown -->
     <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
@@ -211,8 +211,8 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <a href="guest.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-home text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Home</h3><p class="text-gray-700">Explore the heart of SavePaws. Get an overview of our mission, latest updates, and quick access to all features.</p></a>
-                <a href="unde.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-store text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Shop</h3><p class="text-gray-700">Find quality pet supplies. Every purchase directly supports our rescue and rehabilitation efforts.</p></a>
-                <a href="clinics.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-stethoscope text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Clinics</h3><p class="text-gray-700">Locate nearby veterinary clinics and essential pet care services. Connect with trusted professionals.</p></a>
+                <a href="marketplace.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-store text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Shop</h3><p class="text-gray-700">Find quality pet supplies. Every purchase directly supports our rescue and rehabilitation efforts.</p></a>
+                <a href="clinic.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-stethoscope text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Clinics</h3><p class="text-gray-700">Locate nearby veterinary clinics and essential pet care services. Connect with trusted professionals.</p></a>
                 <a href="rescue.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-truck-medical text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Rescue</h3><p class="text-gray-700">Report animals in distress and find local rescue teams. Your timely reports save lives.</p></a>
                 <a href="blog.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-blog text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Blog</h3><p class="text-gray-700">Read inspiring success stories, get expert pet care tips, and stay updated on community events.</p></a>
                 <a href="adopt.html" class="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col items-center text-center"><i class="fa-solid fa-hand-heart text-4xl text-indigo-600 mb-4 group-hover:scale-110 transition-transform"></i><h3 class="text-xl font-bold text-gray-900 mb-2">Adopt</h3><p class="text-gray-700">Browse lovable pets seeking forever homes. Find your perfect companion through a caring process.</p></a>
@@ -224,7 +224,7 @@
 
     <section class="gallery-section py-16">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-6">
+            <div class="text-center mb-12">
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-800">Our Happy Tails Gallery</h2>
                 <p class="text-gray-600 mt-2">Stories of hope, rescue, and love in pictures and videos.</p>
             </div>
@@ -377,10 +377,7 @@
 
     <footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
         <div class="max-w-6xl mx-auto">
-            <!-- Footer Top -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
-
-                <!-- Company -->
                 <section>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
                     <ul class="space-y-2 text-gray-300">
@@ -390,8 +387,6 @@
                         <li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li>
                     </ul>
                 </section>
-
-                <!-- Resources -->
                 <section>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
                     <ul class="space-y-2 text-gray-300">
@@ -401,8 +396,6 @@
                         <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
                     </ul>
                 </section>
-
-                <!-- Product -->
                 <section>
                     <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
                     <ul class="space-y-2 text-gray-300">
@@ -413,25 +406,18 @@
                         <li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li>
                     </ul>
                 </section>
-
-                <!-- Newsletter -->
                 <section>
                     <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
                     <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
                     <form class="flex flex-col sm:flex-col gap-2">
                         <input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400">
                         <button type="submit" class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">
-            Feedback
-          </button>
+                            Feedback
+                        </button>
                     </form>
                 </section>
-
             </div>
-
-            <!-- Divider -->
             <hr class="border-gray-700 my-10">
-
-            <!-- Footer Bottom -->
             <div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm">
                 <p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p>
                 <div class="flex space-x-5 mt-4 sm:mt-0">
@@ -444,19 +430,24 @@
         </div>
     </footer>
 
-
     <div id="lightbox" class="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center p-4 z-[9999] hidden">
         <div id="lightbox-content" class="relative max-w-4xl max-h-[90vh]"></div>
         <button id="lightbox-close" class="absolute top-4 right-4 text-white text-4xl">&times;</button>
     </div>
 
-    <section id="full-gallery-page" class="fixed inset-0 bg-white z-[100] p-6 overflow-y-auto hidden transition-opacity duration-300 opacity-0">
+    <section id="full-gallery-page" class="fixed inset-0 bg-gray-100 z-[100] p-6 overflow-y-auto hidden transition-opacity duration-300 opacity-0">
         <div class="container mx-auto max-w-7xl">
             <div class="flex justify-between items-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-800">Our Full Gallery</h2>
                 <button id="close-gallery-btn" class="text-3xl text-gray-500 hover:text-gray-800 transition">&times;</button>
             </div>
-            <div id="full-gallery-grid" class="columns-2 md:columns-3 lg:columns-4 gap-4 space-y-4"></div>
+            <div id="full-gallery-filters" class="flex justify-center items-center gap-2 mb-8">
+                <button class="category-filter-btn active" data-filter="all">All</button>
+                <button class="category-filter-btn" data-filter="image">Images</button>
+                <button class="category-filter-btn" data-filter="video">Videos</button>
+            </div>
+            <div id="full-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                </div>
         </div>
     </section>
 
@@ -516,41 +507,51 @@
             const allSlidesData = [{
                 category: 'image',
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1503756234508-e32369269deb?q=80&w=1935&auto=format&fit=crop',
-                alt: 'Happy rescued dog'
+                src: 'https://images.unsplash.com/photo-1574158622682-e40e69841006?q=80&w=2080&auto=format&fit=crop',
+                alt: 'Curious kitten looking up'
             }, {
                 category: 'image',
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1548681528-6a5c45b66b42?q=80&w=1887&auto=format&fit=crop',
-                alt: 'Rescued cat'
+                src: 'https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=2070&auto=format&fit=crop',
+                alt: 'Happy dog with sunglasses'
+            }, {
+                category: 'video',
+                type: 'video',
+                src: 'https://www.youtube.com/embed/1vrEljMfXYo?autoplay=1&mute=1&loop=1&playlist=1vrEljMfXYo',
+                thumbnail: 'https://img.youtube.com/vi/1vrEljMfXYo/0.jpg',
+                alt: 'Funny and cute pet moments'
             }, {
                 category: 'image',
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1588939463745-01e9a3b65893?q=80&w=1887&auto=format&fit=crop',
-                alt: 'Happy adopted dog'
+                src: 'https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?q=80&w=1780&auto=format&fit=crop',
+                alt: 'Cat peeking from a corner'
             }, {
                 category: 'image',
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1552053831-71594a27632d?q=80&w=1862&auto=format&fit=crop',
-                alt: 'Cute puppy'
+                src: 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=2070&auto=format&fit=crop',
+                alt: 'Joyful dog running in a field'
             }, {
                 category: 'video',
                 type: 'video',
-                src: 'https://www.youtube.com/embed/M1djO19a08Q?autoplay=1&mute=1&loop=1&playlist=M1djO19a08Q',
-                thumbnail: 'https://img.youtube.com/vi/M1djO19a08Q/0.jpg',
-                alt: 'Playful puppy video'
+                src: 'https://www.youtube.com/embed/j_n4Xb-T71M?autoplay=1&mute=1&loop=1&playlist=j_n4Xb-T71M',
+                thumbnail: 'https://img.youtube.com/vi/j_n4Xb-T71M/0.jpg',
+                alt: 'Adorable puppies compilation'
+            }, {
+                category: 'image',
+                type: 'image',
+                src: 'https://images.unsplash.com/photo-1517849845537-4d257902454a?q=80&w=1935&auto=format&fit=crop',
+                alt: 'A pug in a stylish jacket'
             }, {
                 category: 'video',
                 type: 'video',
-                src: 'https://www.youtube.com/embed/3n_9n6K-hRc?autoplay=1&mute=1&loop=1&playlist=3n_9n6K-hRc',
-                thumbnail: 'https://img.youtube.com/vi/3n_9n6K-hRc/0.jpg',
-                alt: 'Kittens playing video'
+                src: 'https://www.youtube.com/embed/4nC0O1-S9gI?autoplay=1&mute=1&loop=1&playlist=4nC0O1-S9gI',
+                thumbnail: 'https://img.youtube.com/vi/4nC0O1-S9gI/0.jpg',
+                alt: 'Heartwarming kitten moments'
             }, {
-                category: 'video',
-                type: 'video',
-                src: 'https://www.youtube.com/embed/IO6oFddc03w?autoplay=1&mute=1&loop=1&playlist=IO6oFddc03w',
-                thumbnail: 'https://img.youtube.com/vi/IO6oFddc03w/0.jpg',
-                alt: 'Rescue story video'
+                category: 'image',
+                type: 'image',
+                src: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?q=80&w=1915&auto=format&fit=crop',
+                alt: 'A cat with striking blue eyes'
             }];
 
             const createSlideElement = (slideData) => {
@@ -587,10 +588,10 @@
                     slidesPerView: 'auto',
                     loop: slidesData.length > 2,
                     coverflowEffect: {
-                        rotate: 0,
-                        stretch: -20,
+                        rotate: 5,
+                        stretch: -25,
                         depth: 100,
-                        modifier: 1.5,
+                        modifier: 1.2,
                         slideShadows: true,
                     },
                     navigation: {
@@ -605,72 +606,58 @@
                 initializeSwiper(slidesToDisplay);
             };
 
-            const categoryFilterButtons = document.querySelectorAll('.category-filter-btn');
-            categoryFilterButtons.forEach(button => {
+            document.querySelectorAll('#gallery-filters .category-filter-btn').forEach(button => {
                 button.addEventListener('click', () => {
-                    categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
+                    document.querySelectorAll('#gallery-filters .category-filter-btn').forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
                     filterSlides(button.dataset.filter);
                 });
             });
 
-            // --- BLOG FILTER LOGIC ---
             const blogFilterButtons = document.querySelectorAll('.blog-filter-btn');
             const blogCards = document.querySelectorAll('.blog-card');
-
             blogFilterButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     blogFilterButtons.forEach(btn => btn.classList.remove('active'));
                     button.classList.add('active');
-
                     const filter = button.dataset.filter;
                     blogCards.forEach(card => {
-                        if (filter === 'all' || card.dataset.category === filter) {
-                            card.style.display = 'flex';
-                        } else {
-                            card.style.display = 'none';
-                        }
+                        card.style.display = (filter === 'all' || card.dataset.category === filter) ? 'flex' : 'none';
                     });
                 });
             });
 
-            // --- LIGHTBOX LOGIC ---
             const lightbox = document.getElementById('lightbox');
             const lightboxContent = document.getElementById('lightbox-content');
             const lightboxClose = document.getElementById('lightbox-close');
-
             const openLightbox = (type, src) => {
                 lightboxContent.innerHTML = '';
                 if (type === 'image') {
                     lightboxContent.innerHTML = `<img src="${src}" class="max-w-full max-h-[90vh] rounded-lg">`;
-                }
-                if (type === 'video') {
+                } else if (type === 'video') {
                     lightboxContent.innerHTML = `<iframe src="${src}" class="w-[80vw] h-[45vw] max-w-4xl max-h-[80vh] rounded-lg" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
                 }
                 lightbox.classList.remove('hidden');
-            }
-
-            document.querySelector('.swiper') ? .addEventListener('click', (e) => {
+            };
+            const closeLightbox = () => {
+                lightbox.classList.add('hidden');
+                lightboxContent.innerHTML = '';
+            };
+            document.querySelector('.swiper')?.addEventListener('click', (e) => {
                 const clickedSlide = e.target.closest('.swiper-slide-active');
                 if (clickedSlide) {
                     openLightbox(clickedSlide.dataset.type, clickedSlide.dataset.src);
                 }
             });
-
-            const closeLightbox = () => {
-                lightbox.classList.add('hidden');
-                lightboxContent.innerHTML = '';
-            }
-
             lightboxClose.addEventListener('click', closeLightbox);
-            lightbox.addEventListener('click', (e) => e.target === lightbox && closeLightbox());
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
 
-            // --- FULL PAGE OVERLAY LOGIC ---
             const showGalleryBtn = document.getElementById('show-gallery-btn');
             const fullGalleryPage = document.getElementById('full-gallery-page');
             const closeGalleryBtn = document.getElementById('close-gallery-btn');
             const fullGalleryGrid = document.getElementById('full-gallery-grid');
-
             const showFeedbackBtn = document.getElementById('show-feedback-btn');
             const fullFeedbackPage = document.getElementById('full-feedback-page');
             const closeFeedbackBtn = document.getElementById('close-feedback-btn');
@@ -679,36 +666,62 @@
                 page.classList.remove('hidden');
                 document.body.style.overflow = 'hidden';
                 setTimeout(() => page.classList.remove('opacity-0'), 10);
-            }
+            };
             const closeOverlay = (page) => {
                 page.classList.add('opacity-0');
                 document.body.style.overflow = '';
                 setTimeout(() => page.classList.add('hidden'), 300);
-            }
+            };
 
-            showGalleryBtn.addEventListener('click', () => {
+            const populateFullGallery = (filter) => {
                 fullGalleryGrid.innerHTML = '';
-                allSlidesData.forEach(data => {
-                    const item = document.createElement('div');
-                    item.className = 'relative cursor-pointer group break-inside-avoid';
-                    item.dataset.type = data.type;
-                    item.dataset.src = data.src;
-                    const img = document.createElement('img');
-                    img.src = data.type === 'image' ? data.src : data.thumbnail;
-                    img.alt = data.alt;
-                    img.className = 'rounded-lg shadow-md';
-                    item.appendChild(img);
+                const itemsToShow = (filter === 'all') ? allSlidesData : allSlidesData.filter(item => item.category === filter);
+
+                itemsToShow.forEach(data => {
+                    const card = document.createElement('div');
+                    card.className = 'bg-white rounded-lg shadow-md overflow-hidden group cursor-pointer';
+                    card.dataset.type = data.type;
+                    card.dataset.src = data.src;
+
+                    let cardContent = `
+                        <div class="relative">
+                            <img src="${data.type === 'image' ? data.src : data.thumbnail}" alt="${data.alt}" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-110">
+                            <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
+                    `;
 
                     if (data.type === 'video') {
-                        const playIcon = document.createElement('div');
-                        playIcon.className = 'absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity rounded-lg';
-                        playIcon.innerHTML = `<i class="fa-solid fa-play text-white text-4xl"></i>`;
-                        item.appendChild(playIcon);
+                        cardContent += `<i class="fa-solid fa-play text-white text-5xl opacity-80"></i>`;
+                    } else {
+                        cardContent += `<i class="fa-solid fa-magnifying-glass-plus text-white text-5xl opacity-0 group-hover:opacity-80 transition-opacity duration-300"></i>`;
                     }
-                    fullGalleryGrid.appendChild(item);
+
+                    cardContent += `
+                            </div>
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-800 font-semibold truncate">${data.alt}</p>
+                        </div>
+                    `;
+                    card.innerHTML = cardContent;
+                    fullGalleryGrid.appendChild(card);
                 });
+            };
+
+            showGalleryBtn.addEventListener('click', () => {
+                populateFullGallery('all');
+                document.querySelector('#full-gallery-filters .category-filter-btn.active').classList.remove('active');
+                document.querySelector('#full-gallery-filters .category-filter-btn[data-filter="all"]').classList.add('active');
                 openOverlay(fullGalleryPage);
             });
+
+            document.querySelectorAll('#full-gallery-filters .category-filter-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.querySelectorAll('#full-gallery-filters .category-filter-btn').forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    populateFullGallery(button.dataset.filter);
+                });
+            });
+
             closeGalleryBtn.addEventListener('click', () => closeOverlay(fullGalleryPage));
             fullGalleryGrid.addEventListener('click', (e) => {
                 const item = e.target.closest('[data-type]');
@@ -720,22 +733,23 @@
             showFeedbackBtn.addEventListener('click', () => openOverlay(fullFeedbackPage));
             closeFeedbackBtn.addEventListener('click', () => closeOverlay(fullFeedbackPage));
 
-            // --- MENU & FAQ LOGIC ---
             const menuBtn = document.getElementById('menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
-            if (menuBtn && mobileMenu) {
+            if (menuBtn) {
                 menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
             }
             document.querySelectorAll('.faq-item').forEach(item => {
                 const q = item.querySelector('.faq-question');
-                q ? .addEventListener('click', () => {
-                    document.querySelectorAll('.faq-item').forEach(other => other !== item && other.classList.remove('open'));
-                    item.classList.toggle('open');
+                q?.addEventListener('click', () => {
+                    const isOpen = item.classList.contains('open');
+                    document.querySelectorAll('.faq-item').forEach(other => other.classList.remove('open'));
+                    if (!isOpen) {
+                        item.classList.add('open');
+                    }
                 });
             });
 
-            // Initial filter application for gallery
-            document.querySelector('.category-filter-btn[data-filter="image"]').click();
+            document.querySelector('#gallery-filters .category-filter-btn[data-filter="image"]').click();
         });
     </script>
 </body>
