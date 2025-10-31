@@ -48,7 +48,7 @@
         </ul>
 
 
-        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5">
+        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
         
             <div class="flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
@@ -85,19 +85,16 @@
     </ul>
 
     <!-- tab -->
-    <section class="flex flex-col items-center text-center px-4 py-10">
-        <section class="flex justify-center space-x-4 mb-10 bg-white rounded-3xl">
-            <button id="tab-pets" class="px-6 py-2 border-b-2 border-primary-dark font-semibold text-primary-dark hover:bg-gray-300 hover:rounded-3xl"><i class="fa-solid fa-heart text-black"></i>Available Pets</button>
-            <button id="tab-donate" class="px-6 py-2 border-b-2 border-transparent font-semibold text-gray-500 hover:bg-gray-300 hover:rounded-3xl"><i class="fa-solid fa-house text-black"></i>Donate a Pet</button>
+    <section class="flex flex-col items-center text-center px-4 py-10 ">
+        <section class="flex justify-center space-x-4 mb-10  rounded-3xl shadow-2xl bg-gray-200">
+            <button id="tab-pets" class="px-6 py-2 border-2 rounded-3xl border-primary-dark font-semibold text-black text-primary-dark hover:bg-gray-300 hover:rounded-3xl"><i class="fa-solid fa-heart text-black"></i>Available Pets</button>
+            <button id="tab-donate" class="px-6 py-2 border-2 border-transparent rounded-3xl font-semibold text-black hover:bg-gray-300 hover:rounded-3xl"><i class="fa-solid fa-house text-black"></i>Donate a Pet</button>
         </section>
 
         <!-- header -->
 
         <!-- Headers -->
-        <div id="tab-header" class="text-center mb-10">
-            <h1 id="pets-header" class="text-2xl font-bold text-gray-900">Pets Available for Adoption</h1>
-            <p id="pets-subheader" class="text-sm text-gray-500 mt-1">Find your perfect companion or help a pet find their forever home</p>
-        </div>
+     
 
     </section>
 
@@ -460,10 +457,10 @@
 
         petsTab.addEventListener('click', () => {
 
-            petsTab.classList.add('border-primary-dark', 'text-primary-dark');
-            petsTab.classList.remove('border-transparent', 'text-gray-500');
-            donateTab.classList.remove('border-primary-dark', 'text-primary-dark');
-            donateTab.classList.add('border-transparent', 'text-gray-500');
+            petsTab.classList.add('border-primary-dark', 'text-primary-dark','bg-blue-400');
+            petsTab.classList.remove('border-transparent', 'text-gray-500',);
+            donateTab.classList.remove('border-primary-dark', 'text-primary-dark','bg-blue-400');
+            donateTab.classList.add('border-transparent', 'text-gray-500',);
 
 
             petsSection.classList.remove('hidden');
@@ -479,10 +476,10 @@
 
         donateTab.addEventListener('click', () => {
 
-            donateTab.classList.add('border-primary-dark', 'text-primary-dark');
-            donateTab.classList.remove('border-transparent', 'text-gray-500');
-            petsTab.classList.remove('border-primary-dark', 'text-primary-dark');
-            petsTab.classList.add('border-transparent', 'text-gray-500');
+            donateTab.classList.add('border-primary-dark', 'text-primary-dark','bg-blue-400');
+            donateTab.classList.remove('border-transparent', 'text-gray-500',);
+            petsTab.classList.remove('border-primary-dark', 'text-primary-dark','bg-blue-400');
+            petsTab.classList.add('border-transparent', 'text-gray-500',);
 
 
             donateSection.classList.remove('hidden');
@@ -496,7 +493,7 @@
         });
     </script>
 
-    <script src="/j.js"></script>
+    <script src="j.js"></script>
 </body>
 
 </html>

@@ -49,7 +49,7 @@
         </ul>
 
 
-        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5">
+        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
         
             <div class="flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
@@ -87,10 +87,14 @@
 
     <hr class="border-gray-100">
 
-    <section class="relative w-full h-screen bg-center bg-cover bg-no-repeat flex flex-col justify-evenly items-start text-center px-4 md:px-6" style="background-image: url('img/rescue\ pets.png');">
 
-        <div class="absolute inset-0 bg-black/40"></div>
-
+<header class="relative bg-gray-800 text-white py-20 md:py-60 h-[85vh]">
+    <div class="absolute inset-0">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
+            <source src="img/clinic_1.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
         <div class="relative z-10 flex gap-10 flex-col items-start max-w-full  px-4 text-left">
             <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-7xl text-white leading-tight mb-6">
                 "Rescue. Heal. Protect. Love"
@@ -104,14 +108,14 @@
                     First Aid
                 </button>
 
-                <button onclick="window.location.href='enjoy_service.html'" class="px-5 py-3 sm:px-8 sm:py-5 bg-transparent text-white font-bold rounded-2xl shadow hover:bg-white border-white border-4 hover:text-black transition">
+                <button onclick="window.location.href='enjoy_service.html'" class="px-5 py-3 sm:px-8 sm:py-5  bg-white font-bold rounded-2xl shadow hover:bg-blue-500 border-white hover:text-white border-4 text-blue-500 transition">
                     Enjoy service
                 </button>
             </div>
         </div>
-    </section>
+</header>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative my-10 py-5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative my-10 py-5 shadow-2xl">
         <input type="text" id="search-input" placeholder="Find your Location" class="rounded-xl w-full py-4 pl-8 pr-12 text-lg border-2 border-black shadow-sm focus:ring-primary-indigo focus:ring-2 focus:border-primary-indigo">
         <svg class="h-6 w-6 absolute top-1/2 right-10 -translate-y-1/2 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
     </div>
@@ -315,7 +319,8 @@
     </script>
 
 
-    <script src="/j.js"></script>
+    <script src="j.js"></script>
 </body>
 
 </html>
+
