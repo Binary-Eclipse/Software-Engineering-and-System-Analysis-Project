@@ -48,11 +48,10 @@
 
 <body class="bg-gray-50 font-['Poppins',_sans-serif] text-gray-800 ">
 
-    <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
-                    <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
-        <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
+    <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg sticky top-0 z-50">
+        <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
             <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-indigo-600 lg:p-5">Shop</a></li>
             <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
             <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
             <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
@@ -60,9 +59,11 @@
             <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
-
-        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
-        
+        <div class="flex items-center space-x-4 lg:space-x-5">
+             <div class="relative cursor-pointer" id="cart-button">
+                <i class="fas fa-shopping-cart text-2xl text-gray-600 hover:text-primary-indigo"></i>
+                <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
+            </div>
             <div class="flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
                 <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
@@ -71,27 +72,15 @@
         </div>
 
         <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
 
-    <!-- Mobile Dropdown -->
-    <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
-
-          <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
-                      <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
-
-        
-            <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
-            </div>
-        </div>
-
+    <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="marketplace.html" class="text-lg font-bold text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
@@ -712,7 +701,6 @@
             renderProducts(allProducts);
         });
     </script>
-    <script src="/j.js"></script>
 </body>
 
 </html>
