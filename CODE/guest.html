@@ -11,7 +11,8 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
@@ -153,8 +154,9 @@
 
 <body class="bg-gray-50">
 
-    <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg">
-        <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
+    <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
+                    <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
+        <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
             <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
             <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
             <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
@@ -165,11 +167,13 @@
         </ul>
 
 
-        <div class="flex items-center space-x-2 lg:space-x-5">
-            <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
-                <i class="fa-brands fa-twitch text-sm lg:text-sm mr-2" style="color: #9146FF;"></i>
+        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5">
+
+                     <a href="#" class="flex items-center px-2 py-1 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
+                <i class="fa-brands fa-twitch md:text-xs " style="color: #9146FF;"></i>
                 <span>Join Community</span>
             </a>
+        
             <div class="flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
                 <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
@@ -178,30 +182,59 @@
         </div>
 
         <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+      <i class="fa-solid fa-bars"></i>
+    </button>
     </nav>
 
-    <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
+    <!-- Mobile Dropdown -->
+    <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
+
+          <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
+                      <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
+
+
+                     <a href="#" class="flex items-center px-2 py-3 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
+                <i class="fa-brands fa-twitch text-sm lg:text-sm mr-2" style="color: #9146FF;"></i>
+                <span>Join Community</span>
+            </a>
+        
+            <div class="flex justify-center items-center">
+                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            </div>
+        </div>
+
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
+        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
-    <header class="relative bg-gray-800 text-white py-20 md:py-32">
-        <div class="absolute inset-0"><img src="img/happy rescued dog.png" alt="Happy rescued dog" class="w-full h-full object-cover opacity-40"></div>
-        <div class="relative container mx-auto px-6 text-center">
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Rescue. Heal. Protect. Love.</h1>
-            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200">A community dedicated to saving animals in need — from emergency rescue and medical help to finding them a forever home.</p>
-            <div class="flex flex-col sm:flex-row justify-center items-center gap-4"><a href="rescue.html" class="w-full sm:w-auto px-8 py-4 bg-red-600 text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition transform hover:scale-105 animate-pulse"><i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Emergency</a>
-                <a href="adopt.html" class="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition transform hover:scale-105"><i class="fa-solid fa-heart mr-2"></i> Adopt a Friend</a>
-            </div>
+
+<header class="relative bg-gray-800 text-white py-20 md:py-60">
+    <div class="absolute inset-0">
+        <video autoplay muted loop playsinline class="w-full h-full object-cover opacity-40">
+            <source src="/img/videoplayback.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <div class="relative container mx-auto px-6 text-center">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-4">Rescue. Heal. Protect. Love.</h1>
+        <p class="text-lg md:text-xl max-w-3xl mx-auto mb-8 text-gray-200">A community dedicated to saving animals in need — from emergency rescue and medical help to finding them a forever home.</p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <a href="rescue.html" class="w-full sm:w-auto px-8 py-4 bg-red-600 text-white font-bold rounded-lg shadow-lg hover:bg-red-700 transition transform hover:scale-105 animate-pulse">
+                <i class="fa-solid fa-triangle-exclamation mr-2"></i> Report an Emergency
+            </a>
+            <a href="adopt.html" class="w-full sm:w-auto px-8 py-4 bg-indigo-600 text-white font-bold rounded-lg shadow-lg hover:bg-indigo-700 transition transform hover:scale-105">
+                <i class="fa-solid fa-heart mr-2"></i> Adopt a Friend
+            </a>
         </div>
-    </header>
+    </div>
+</header>
+
 
     <section class="py-16 bg-gradient-to-br from-indigo-50 to-white">
         <div class="container mx-auto px-6">

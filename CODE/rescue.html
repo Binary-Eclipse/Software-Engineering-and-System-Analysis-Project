@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SavePaws Rescue Center</title>
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+
+
     
     <script src="https://cdn.tailwindcss.com"></script>
-    
-<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY&callback=initMap" async defer></script>    
+  
+
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f7f7f7;
         }
-        #map {
+   
+        #map { 
             height: 100%;
             width: 100%;
+              min-height: 60vh; 
         }
     </style>
     <script>
@@ -41,23 +46,19 @@
 </head>
 <body class="bg-white font-sans antialiased">
 
-     <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg">
-  <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
-  <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-  <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
-  <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-  <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-  <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-  <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-  <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
-</ul>
+    <nav class="flex flex-wrap justify-between items-center py-4 bg-white shadow-lg">
+        <h1 class="font-semibold md:text-xl text-lg text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
+        <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
+            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+        </ul>
 
-
-        <div class="flex items-center space-x-2 lg:space-x-5">
-            <a href="#" class="flex items-center px-3 py-2 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
-                <i class="fa-brands fa-twitch text-sm lg:text-sm mr-2" style="color: #9146FF;"></i>
-                <span>Join Community</span>
-            </a>
+        <div class=" hidden lg:flex sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
             <div class="flex justify-center items-center">
                 <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
                 <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
@@ -66,12 +67,18 @@
         </div>
 
         <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
-      <i class="fa-solid fa-bars"></i>
-    </button>
+            <i class="fa-solid fa-bars"></i>
+        </button>
     </nav>
 
-    <!-- Mobile Dropdown -->
-    <ul id="mobile-menu" class="hidden flex-col space-y-4 bg-white shadow-md p-6 lg:hidden">
+    <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
+        <div class="flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
+            <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
+            <div class="flex justify-center items-center">
+                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            </div>
+        </div>
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
@@ -94,43 +101,75 @@
         </nav>
 
         <main>
-            <section id="view-report" class="hidden">
-                 <div class="bg-white p-6 md:p-10 rounded-2xl shadow-xl border border-gray-100 max-w-3xl mx-auto">
-                    <h2 class="text-2xl md:text-3xl font-bold text-gray-800 mb-3 text-center">🐾 Report a Pet in Need</h2>
-                    <p class="text-gray-500 mb-8 text-sm md:text-base text-center">Fill out this form to alert nearby rescue teams about a pet that needs urgent help.</p>
-                    <form id="rescueForm" class="space-y-6">
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Live Location <span class="text-red-600">*</span></label>
-                            <button type="button" id="shareLocationBtn" class="w-full py-3 flex items-center justify-center font-semibold text-indigo-700 bg-indigo-50 border-2 border-dashed border-indigo-200 rounded-lg hover:bg-indigo-100 transition">
-                                <i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location
-                            </button>
-                            <input type="hidden" name="loc" id="location" required>
-                            <p id="locationStatus" class="text-xs text-gray-500 mt-2 text-center"></p>
-                        </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                            <div><label class="block text-sm font-semibold text-gray-700 mb-1">Your Name <span class="text-red-600">*</span></label><input type="text" name="name" placeholder="John Doe" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div>
-                            <div><label class="block text-sm font-semibold text-gray-700 mb-1">Your Email <span class="text-red-600">*</span></label><input type="email" name="email" placeholder="john@example.com" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Pet Type <span class="text-red-600">*</span></label>
-                            <select name="animal_t" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
-                                <option value="">Select pet type</option><option value="dog">Dog</option><option value="cat">Cat</option><option value="bird">Bird</option><option value="other">Other / Wildlife</option>
-                            </select>
-                        </div>
-                        <div><label class="block text-sm font-semibold text-gray-700 mb-1">Situation Description <span class="text-red-600">*</span></label><textarea name="des" rows="4" required placeholder="Describe the pet's condition, location, and any concerns..." class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></textarea></div>
-                        <div>
-                            <label class="block text-sm font-semibold text-gray-700 mb-1">Pet Image (Optional)</label>
-                            <div id="fileUploadContainer" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 cursor-pointer hover:bg-gray-100 transition">
-                                <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 mb-2"></i>
-                                <p id="fileUploadText" class="text-sm text-gray-600">Click to upload an image</p>
-                                <p class="text-xs text-gray-400">PNG, JPG up to 5MB</p>
-                                <input type="file" name="image" id="fileUploadInput" class="hidden" accept="image/*">
-                            </div>
-                        </div>
-                        <button type="submit" class="w-full py-3 text-lg font-bold text-white bg-indigo-600 rounded-xl shadow-md hover:bg-indigo-700 transition-transform transform hover:scale-105">Submit Rescue Request</button>
-                    </form>
-                </div>
-            </section>
+           
+<div class="max-w-3xl mx-auto p-6">
+
+<h1 class="text-3xl font-bold text-center text-indigo-600 mb-6"><i class="fa-solid fa-paw text-amber-500"></i> SavePaws Rescue</h1>
+
+<div class="bg-white p-6 rounded-2xl shadow-xl border border-gray-200">
+    <h2 class="text-2xl font-bold text-gray-800 mb-3 text-center">🐾 Report a Pet in Need</h2>
+    <p class="text-gray-500 mb-6 text-center">Fill out this form to alert nearby rescue teams.</p>
+
+    <form id="rescueForm" class="space-y-6" action="handle_rescue.php" method="POST" enctype="multipart/form-data">
+        <!-- Location -->
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Live Location <span class="text-red-600">*</span></label>
+            <button type="button" id="shareLocationBtn" class="w-full py-3 flex items-center justify-center font-semibold text-indigo-700 bg-indigo-50 border-2 border-dashed border-indigo-200 rounded-lg hover:bg-indigo-100 transition">
+                <i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location
+            </button>
+            <input type="hidden" name="loc" id="location" required>
+            <p id="locationStatus" class="text-xs text-gray-500 mt-2 text-center"></p>
+        </div>
+
+        <!-- Name & Email -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Your Name <span class="text-red-600">*</span></label>
+                <input type="text" name="name" placeholder="John Doe" required class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1">Your Email <span class="text-red-600">*</span></label>
+                <input type="email" name="email" placeholder="john@example.com" required class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500">
+            </div>
+        </div>
+
+        <!-- Pet Type -->
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Pet Type <span class="text-red-600">*</span></label>
+            <select name="animal_t" required class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500">
+                <option value="">Select pet type</option>
+                <option value="dog">Dog</option>
+                <option value="cat">Cat</option>
+                <option value="bird">Bird</option>
+                <option value="other">Other / Wildlife</option>
+            </select>
+        </div>
+
+        <!-- Description -->
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Situation Description <span class="text-red-600">*</span></label>
+            <textarea name="des" rows="4" required placeholder="Describe the pet's condition..." class="w-full p-3 border border-gray-300 bg-gray-50 rounded-lg focus:ring-2 focus:ring-indigo-500"></textarea>
+        </div>
+
+        <!-- Image -->
+        <div>
+            <label class="block text-sm font-semibold text-gray-700 mb-1">Pet Image (Optional)</label>
+            <div id="fileUploadContainer" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 transition">
+                <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 mb-2"></i>
+                <p class="text-sm text-gray-600">Click to upload an image</p>
+                <p class="text-xs text-gray-400">PNG, JPG up to 5MB</p>
+                <input type="file" name="image" id="fileUploadInput" class="hidden" accept="image/*">
+            </div>
+        </div>
+
+        <button type="submit" class="w-full py-3 text-lg font-bold text-white bg-indigo-600 rounded-xl shadow-md hover:bg-indigo-700 transition-transform transform hover:scale-105">
+            Submit Rescue Request
+        </button>
+    </form>
+</div>
+
+</div>
+
 
             <section id="view-teams" class="hidden">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -151,36 +190,129 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lg:col-span-8 rounded-xl shadow-lg border border-gray-100 overflow-hidden min-h-[60vh] lg:min-h-[75vh] relative">
-                        <div id="map"></div>
-                        <div class="absolute top-4 left-4 right-4 z-10">
-                            <div class="flex items-center p-1 bg-white rounded-lg shadow-lg">
-                                <i class="fa-solid fa-magnifying-glass text-gray-400 px-3"></i>
-                                <input type="text" placeholder="Search by address or place..." class="w-full p-2 bg-transparent outline-none">
-                            </div>
-                        </div>
-                        <div class="absolute top-20 left-1/2 -translate-x-1/2 z-10">
-                            <button class="px-4 py-2 bg-white rounded-full shadow-lg text-sm font-semibold hover:bg-gray-100 transition"><i class="fa-solid fa-arrows-rotate mr-2"></i>Search This Area</button>
-                        </div>
-                        <button class="absolute bottom-4 right-4 z-10 w-10 h-10 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-100 transition" aria-label="Use My Location">
-                            <i class="fa-solid fa-location-crosshairs text-gray-600"></i>
-                        </button>
-                    </div>
+
+<div class="lg:col-span-8 w-full h-[75vh] rounded-xl overflow-hidden">
+  <iframe
+    class="w-full h-full"
+    loading="lazy"
+    allowfullscreen
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.901890066221!2d90.41251831543014!3d23.810331784588184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755c70c3b49e4e9%3A0x2f59d70b85c2b112!2sDhaka%2C%20Bangladesh!5e0!3m2!1sen!2sus!4v1702010312345!5m2!1sen!2sus"
+  ></iframe>
+</div>
+
+
+               
+
                 </div>
             </section>
 
-            <section id="view-abuse" class="hidden">
-                 <div class="bg-white p-6 md:p-10 rounded-xl shadow-xl border border-gray-100 max-w-3xl mx-auto">
-                    <h2 class="text-2xl font-bold text-danger-red mb-2 text-center">Report Animal Abuse (Confidential)</h2>
-                    <p class="text-sm text-gray-500 mb-6 text-center">Your report will be sent to local authorities. Provide as much detail as possible.</p>
-                    <div class="p-4 mb-6 text-sm text-red-800 rounded-lg bg-red-50" role="alert"><span class="font-bold">Urgency!</span> Please note that we prioritize reports where an animal's life is in immediate danger.</div>
-                    <form onsubmit="event.preventDefault(); showMessage('Abuse Report Submitted. Thank you for your courage.', 'Report Sent');" class="space-y-8">
-                        <fieldset><legend class="text-lg font-semibold text-gray-700 mb-4">Incident Details</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><label for="date-incident" class="block text-sm font-medium text-gray-700 mb-1">Date of Incident <span class="text-danger-red">*</span></label><input type="date" id="date-incident" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="type-incident" class="block text-sm font-medium text-gray-700 mb-1">Type of Incident <span class="text-danger-red">*</span></label><select id="type-incident" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"><option value="">Select type</option><option>Neglect</option><option>Physical Harm</option><option>Abandonment</option><option>Other</option></select></div></div><div class="mt-4"><label for="incident-address" class="block text-sm font-medium text-gray-700 mb-1">Street Address of Incident <span class="text-danger-red">*</span></label><input type="text" id="incident-address" required placeholder="123 Main St" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4"><div><label for="abuse-city" class="block text-sm font-medium text-gray-700 mb-1">City <span class="text-danger-red">*</span></label><input type="text" id="abuse-city" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="abuse-state" class="block text-sm font-medium text-gray-700 mb-1">State <span class="text-danger-red">*</span></label><input type="text" id="abuse-state" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="abuse-zip" class="block text-sm font-medium text-gray-700 mb-1">ZIP Code <span class="text-danger-red">*</span></label><input type="text" id="abuse-zip" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div></div><div class="mt-4"><label for="detailed-description" class="block text-sm font-medium text-gray-700 mb-1">Detailed Description <span class="text-danger-red">*</span></label><textarea id="detailed-description" rows="5" required placeholder="Provide a complete account of events, dates, times, and any other relevant information." class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></textarea></div></fieldset>
-                        <fieldset class="border-t border-gray-200 pt-6"><legend class="text-lg font-semibold text-gray-700 mb-4">Your Information (Optional & Confidential)</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><label for="abuse-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label><input type="text" id="abuse-name" placeholder="John Doe" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div><div><label for="abuse-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label><input type="email" id="abuse-email" placeholder="john@example.com" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div></div></fieldset>
-                        <button type="submit" class="w-full py-3 text-lg font-bold text-white bg-danger-red rounded-xl shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105">Submit Confidential Report</button>
-                    </form>
+      <section id="view-abuse" class="hidden">
+    <div class="bg-white p-6 md:p-10 rounded-xl shadow-xl border border-gray-100 max-w-3xl mx-auto">
+        <h2 class="text-2xl font-bold text-danger-red mb-2 text-center">
+            Report Animal Abuse (Confidential)
+        </h2>
+        <p class="text-sm text-gray-500 mb-6 text-center">
+            Your report will be sent to local authorities. Provide as much detail as possible.
+        </p>
+        <div class="p-4 mb-6 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+            <span class="font-bold">Urgency!</span> Please note that we prioritize reports where an animal's life is in immediate danger.
+        </div>
+
+        <form id="abuseForm" action="handle_abuse.php" method="POST" class="space-y-8">
+            <!-- Incident Details -->
+            <fieldset>
+                <legend class="text-lg font-semibold text-gray-700 mb-4">Incident Details</legend>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="date-incident" class="block text-sm font-medium text-gray-700 mb-1">
+                            Date of Incident <span class="text-danger-red">*</span>
+                        </label>
+                        <input type="date" name="date_incident" id="date-incident" required
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                    </div>
+                    <div>
+                        <label for="type-incident" class="block text-sm font-medium text-gray-700 mb-1">
+                            Type of Incident <span class="text-danger-red">*</span>
+                        </label>
+                        <select name="type_incident" id="type-incident" required
+                                class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                            <option value="">Select type</option>
+                            <option value="Neglect">Neglect</option>
+                            <option value="Physical Harm">Physical Harm</option>
+                            <option value="Abandonment">Abandonment</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
                 </div>
-            </section>
+
+                <div class="mt-4">
+                    <label for="incident-address" class="block text-sm font-medium text-gray-700 mb-1">
+                        Street Address of Incident <span class="text-danger-red">*</span>
+                    </label>
+                    <input type="text" name="incident_address" id="incident-address" required placeholder="123 Main St"
+                           class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                    <div>
+                        <label for="abuse-city" class="block text-sm font-medium text-gray-700 mb-1">
+                            City <span class="text-danger-red">*</span>
+                        </label>
+                        <input type="text" name="abuse_city" id="abuse-city" required
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                    </div>
+                    <div>
+                        <label for="abuse-state" class="block text-sm font-medium text-gray-700 mb-1">
+                            State <span class="text-danger-red">*</span>
+                        </label>
+                        <input type="text" name="abuse_state" id="abuse-state" required
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                    </div>
+                    <div>
+                        <label for="abuse-zip" class="block text-sm font-medium text-gray-700 mb-1">
+                            ZIP Code <span class="text-danger-red">*</span>
+                        </label>
+                        <input type="text" name="abuse_zip" id="abuse-zip" required
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red">
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <label for="detailed-description" class="block text-sm font-medium text-gray-700 mb-1">
+                        Detailed Description <span class="text-danger-red">*</span>
+                    </label>
+                    <textarea name="detailed_description" id="detailed-description" rows="5" required
+                              placeholder="Provide a complete account of events, dates, times, and any other relevant information."
+                              class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></textarea>
+                </div>
+            </fieldset>
+
+            <!-- Reporter Info (Optional) -->
+            <fieldset class="border-t border-gray-200 pt-6">
+                <legend class="text-lg font-semibold text-gray-700 mb-4">Your Information (Optional & Confidential)</legend>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label for="abuse-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                        <input type="text" name="abuse_name" id="abuse-name" placeholder="John Doe"
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                    <div>
+                        <label for="abuse-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label>
+                        <input type="email" name="abuse_email" id="abuse-email" placeholder="john@example.com"
+                               class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
+                    </div>
+                </div>
+            </fieldset>
+
+            <button type="submit"
+                    class="w-full py-3 text-lg font-bold text-white bg-danger-red rounded-xl shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105">
+                Submit Confidential Report
+            </button>
+        </form>
+    </div>
+
+
+
         </main>
     </div>
     
@@ -191,229 +323,132 @@
             <button id="message-close-btn" class="w-full py-2 bg-primary-dark text-white font-semibold rounded-lg hover:bg-gray-700 transition">Close</button>
         </div>
     </div>
-<footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
-  <div class="max-w-6xl mx-auto">
-    <!-- Footer Top -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
-      
-      <!-- Company -->
-      <section>
-        <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li>
-        </ul>
-      </section>
+    
+    <footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
+                <section>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li>
+                    </ul>
+                </section>
 
-      <!-- Resources -->
-      <section>
-        <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
-          <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
-          <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
-        </ul>
-      </section>
+                <section>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
+                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
+                    </ul>
+                </section>
 
-      <!-- Product -->
-      <section>
-        <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
-        <ul class="space-y-2 text-gray-300">
-          <li><a href="#" class="hover:text-white transition-colors">Project Management</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li>
-          <li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li>
-        </ul>
-      </section>
+                <section>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><a href="#" class="hover:text-white transition-colors">Project Management</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li>
+                    </ul>
+                </section>
 
-      <!-- Newsletter -->
-      <section>
-        <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
-        <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
-        <form class="flex flex-col sm:flex-col gap-2">
-          <input 
-            type="text" 
-            placeholder="Drop Your Feedback" 
-            class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"
-          >
-          <button 
-            type="submit" 
-            class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors"
-          >
-            Feedback
-          </button>
-        </form>
-      </section>
+                <section>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3>
+                    <p class="text-gray-300 mb-4">Subscribe to our Newsletter</p>
+                    <form class="flex flex-col sm:flex-col gap-2">
+                        <input 
+                            type="text" 
+                            placeholder="Drop Your Feedback" 
+                            class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"
+                        >
+                        <button 
+                            type="submit" 
+                            class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors"
+                        >
+                            Feedback
+                        </button>
+                    </form>
+                </section>
 
-    </div>
+            </div>
 
-    <!-- Divider -->
-    <hr class="border-gray-700 my-10">
+            <hr class="border-gray-700 my-10">
 
-    <!-- Footer Bottom -->
-    <div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm">
-      <p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p>
-      <div class="flex space-x-5 mt-4 sm:mt-0">
-        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
-        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
-      </div>
-    </div>
-  </div>
-</footer>
+            <div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm">
+                <p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p>
+                <div class="flex space-x-5 mt-4 sm:mt-0">
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a>
+                    <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
 
 <script>
-    // --- GOOGLE MAPS SCRIPT ---
-    let map;
-    const markers = []; // Array to hold map markers
-    
-    // Example rescue team data with coordinates
-    const teams = [
-        { name: "Paws & Hearts Rescue", lat: 23.8103, lng: 90.4125 },
-        { name: "Safe Haven Pet Shelter", lat: 23.7771, lng: 90.3994 },
-        { name: "Emergency Pet Care", lat: 23.7547, lng: 90.3931 }
-    ];
+function switchView(tab) {
+    // Hide all sections
+    document.getElementById('rescueForm').parentElement.style.display = 'none'; // Report a Pet
+    document.getElementById('view-teams').style.display = 'none';
+    document.getElementById('view-abuse').style.display = 'none';
 
-    function initMap() {
-        // Initial map centered on Dhaka
-        const dhaka = { lat: 23.8103, lng: 90.4125 };
-        map = new google.maps.Map(document.getElementById("map"), {
-            center: dhaka,
-            zoom: 12,
-            disableDefaultUI: true, // Hides default controls
-            styles: [ // Optional: custom map styling
-                { featureType: "poi", stylers: [{ visibility: "off" }] },
-                { featureType: "transit", stylers: [{ visibility: "off" }] }
-            ]
-        });
-
-        // Add markers for each team
-        teams.forEach((team, index) => {
-            const marker = new google.maps.Marker({
-                position: { lat: team.lat, lng: team.lng },
-                map: map,
-                title: team.name,
-                icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    scale: 8,
-                    fillColor: "#4f46e5",
-                    fillOpacity: 1,
-                    strokeWeight: 2,
-                    strokeColor: "white",
-                }
-            });
-            markers.push(marker);
-        });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const messageBox = document.getElementById('message-box');
-        const messageBoxContent = document.getElementById('message-box-content');
-        const messageTitle = document.getElementById('message-title');
-        const messageText = document.getElementById('message-text');
-        const messageCloseBtn = document.getElementById('message-close-btn');
-
-        // --- GLOBAL FUNCTIONS ---
-        window.showMessage = (message, title = 'Notice') => {
-            messageTitle.textContent = title;
-            messageText.textContent = message;
-            messageBox.classList.remove('hidden');
-            setTimeout(() => messageBoxContent.classList.remove('scale-95', 'opacity-0'), 10);
-        }
-
-        const closeMessage = () => {
-            messageBoxContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => messageBox.classList.add('hidden'), 200);
-        }
-        
-        window.switchView = (viewName) => {
-            const views = { teams: document.getElementById('view-teams'), report: document.getElementById('view-report'), abuse: document.getElementById('view-abuse') };
-            const tabs = { teams: document.getElementById('tab-teams'), report: document.getElementById('tab-report'), abuse: document.getElementById('tab-abuse') };
-
-            Object.values(views).forEach(v => v.classList.add('hidden'));
-            Object.values(tabs).forEach(t => {
-                t.classList.remove('bg-indigo-600', 'text-white', 'shadow', 'bg-light-red', 'text-danger-red');
-                t.classList.add('text-gray-600', 'hover:bg-gray-200');
-            });
-
-            if (views[viewName]) views[viewName].classList.remove('hidden');
-            if (tabs[viewName]) {
-                const activeTab = tabs[viewName];
-                activeTab.classList.remove('text-gray-600', 'hover:bg-gray-200');
-                activeTab.classList.add(viewName === 'abuse' ? 'bg-light-red' : 'bg-indigo-600', viewName === 'abuse' ? 'text-danger-red' : 'text-white', 'shadow');
-            }
-        }
-        
-        // --- EVENT LISTENERS ---
-        if (menuBtn && mobileMenu) menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-
-        // MAP INTERACTIVITY
-        const teamList = document.getElementById('team-list');
-        if (teamList) {
-            teamList.addEventListener('click', (e) => {
-                const teamItem = e.target.closest('.team-item');
-                if (!teamItem) return;
-
-                // Reset all items and markers
-                document.querySelectorAll('.team-item').forEach((item, index) => {
-                    item.classList.remove('bg-indigo-100', 'border', 'border-indigo-300');
-                    if (markers[index]) markers[index].setIcon({
-                        path: google.maps.SymbolPath.CIRCLE, scale: 8, fillColor: "#4f46e5", fillOpacity: 1, strokeWeight: 2, strokeColor: "white"
-                    });
-                });
-
-                // Highlight clicked item
-                teamItem.classList.add('bg-indigo-100', 'border', 'border-indigo-300');
-
-                // Find corresponding marker and highlight it
-                const lat = parseFloat(teamItem.dataset.lat);
-                const lng = parseFloat(teamItem.dataset.lng);
-                const markerIndex = teams.findIndex(t => t.lat === lat && t.lng === lng);
-                
-                if (map && markers[markerIndex]) {
-                    map.panTo({ lat, lng });
-                    markers[markerIndex].setIcon({
-                        path: google.maps.SymbolPath.CIRCLE, scale: 12, fillColor: "#c7d2fe", fillOpacity: 1, strokeWeight: 3, strokeColor: "#4f46e5"
-                    });
-                }
-            });
-        }
-        
-        // Form & Message Box Logic...
-        if (document.getElementById('shareLocationBtn')) {
-            document.getElementById('shareLocationBtn').addEventListener('click', () => { /* ... location logic ... */ });
-        }
-        if (document.getElementById('fileUploadContainer')) {
-            document.getElementById('fileUploadContainer').addEventListener('click', () => document.getElementById('fileUploadInput').click());
-            document.getElementById('fileUploadInput').addEventListener('change', () => {
-                document.getElementById('fileUploadText').textContent = fileUploadInput.files.length > 0 ? `Selected: ${fileUploadInput.files[0].name}` : 'Click to upload an image';
-            });
-        }
-        if (document.getElementById('rescueForm')) {
-            document.getElementById('rescueForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                if (!document.getElementById('location').value.trim()) {
-                    showMessage('Please share your location before submitting.', 'Location Required');
-                } else {
-                    showMessage('Your rescue request has been sent.', 'Request Sent!');
-                    e.target.reset();
-                    document.getElementById('locationStatus').innerHTML = '';
-                    document.getElementById('fileUploadText').textContent = 'Click to upload an image';
-                }
-            });
-        }
-        if (messageCloseBtn) messageCloseBtn.addEventListener('click', closeMessage);
-
-        // INITIALIZATION
-        switchView('report');
+    // Remove active styles from all tabs
+    document.querySelectorAll('.nav-tab').forEach(el => {
+        el.classList.remove('bg-indigo-600', 'text-white');
     });
+
+    // Show the selected tab
+    if(tab === 'report') {
+        document.getElementById('rescueForm').parentElement.style.display = 'block';
+        document.getElementById('tab-report').classList.add('bg-indigo-600', 'text-white');
+    } else if(tab === 'teams') {
+        document.getElementById('view-teams').style.display = 'block';
+        document.getElementById('tab-teams').classList.add('bg-indigo-600', 'text-white');
+    } else if(tab === 'abuse') {
+        document.getElementById('view-abuse').style.display = 'block';
+        document.getElementById('tab-abuse').classList.add('bg-indigo-600', 'text-white');
+    }
+}
+
+// Initialize with Report a Pet visible
+switchView('report');
 </script>
+
+<!-- map view -->
+<script>
+function initMap() {
+    // Center on Dhaka by default
+    const dhaka = { lat: 23.8103, lng: 90.4125 };
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 12,
+        center: dhaka,
+    });
+
+    // Optional: Add markers from your team list
+    const teams = document.querySelectorAll(".team-item");
+    teams.forEach(team => {
+        const lat = parseFloat(team.dataset.lat);
+        const lng = parseFloat(team.dataset.lng);
+        new google.maps.Marker({
+            position: { lat, lng },
+            map: map,
+            title: team.querySelector("h3").textContent
+        });
+    });
+}
+</script>
+
+<script src="res.js"></script>
 </body>
 </html>
+
+
+
