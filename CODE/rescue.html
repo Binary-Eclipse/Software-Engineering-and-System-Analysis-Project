@@ -82,9 +82,9 @@
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
 
-        <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
-            <i class="fa-solid fa-bars"></i>
-        </button>
+     <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
+      <i class="fa-solid fa-bars"></i>
+    </button>
     </nav>
 
     <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
@@ -125,7 +125,8 @@
                         <p class="text-gray-500">Your report helps us dispatch help quickly. Please provide as much detail as possible.</p>
                     </div>
 
-                    <form id="rescueForm" class="space-y-6">
+           <form id="rescueForm" action="handle_rescue.php" method="POST" **enctype="multipart/form-data"** class="space-y-6">
+    
                         <fieldset>
                             <legend class="text-lg font-semibold text-gray-700 mb-3">Your Information</legend>
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -252,7 +253,7 @@ switchView('report');
 document.addEventListener('DOMContentLoaded', function() {
     const rescueForm = document.getElementById('rescueForm');
     
-    // Location handling
+    // Location handling elements
     const shareLocationBtn = document.getElementById('shareLocationBtn');
     const locationInput = document.getElementById('location');
     const locationStatus = document.getElementById('locationStatus');
@@ -270,21 +271,31 @@ document.addEventListener('DOMContentLoaded', function() {
         navigator.geolocation.getCurrentPosition(
             (position) => {
                 const { latitude, longitude } = position.coords;
-                locationInput.value = `${latitude}, ${longitude}`;
-                locationStatus.textContent = `Location shared successfully! (Lat: ${latitude.toFixed(4)}, Lng: ${longitude.toFixed(4)})`;
+                
+                // --- CORRECT: Format location as a standard Google Maps link ---
+                const mapLink = `http://maps.google.com/?q=${latitude},${longitude}`;
+                
+                locationInput.value = mapLink; // Save the full URL as the value
+                
+                locationStatus.textContent = `Location saved as link: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
                 locationStatus.style.color = 'green';
-                shareLocationBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Location Shared';
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Location Shared (Link Ready)';
+                shareLocationBtn.classList.remove('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
+                shareLocationBtn.classList.add('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                
             },
             () => {
                 locationStatus.textContent = 'Unable to retrieve location. Please grant permission.';
                 locationStatus.style.color = 'red';
                 shareLocationBtn.disabled = false;
-                shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location';
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location *';
+                shareLocationBtn.classList.remove('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                shareLocationBtn.classList.add('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
             }
         );
     });
 
-    // Image preview handling
+ 
     const fileUploadInput = document.getElementById('fileUploadInput');
     const uploadPrompt = document.getElementById('upload-prompt');
     const imagePreview = document.getElementById('image-preview');
@@ -306,56 +317,67 @@ document.addEventListener('DOMContentLoaded', function() {
 
     removeImageBtn.addEventListener('click', (e) => {
         e.preventDefault();
-        fileUploadInput.value = ''; // Clear the file input
+        fileUploadInput.value = ''; 
         imagePreview.src = '';
         imagePreview.classList.add('hidden');
         uploadPrompt.classList.remove('hidden');
         removeImageBtn.classList.add('hidden');
     });
     
-    // Form submission handling
-    rescueForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        showMessage(
-            'Report Submitted!',
-            'Thank you for your report. We have notified the nearest rescue teams and will keep you updated via email.'
-        );
-        rescueForm.reset();
-        shareLocationBtn.disabled = false;
-        shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location';
-        locationStatus.textContent = '';
-        removeImageBtn.click();
+
+    rescueForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const submitButton = rescueForm.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const formData = new FormData(rescueForm);
+        
+        try {
+            const response = await fetch('handle_rescue.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+           
+            if (!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`);
+            }
+
+            const result = await response.json(); 
+            
+            if (result.success) {
+                alert('Report submitted successfully!');
+                
+             
+                rescueForm.reset();
+                
+            
+                shareLocationBtn.disabled = false;
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location *';
+                locationStatus.textContent = '';
+                shareLocationBtn.classList.remove('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                shareLocationBtn.classList.add('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
+
+                removeImageBtn.click(); 
+                
+            } else {
+                alert('Submission Failed: ' + result.message);
+            }
+            
+        } catch (error) {
+            alert('A serious network or server error occurred. Check console for details. (Error: ' + error.message + ')');
+            console.error('Fetch error:', error);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Rescue Request';
+        }
     });
-
-    // Success message box logic
-    const messageBox = document.getElementById('message-box');
-    const messageBoxContent = document.getElementById('message-box-content');
-    const messageTitle = document.getElementById('message-title');
-    const messageText = document.getElementById('message-text');
-    const messageCloseBtn = document.getElementById('message-close-btn');
-
-    function showMessage(title, text) {
-        messageTitle.textContent = title;
-        messageText.textContent = text;
-        messageBox.classList.remove('hidden');
-        messageBox.classList.add('flex');
-        setTimeout(() => {
-            messageBoxContent.classList.remove('scale-95', 'opacity-0');
-        }, 10);
-    }
-    
-    function hideMessage() {
-        messageBoxContent.classList.add('scale-95', 'opacity-0');
-        setTimeout(() => {
-            messageBox.classList.remove('flex');
-            messageBox.classList.add('hidden');
-        }, 300);
-    }
-
-    messageCloseBtn.addEventListener('click', hideMessage);
 });
 </script>
 
+    <script src="j.js"></script>
 <script src="res.js"></script>
 </body>
 </html>

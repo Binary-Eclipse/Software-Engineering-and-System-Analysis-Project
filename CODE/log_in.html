@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+
 </head>
 <body class="bg-gradient-to-r from-slate-300 to-slate-500">
     
@@ -39,10 +41,11 @@
 
         <!-- Google Sign Up Button -->
          <div class="group transition duration-200">
-        <button class="w-full flex items-center justify-center py-3 px-4 border border-[#595ee9] rounded-3xl group-hover:bg-[#595ee9] group-hover:border-black">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5 mr-3">
-          <a href="" class="font-medium text-gray-700 group-hover:text-white">Login with Google</a>
-        </button>
+<button id="googleLoginBtn" class="w-full flex items-center justify-center py-3 px-4 border border-[#595ee9] rounded-3xl cursor-pointer hover:bg-[#595ee9] hover:border-black">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5 mr-3">
+  <span class="font-medium text-gray-700 hover:text-white">Login with Google</span>
+</button>
+
 </div>
         <!-- Divider -->
       <div class="flex items-center my-8 whitespace-nowrap">
@@ -121,6 +124,25 @@
          class="object-cover w-full md:w-full size-80">
   </div>
 </div>
+
+<button id="googleLoginBtn" class="w-full flex items-center justify-center py-3 px-4 border border-[#595ee9] rounded-3xl cursor-pointer hover:bg-[#595ee9] hover:border-black">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/c1/Google_%22G%22_logo.svg" alt="Google" class="w-5 h-5 mr-3">
+  <span class="font-medium text-gray-700 hover:text-white">Login with Google</span>
+</button>
+
+  <script>
+document.getElementById("googleLoginBtn").onclick = () => {
+  const client_id = "683145627779-jhg2l0hfr889el6co1otjrre0pequors.apps.googleusercontent.com"; 
+  const redirect_uri = "http://localhost/CODE/guest.html"; 
+  const scope = "email profile";
+  const response_type = "code"; 
+
+  const oauth_url = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${client_id}&redirect_uri=${redirect_uri}&response_type=${response_type}&scope=${scope}`;
+
+  window.location.href = oauth_url;
+};
+
+  </script>
 
 
 
