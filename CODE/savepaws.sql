@@ -107,3 +107,16 @@ CREATE TABLE donation (
     reason TEXT,
     donation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE clinics (
+    clinic_id INT(11) AUTO_INCREMENT PRIMARY KEY,
+    clinic_name VARCHAR(255) NOT NULL,
+    address VARCHAR(255) NOT NULL,
+    phone VARCHAR(20) NOT NULL,
+    main_doctor VARCHAR(100) NOT NULL,
+    open_time TIME NOT NULL,
+    close_time TIME NOT NULL,
+    days_open VARCHAR(50) NOT NULL COMMENT 'e.g., Sun Mon Tu Wed Thu Fri Sat',
+    image_url VARCHAR(255) NOT NULL,
+    -- Add any other fields you need here
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
