@@ -1,3 +1,14 @@
+<?php
+// adopt.php - Handles display of available pets and two forms (Adoption Application and Donate a Pet).
+session_start();
+// This page relies on the global configuration defined in config.php.
+include_once "config.php"; 
+
+// --- Database connection check is assumed to be handled by config.php ---
+// You would add PHP logic here to fetch pet data from the database 
+// and loop through it to display the cards dynamically instead of using hardcoded HTML.
+// Example: $pets = $conn->query("SELECT * FROM pets WHERE status='available'"); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paw & Hearts Adoption</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu6gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" xintegrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu6gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 
     <script src="https://cdn.tailwindcss.com"></script>
@@ -34,8 +45,7 @@
         #adoption-modal.hidden .modal-content { transform: scale(0.95); opacity: 0; }
         .modal-content { transition: transform 0.2s ease-out, opacity 0.2s ease-out; }
 
-        /* ===== START: NEW STYLES FOR DONATE PET FORM ===== */
-        /* Progress Bar */
+        /* ===== STYLES FOR DONATE PET FORM (Multi-Step) ===== */
         .progress-bar-bg { background-color: #e5e7eb; }
         .progress-bar-fill { background-color: #4f46e5; transition: width 0.4s ease-in-out; }
         .progress-step { transition: background-color 0.4s ease, color 0.4s ease; }
@@ -54,6 +64,7 @@
 
         /* Image Uploader */
         #image-preview-container {
+            object-fit: cover;
             background-size: cover;
             background-position: center;
         }
@@ -73,8 +84,6 @@
             color: #111827;
             font-weight: 600;
         }
-        /* ===== END: NEW STYLES ===== */
-
     </style>
     <script>
         tailwind.config = {
@@ -94,19 +103,19 @@
     <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
                       <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
-            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
-            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+            <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="marketplace.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="clinic.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="blog.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
         <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -120,17 +129,17 @@
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
         </div>
-        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
-        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
-        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
-        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+        <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="marketplace.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="blog.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
     <section class="flex flex-col items-center text-center px-4 py-10 ">
@@ -159,7 +168,7 @@
                         <span class="text-gray-700 font-medium">Banani, Dhaka</span>
                         <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">Vaccinated</span>
                     </div>
-                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button">Apply to Adopt</button>
+                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button" data-pet-id="1">Apply to Adopt</button>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
@@ -179,7 +188,7 @@
                         <span class="text-gray-700 font-medium">Gulshan, Dhaka</span>
                         <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">Vaccinated</span>
                     </div>
-                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button">Apply to Adopt</button>
+                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button" data-pet-id="2">Apply to Adopt</button>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
@@ -199,7 +208,7 @@
                         <span class="text-gray-700 font-medium">Mirpur, Dhaka</span>
                         <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">Vaccinated</span>
                     </div>
-                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button">Apply to Adopt</button>
+                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button" data-pet-id="3">Apply to Adopt</button>
                 </div>
             </div>
             <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-100">
@@ -219,10 +228,10 @@
                         <span class="text-gray-700 font-medium">Dhaka University, Dhaka</span>
                         <span class="bg-green-100 text-green-700 text-xs font-medium px-2 py-0.5 rounded-full">Healthy</span>
                     </div>
-                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button">Apply to Adopt</button>
+                    <button type="button" class="w-full bg-primary-dark text-white py-3 rounded-md font-semibold hover:bg-gray-700 transition-colors adopt-button" data-pet-id="4">Apply to Adopt</button>
                 </div>
             </div>
-        </section>
+            </section>
     </div>
     
     <div id="donate-section" class="max-w-4xl mx-auto bg-white shadow-xl rounded-lg p-6 sm:p-10 hidden border border-gray-200 mb-16">
@@ -247,7 +256,7 @@
             </div>
         </div>
 
-        <form id="donate-form">
+        <form id="donate-form" action="handle_donate_pet.php" method="POST" enctype="multipart/form-data">
             <div id="form-step-1" class="form-step active">
                 <h2 class="text-xl font-semibold text-gray-900 mb-6 text-center">Step 1: Pet's Story</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
@@ -262,21 +271,22 @@
                                 </div>
                             </div>
                         </label>
-                        <input id="pet-photo-upload" name="pet-photo" type="file" class="sr-only" accept="image/*">
+                        <input id="pet-photo-upload" name="pet_photo" type="file" class="sr-only" accept="image/*" required>
                     </div>
                     <div class="space-y-4">
-                        <input type="text" name="pet-name" placeholder="Pet Name *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
+                        <input type="text" name="pet_name" placeholder="Pet Name *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
                         <select name="species" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm text-gray-500">
                             <option value="">Select Species *</option>
-                            <option>Dog</option><option>Cat</option><option>Rabbit</option><option>Bird</option><option>Other</option>
+                            <option value="Dog">Dog</option><option value="Cat">Cat</option><option value="Rabbit">Rabbit</option><option value="Bird">Bird</option><option value="Other">Other</option>
                         </select>
                         <input type="text" name="breed" placeholder="Breed (e.g., Golden Retriever)" class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
                         <div class="grid grid-cols-2 gap-4">
                             <input type="text" name="age" placeholder="Age *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
                             <select name="gender" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm text-gray-500">
-                                <option value="">Gender *</option><option>Male</option><option>Female</option>
+                                <option value="">Gender *</option><option value="Male">Male</option><option value="Female">Female</option>
                             </select>
                         </div>
+                         <textarea name="description" placeholder="Pet Description *" required rows="3" class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm"></textarea>
                     </div>
                 </div>
                 <div class="mt-8 flex justify-end">
@@ -287,8 +297,9 @@
             <div id="form-step-2" class="form-step">
                 <h2 class="text-xl font-semibold text-gray-900 mb-6 text-center">Step 2: Your Details</h2>
                 <div class="max-w-md mx-auto space-y-4">
-                    <input type="text" name="owner-name" placeholder="Your Full Name *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
-                    <input type="email" name="owner-email" placeholder="Your Email *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
+                    <input type="text" name="owner_name" placeholder="Your Full Name *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
+                    <input type="email" name="owner_email" placeholder="Your Email *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
+                     <input type="tel" name="owner_phone" placeholder="Your Contact Phone *" required class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm">
                     <textarea name="reason" placeholder="Reason for rehoming (optional)" rows="4" class="form-input block w-full border-gray-300 rounded-md py-2 px-3 shadow-sm"></textarea>
                 </div>
                 <div class="mt-8 flex justify-between">
@@ -305,11 +316,11 @@
                 </div>
                 <div class="mt-6 space-y-4">
                      <label for="final-agreement-1" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors">
-                        <input id="final-agreement-1" type="checkbox" required class="custom-checkbox mt-1 appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm">
+                        <input id="final-agreement-1" type="checkbox" name="agreement_owner" required class="custom-checkbox mt-1 appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm">
                         <span class="ml-3 text-sm text-gray-700">I certify that I am the legal owner of the pet and all information provided is accurate.</span>
                     </label>
                     <label for="final-agreement-2" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors">
-                        <input id="final-agreement-2" type="checkbox" required class="custom-checkbox mt-1 appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm">
+                        <input id="final-agreement-2" type="checkbox" name="agreement_contact" required class="custom-checkbox mt-1 appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm">
                         <span class="ml-3 text-sm text-gray-700">I agree to be contacted by potential adopters via the SavePaws platform.</span>
                     </label>
                 </div>
@@ -326,10 +337,11 @@
                 <div><h2 class="text-2xl font-bold text-gray-800">Adoption Application</h2><p class="text-sm text-gray-500">Let's find your new best friend a home.</p></div>
                 <button id="close-modal-btn" class="text-gray-400 hover:text-gray-700 text-3xl transition-colors">&times;</button>
             </div>
-            <form id="adoption-form" class="p-6 space-y-6">
-                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Your Information</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><input type="text" id="adopter-name" placeholder="Full Name" required class="form-input mt-1 block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><div><input type="email" id="adopter-email" placeholder="Email Address" required class="form-input mt-1 block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div></div></fieldset>
-                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Contact & Location</legend><div class="space-y-5"><div class="relative"><div class="form-input-container"><i class="fas fa-map-marker-alt form-icon"></i><textarea id="adopter-address" rows="3" placeholder="Current Address" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm pr-28"></textarea></div><button type="button" id="share-location-btn" class="absolute top-2.5 right-2.5 bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1.5 rounded-md hover:bg-indigo-200 transition-colors flex items-center justify-center"><i class="fas fa-location-arrow mr-1.5"></i> Share Location</button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><input type="text" id="adopter-nid" placeholder="NID Number" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><div class="flex gap-2 items-center"><div class="w-full"><input type="tel" id="adopter-contact" placeholder="Contact Number" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><button type="button" id="send-otp-btn" class="px-3 h-11 bg-gray-200 text-sm font-medium rounded-md hover:bg-gray-300 transition-colors flex-shrink-0">Verify</button></div></div></div></fieldset>
-                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Agreements</legend><div class="space-y-4"><label for="agreement-care" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-care" type="checkbox" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I agree to provide a safe, loving home and proper medical care.</span></label><label for="agreement-visit" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-visit" type="checkbox" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I consent to a home visit by a SavePaws representative.</span></label><label for="agreement-return" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-return" type="checkbox" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I agree to return the pet to SavePaws if I can no longer care for it.</span></label></div></fieldset>
+            <form id="adoption-form" action="handle_adoption.php" method="POST" class="p-6 space-y-6">
+                 <input type="hidden" name="pet_id" id="modal-pet-id" value="">
+                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Your Information</legend><div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><input type="text" name="adopter_name" id="adopter-name" placeholder="Full Name" required class="form-input mt-1 block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><div><input type="email" name="adopter_email" id="adopter-email" placeholder="Email Address" required class="form-input mt-1 block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div></div></fieldset>
+                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Contact & Location</legend><div class="space-y-5"><div class="relative"><div class="form-input-container"><i class="fas fa-map-marker-alt form-icon"></i><textarea name="adopter_address" id="adopter-address" rows="3" placeholder="Current Address" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm pr-28"></textarea></div><button type="button" id="share-location-btn" class="absolute top-2.5 right-2.5 bg-indigo-100 text-indigo-700 text-xs font-semibold px-2 py-1.5 rounded-md hover:bg-indigo-200 transition-colors flex items-center justify-center"><i class="fas fa-location-arrow mr-1.5"></i> Share Location</button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-5"><div><input type="text" name="adopter_nid" id="adopter-nid" placeholder="NID Number" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><div class="flex gap-2 items-center"><div class="w-full"><input type="tel" name="adopter_contact" id="adopter-contact" placeholder="Contact Number" required class="form-input block w-full border border-gray-300 rounded-md py-2.5 px-3 shadow-sm"></div><button type="button" id="send-otp-btn" class="px-3 h-11 bg-gray-200 text-sm font-medium rounded-md hover:bg-gray-300 transition-colors flex-shrink-0">Verify</button></div></div></div></fieldset>
+                <fieldset><legend class="text-lg font-semibold text-indigo-700 mb-4 border-b border-indigo-200 pb-2 w-full">Agreements</legend><div class="space-y-4"><label for="agreement-care" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-care" type="checkbox" name="agree_care" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I agree to provide a safe, loving home and proper medical care.</span></label><label for="agreement-visit" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-visit" type="checkbox" name="agree_visit" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I consent to a home visit by a SavePaws representative.</span></label><label for="agreement-return" class="flex items-start p-3 bg-white border border-gray-200 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors"><div class="relative flex items-center"><input id="agreement-return" type="checkbox" name="agree_return" required class="custom-checkbox appearance-none h-5 w-5 border-2 border-gray-300 rounded-sm bg-white"><i class="fas fa-check absolute left-0.5 top-0.5 text-white text-xs opacity-0"></i></div><span class="ml-3 text-sm text-gray-700">I agree to return the pet to SavePaws if I can no longer care for it.</span></label></div></fieldset>
                 <div class="flex justify-end gap-4 pt-6"><button type="button" id="quit-modal-btn" class="px-6 py-2.5 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition-colors">Quit</button><button type="submit" class="px-6 py-2.5 bg-primary-dark text-white rounded-lg font-semibold hover:bg-gray-700 transition-colors shadow-lg shadow-gray-900/20">Submit Application</button></div>
             </form>
             <div id="success-message" class="p-10 text-center hidden"><div class="mx-auto w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mb-4"><i class="fa-solid fa-check text-green-600 text-3xl"></i></div><h2 class="text-2xl font-bold text-gray-800">Application Submitted!</h2><p class="text-gray-600 mt-2">Thank you! We will contact you within 2-3 business days.</p><button id="close-success-btn" class="mt-6 px-8 py-2 bg-primary-dark text-white rounded-md font-semibold hover:bg-gray-700 transition-colors">Close</button></div>
@@ -337,7 +349,7 @@
     </div>
 
     <footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full">
-        <div class="max-w-6xl mx-auto"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left"><section><h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">About Us</a></li><li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li><li><a href="#" class="hover:text-white transition-colors">Pricing</a></li><li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li><li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li><li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Project Management</a></li><li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li><li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li><li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li><li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li></ul></section><section><h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3><p class="text-gray-300 mb-4">Subscribe to our Newsletter</p><form class="flex flex-col sm:flex-col gap-2"><input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"><button type="submit" class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Feedback</button></form></section></div><hr class="border-gray-700 my-10"><div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm"><p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p><div class="flex space-x-5 mt-4 sm:mt-0"><a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a></div></div></div>
+        <div class="max-w-6xl mx-auto"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left"><section><h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">About Us</a></li><li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li><li><a href="#" class="hover:text-white transition-colors">Pricing</a></li><li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li><li><a href="blog.php" class="hover:text-white transition-colors">Blog</a></li><li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Project Management</a></li><li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li><li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li><li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li><li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li></ul></section><section><h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3><p class="text-gray-300 mb-4">Subscribe to our Newsletter</p><form class="flex flex-col sm:flex-col gap-2"><input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"><button type="submit" class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Feedback</button></form></section></div><hr class="border-gray-700 my-10"><div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm"><p class="text-lg">&copy; 2025 SavePaws. All rights reserved.</p><div class="flex space-x-5 mt-4 sm:mt-0"><a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a></div></div></div>
     </footer>
 
 
@@ -367,7 +379,7 @@
     </script>
 
     <script>
-        // ADOPTION MODAL SCRIPT (Unchanged)
+        // ADOPTION MODAL SCRIPT
         document.addEventListener('DOMContentLoaded', () => {
             const modal = document.getElementById('adoption-modal');
             const closeModalBtn = document.getElementById('close-modal-btn');
@@ -376,18 +388,54 @@
             const successMessage = document.getElementById('success-message');
             const closeSuccessBtn = document.getElementById('close-success-btn');
             const adoptButtons = document.querySelectorAll('.adopt-button');
+            const modalPetId = document.getElementById('modal-pet-id');
 
-            const openModal = () => { adoptionForm.reset(); adoptionForm.style.display = 'block'; successMessage.style.display = 'none'; modal.classList.remove('hidden'); };
+
+            const openModal = (petId) => { 
+                adoptionForm.reset(); 
+                modalPetId.value = petId || ''; // Set the pet ID
+                adoptionForm.style.display = 'block'; 
+                successMessage.style.display = 'none'; 
+                modal.classList.remove('hidden'); 
+            };
             const closeModal = () => { modal.classList.add('hidden'); };
 
-            adoptButtons.forEach(button => button.addEventListener('click', openModal));
+            adoptButtons.forEach(button => button.addEventListener('click', (e) => {
+                const petId = e.currentTarget.dataset.petId;
+                openModal(petId);
+            }));
             [closeModalBtn, quitModalBtn, closeSuccessBtn].forEach(btn => btn.addEventListener('click', closeModal));
             modal.addEventListener('click', e => e.target === modal && closeModal());
 
-            adoptionForm.addEventListener('submit', (e) => { e.preventDefault(); adoptionForm.style.display = 'none'; successMessage.style.display = 'block'; });
+            adoptionForm.addEventListener('submit', async (e) => { 
+                e.preventDefault(); 
+                
+                const formData = new FormData(adoptionForm);
+
+                try {
+                    const response = await fetch('handle_adoption.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) throw new Error('Network response was not ok.');
+                    
+                    const result = await response.json();
+
+                    if (result.success) {
+                        adoptionForm.style.display = 'none'; 
+                        successMessage.style.display = 'block';
+                    } else {
+                        alert('Application submission failed: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Submission Error:', error);
+                    alert('There was an error connecting to the server.');
+                }
+            });
 
             const sendOtpBtn = document.getElementById('send-otp-btn');
-            sendOtpBtn.addEventListener('click', () => { if (document.getElementById('adopter-contact').value) { alert(`OTP sent.`); } else { alert('Please enter contact number.'); } });
+            sendOtpBtn.addEventListener('click', () => { if (document.getElementById('adopter-contact').value) { alert(`OTP functionality simulated.`); } else { alert('Please enter contact number.'); } });
             
             const shareLocationBtn = document.getElementById('share-location-btn');
             shareLocationBtn.addEventListener('click', () => { if (navigator.geolocation) { navigator.geolocation.getCurrentPosition((pos) => { document.getElementById('adopter-address').value = `Lat: ${pos.coords.latitude.toFixed(4)}, Lon: ${pos.coords.longitude.toFixed(4)}`; }); } else { alert('Geolocation is not supported.'); } });
@@ -395,6 +443,7 @@
     </script>
     
     <script>
+        // DONATE PET FORM SCRIPT
         document.addEventListener('DOMContentLoaded', () => {
             const donateForm = document.getElementById('donate-form');
             const steps = document.querySelectorAll('.form-step');
@@ -428,21 +477,26 @@
                 updateProgress();
             };
 
+            const validateStep = () => {
+                const currentStepInputs = steps[currentStep].querySelectorAll('input[required], select[required], textarea[required], input[type="file"][required]');
+                let isValid = true;
+                currentStepInputs.forEach(input => {
+                    if (input.type === 'file' && input.required && !input.files.length) {
+                        isValid = false;
+                        previewContainer.classList.add('border-red-500');
+                    } else if (!input.value) {
+                        isValid = false;
+                        input.classList.add('border-red-500');
+                    } else {
+                        input.classList.remove('border-red-500');
+                    }
+                });
+                return isValid;
+            };
+
             document.querySelectorAll('.next-step-btn').forEach(button => {
                 button.addEventListener('click', () => {
-                    // Simple validation for current step before proceeding
-                    const currentStepInputs = steps[currentStep].querySelectorAll('input[required], select[required]');
-                    let isValid = true;
-                    currentStepInputs.forEach(input => {
-                        if (!input.value) {
-                            isValid = false;
-                            input.classList.add('border-red-500');
-                        } else {
-                            input.classList.remove('border-red-500');
-                        }
-                    });
-                    
-                    if (isValid) {
+                    if (validateStep()) {
                          if (currentStep === 1) populateReview();
                          if (currentStep < steps.length - 1) showStep(currentStep + 1);
                     } else {
@@ -468,8 +522,12 @@
                     reader.onload = (e) => {
                         previewContainer.style.backgroundImage = `url('${e.target.result}')`;
                         uploadPrompt.style.display = 'none';
+                        previewContainer.classList.remove('border-red-500'); // Remove error border if valid file selected
                     };
                     reader.readAsDataURL(file);
+                } else {
+                    previewContainer.style.backgroundImage = '';
+                    uploadPrompt.style.display = 'block';
                 }
             });
 
@@ -479,8 +537,9 @@
                 const reviewDetails = document.getElementById('review-details');
                 reviewDetails.innerHTML = ''; // Clear previous details
                 const fields = {
-                    'pet-name': 'Pet Name', 'species': 'Species', 'breed': 'Breed', 'age': 'Age', 
-                    'gender': 'Gender', 'owner-name': "Owner's Name", 'owner-email': "Owner's Email"
+                    'pet_name': 'Pet Name', 'species': 'Species', 'breed': 'Breed', 'age': 'Age', 
+                    'gender': 'Gender', 'description': 'Description', 'owner_name': "Owner's Name", 
+                    'owner_email': "Owner's Email", 'owner_phone': "Owner's Phone", 'reason': 'Reason for Rehoming'
                 };
                 for (let [key, value] of formData.entries()) {
                     if (fields[key] && value) {
@@ -496,20 +555,54 @@
                 }
             };
             
-            donateForm.addEventListener('submit', (e) => {
+            donateForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                alert('Thank you! Your pet has been submitted for review.');
-                // Here you would typically send the data to a server
-                donateForm.reset();
-                showStep(0);
-                previewContainer.style.backgroundImage = '';
-                uploadPrompt.style.display = 'block';
+                
+                // Final validation (Step 3)
+                if (!validateStep()) {
+                    alert('Please fill out all required fields (*).');
+                    return;
+                }
+                
+                const submitBtn = e.submitter;
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Submitting...';
+
+                const formData = new FormData(donateForm);
+                
+                try {
+                    const response = await fetch('handle_donate_pet.php', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    if (!response.ok) throw new Error('Network response was not ok.');
+
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                         alert('Thank you! Your pet has been submitted for review.');
+                         donateForm.reset();
+                         showStep(0);
+                         previewContainer.style.backgroundImage = '';
+                         uploadPrompt.style.display = 'block';
+                         previewContainer.classList.remove('border-red-500');
+                    } else {
+                        alert('Submission failed: ' + result.message);
+                    }
+
+                } catch (error) {
+                    console.error('Donation Submission Error:', error);
+                    alert('There was an error communicating with the server. Please check file size and upload permissions.');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Pet for Adoption';
+                }
             });
 
             showStep(0); // Initialize first step
         });
     </script>
-    <script src="j.js"></script>
 </body>
 
 </html>

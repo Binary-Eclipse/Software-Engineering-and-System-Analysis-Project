@@ -1,3 +1,19 @@
+<?php
+// config.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "savepaws";
+
+// Create mysqli connection (object oriented)
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Database Connection Failed: " . $conn->connect_error);
+}
+
+// Optional: set charset
+$conn->set_charset("utf8mb4");
+?>
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 
@@ -51,13 +67,13 @@
     <nav class="flex flex-wrap justify-between items-center px-2 md:px-4 py-4 bg-white shadow-lg sticky top-0 z-50">
                    <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-evenly flex-wrap">
-            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-indigo-600 lg:p-5">Shop</a></li>
-            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+            <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="marketplace.php" class="text-sm lg:text-sm font-bold text-indigo-600 lg:p-5">Shop</a></li>
+            <li><a href="clinic.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="blog.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
 
@@ -67,8 +83,8 @@
         <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
     </div>
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -87,17 +103,17 @@
     </div>
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
         </div>
-        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
-        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
-        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
-        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+        <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="marketplace.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="blog.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
 
@@ -176,7 +192,7 @@
                     <ul class="space-y-2 text-gray-300">
                         <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li>
-                        <li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li>
+                        <li><a href="blog.php" class="hover:text-white transition-colors">Blog</a></li>
                         <li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li>
                     </ul>
                 </section>
@@ -224,7 +240,7 @@
         </div>
     </div>
 
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const allProducts = [{
                 id: 1,
@@ -331,6 +347,12 @@
             }];
 
             let cart = [];
+            let checkoutData = {
+                customerName: '',
+                address: '',
+                email: '',
+                paymentMethod: 'card'
+            }; // Stores temporary checkout form data
 
             const productGrid = document.getElementById('product-grid');
             const productCount = document.getElementById('product-count');
@@ -464,6 +486,14 @@
                 renderCartModal();
             };
 
+            const calculateTotals = () => {
+                let subtotal = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+                const shipping = 50;
+                const total = subtotal + shipping;
+                return { subtotal, shipping, total };
+            };
+
+
             const renderCartModal = () => {
                 if (cart.length === 0) {
                     cartModalContent.innerHTML = `
@@ -480,10 +510,10 @@
                     return;
                 }
 
+                const { subtotal, shipping, total } = calculateTotals();
+                
                 let itemsHtml = '';
-                let subtotal = 0;
                 cart.forEach(item => {
-                    subtotal += item.price * item.quantity;
                     itemsHtml += `
                         <div class="flex items-center gap-4 p-4 bg-white mb-2">
                             <img src="${item.image}" class="w-20 h-20 object-cover rounded-md">
@@ -500,9 +530,6 @@
                         </div>
                     `;
                 });
-
-                const shipping = 50;
-                const total = subtotal + shipping;
 
                 cartModalContent.innerHTML = `
                     <div class="flex items-center justify-between p-4 border-b bg-white">
@@ -531,6 +558,8 @@
             };
 
             const renderCheckoutForm = () => {
+                const { subtotal, shipping, total } = calculateTotals();
+                
                  cartModalContent.innerHTML = `
                     <div id="checkout-view" class="flex flex-col h-full">
                          <div class="flex items-center p-4 border-b bg-white">
@@ -539,26 +568,26 @@
                         </div>
                         <div class="p-6 flex-grow overflow-y-auto">
                             <h3 class="font-semibold text-lg mb-4">Shipping Information</h3>
-                            <div class="space-y-4">
-                                <input type="text" placeholder="Full Name" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
-                                <input type="text" placeholder="Address" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
-                                <input type="email" placeholder="Email" class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
-                            </div>
+                            <form id="shipping-form" class="space-y-4">
+                                <input type="text" id="customer-name" name="customerName" placeholder="Full Name" value="${checkoutData.customerName}" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
+                                <input type="text" id="address" name="address" placeholder="Address" value="${checkoutData.address}" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
+                                <input type="email" id="email" name="email" placeholder="Email" value="${checkoutData.email}" required class="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary-indigo">
+                            </form>
                             <h3 class="font-semibold text-lg mt-6 mb-4">Select Payment Method</h3>
-                            <div class="grid grid-cols-3 gap-2 border border-gray-200 rounded-lg p-1 mb-6">
-                                <button data-method="card" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition active"><i class="fas fa-credit-card mr-2"></i>Card</button>
-                                <button data-method="mobile" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition"><i class="fas fa-mobile-alt mr-2"></i>Mobile</button>
-                                <button data-method="bank" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition"><i class="fas fa-university mr-2"></i>Bank</button>
+                            <div class="grid grid-cols-3 gap-2 border border-gray-200 rounded-lg p-1 mb-6" id="payment-options">
+                                <button data-method="card" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition ${checkoutData.paymentMethod === 'card' ? 'active' : ''}"><i class="fas fa-credit-card mr-2"></i>Card</button>
+                                <button data-method="mobile" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition ${checkoutData.paymentMethod === 'mobile' ? 'active' : ''}"><i class="fas fa-mobile-alt mr-2"></i>Mobile</button>
+                                <button data-method="bank" class="payment-option text-center p-3 rounded-md font-semibold cursor-pointer transition ${checkoutData.paymentMethod === 'bank' ? 'active' : ''}"><i class="fas fa-university mr-2"></i>Bank</button>
                             </div>
 
-                            <div id="card-details">
+                            <div id="card-details" class="${checkoutData.paymentMethod === 'card' ? '' : 'hidden'}">
                                 <input type="text" placeholder="Card Number" class="w-full p-3 border-2 rounded-lg mb-3 focus:border-indigo-500">
                                 <div class="flex gap-3">
                                     <input type="text" placeholder="MM/YY" class="w-1/2 p-3 border-2 rounded-lg focus:border-indigo-500">
                                     <input type="text" placeholder="CVC" class="w-1/2 p-3 border-2 rounded-lg focus:border-indigo-500">
                                 </div>
                             </div>
-                            <div id="mobile-details" class="hidden text-center">
+                            <div id="mobile-details" class="${checkoutData.paymentMethod === 'mobile' ? '' : 'hidden'} text-center">
                                 <p class="mb-4">Select your mobile banking provider:</p>
                                 <div class="flex justify-center gap-4">
                                      <img src="https://logowik.com/content/uploads/images/bkash-new-logo-20232152.logowik.com.webp" class="h-10 cursor-pointer border-2 border-transparent hover:border-pink-500 rounded-md">
@@ -567,7 +596,7 @@
                                 </div>
                                 <p class="text-sm text-gray-600 mt-4">After confirming, you will receive a request on your phone.</p>
                             </div>
-                             <div id="bank-details" class="hidden text-left bg-gray-50 p-4 rounded-lg border">
+                             <div id="bank-details" class="${checkoutData.paymentMethod === 'bank' ? '' : 'hidden'} text-left bg-gray-50 p-4 rounded-lg border">
                                 <p class="text-gray-700 mb-3 font-semibold">Please transfer your payment to the following bank account:</p>
                                 <div class="space-y-2 text-sm">
                                     <div class="flex justify-between"><span class="text-gray-500">Account Name:</span><span class="font-mono font-semibold text-gray-800">SavePaws Marketplace</span></div>
@@ -577,23 +606,92 @@
                             </div>
                         </div>
                          <div class="p-4 bg-white border-t">
+                             <div class="flex justify-between font-bold text-xl mb-3"><span>Total Payable</span><span>৳${total.toLocaleString()}</span></div>
                             <button id="pay-now-btn" class="w-full bg-indigo-600 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-indigo-700 transition">Pay Now</button>
                         </div>
                     </div>
                  `;
             };
             
-            const renderConfirmation = () => {
+            const handleCheckoutSubmission = async () => {
+                const form = document.getElementById('shipping-form');
+                const nameInput = document.getElementById('customer-name');
+                const addressInput = document.getElementById('address');
+                const emailInput = document.getElementById('email');
+                const payNowBtn = document.getElementById('pay-now-btn');
+
+                // 1. Client-side Validation
+                if (!form.checkValidity()) {
+                    form.reportValidity();
+                    return;
+                }
+                
+                payNowBtn.textContent = 'Processing...';
+                payNowBtn.disabled = true;
+
+                const { subtotal, shipping, total } = calculateTotals();
+                
+                // 2. Prepare Data Structure for PHP
+                const orderData = {
+                    customer_name: nameInput.value,
+                    shipping_address: addressInput.value,
+                    customer_email: emailInput.value,
+                    payment_method: checkoutData.paymentMethod,
+                    total_amount: total,
+                    shipping_cost: shipping,
+                    items: cart.map(item => ({
+                        product_id: item.id,
+                        product_name: item.name,
+                        unit_price: item.price,
+                        quantity: item.quantity
+                    }))
+                };
+
+                // 3. Send to Server via AJAX
+                try {
+                    const response = await fetch('handle_checkout.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(orderData)
+                    });
+
+                    // We MUST await the JSON parsing to see the result
+                    const result = await response.json();
+                    
+                    if (result.success) {
+                        // SUCCESS PATH: Show confirmation message and reset cart
+                        renderConfirmation(result.order_id);
+                        showToast(`Order #${result.order_id} placed successfully!`);
+                    } else {
+                        // FAILURE PATH: Database reported an error (clean JSON output)
+                        alert(`Checkout failed: ${result.message}`);
+                    }
+
+                } catch (error) {
+                    // CATCH PATH: Network or malformed JSON error (server crash or bad output)
+                    console.error('Checkout Submission Error:', error);
+                    alert('Could not complete order. Please check server connection.');
+                } finally {
+                    payNowBtn.textContent = 'Pay Now';
+                    payNowBtn.disabled = false;
+                }
+            };
+
+
+            const renderConfirmation = (orderId) => {
                  cartModalContent.innerHTML = `
                      <div class="flex flex-col h-full items-center justify-center text-center p-8">
                          <i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i>
                          <h2 class="text-2xl font-bold">Payment Successful!</h2>
-                         <p class="text-gray-600 mt-2">Thank you for your purchase. Your order is being processed.</p>
+                         <p class="text-gray-600 mt-2">Thank you for your purchase. Your order #${orderId} is being processed.</p>
                          <button id="close-confirmation-btn" class="mt-8 bg-indigo-600 text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-indigo-700 transition">Close</button>
                      </div>
                  `;
+                // --- CRITICAL: CLEAR CART DATA AND UPDATE UI ---
                 cart = [];
-                updateCart();
+                updateCart(); 
             };
 
             // --- TOAST NOTIFICATION ---
@@ -668,18 +766,38 @@
                 } else if (e.target.closest('#back-to-cart-btn')) {
                     renderCartModal();
                 } else if (e.target.closest('#pay-now-btn')) {
-                    renderConfirmation();
+                    handleCheckoutSubmission(); // <--- AJAX SUBMISSION
                 } else if (e.target.closest('#close-confirmation-btn')) {
                     closeModal(cartModal);
-                } else if (e.target.closest('.payment-option')) { // Updated to handle button clicks
-                    const method = e.target.closest('.payment-option').dataset.method;
-                    document.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
-                    e.target.closest('.payment-option').classList.add('active');
-                    ['card-details', 'mobile-details', 'bank-details'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
-                    document.getElementById(`${method}-details`)?.classList.remove('hidden');
+                }
+                
+                // Payment Method Selector
+                if (e.target.closest('#payment-options')) { 
+                    const paymentOptionsDiv = e.target.closest('#payment-options');
+                    const paymentOptionBtn = e.target.closest('.payment-option');
+                    
+                    if (paymentOptionBtn) {
+                        const method = paymentOptionBtn.dataset.method;
+                        // Update UI
+                        paymentOptionsDiv.querySelectorAll('.payment-option').forEach(opt => opt.classList.remove('active'));
+                        paymentOptionBtn.classList.add('active');
+                        // Update Data
+                        checkoutData.paymentMethod = method;
+                        // Show/Hide details
+                        ['card-details', 'mobile-details', 'bank-details'].forEach(id => document.getElementById(id)?.classList.add('hidden'));
+                        document.getElementById(`${method}-details`)?.classList.remove('hidden');
+                    }
                 }
             });
             
+            // Event listener for updating checkoutData as user types
+            cartModal.addEventListener('input', (e) => {
+                if (e.target.id === 'customer-name') checkoutData.customerName = e.target.value;
+                if (e.target.id === 'address') checkoutData.address = e.target.value;
+                if (e.target.id === 'email') checkoutData.email = e.target.value;
+            });
+
+
             searchInput.addEventListener('input', filterAndRender);
             
             categoryGrid.addEventListener('click', (e) => {

@@ -1,3 +1,22 @@
+<?php
+// config.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "savepaws";
+
+// Create mysqli connection (object oriented)
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    // Note: In a production environment, you should log the error and display a generic message
+    die("Database Connection Failed: " . $conn->connect_error);
+}
+
+// Optional: set charset
+$conn->set_charset("utf8mb4");
+
+// NOTE: This file handles the display; submission logic is moved to submit_appointment.php
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,18 +39,18 @@
     <nav class="flex flex-wrap justify-between items-center py-4 bg-white shadow-lg sticky top-0 z-40">
         <h1 class="font-semibold md:text-xl text-lg text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
-            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
-            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+            <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="marketplace.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="clinic.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="blog.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
         <div class="hidden lg:flex sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -44,17 +63,17 @@
         <div class="flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
         </div>
-        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
-        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
-        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
-        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+        <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="marketplace.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
+        <li><a href="blog.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
     <div class="min-h-screen">
@@ -228,25 +247,25 @@
                             <form id="patientForm" class="space-y-4">
                                 <div>
                                     <label for="patientName" class="text-sm font-medium text-gray-600">Patient's Name</label>
-                                    <input type="text" id="patientName" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
+                                    <input type="text" id="patientName" name="patientName" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
                                 </div>
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="contactNumber" class="text-sm font-medium text-gray-600">Contact Number</label>
-                                        <input type="tel" id="contactNumber" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
+                                        <input type="tel" id="contactNumber" name="contactNumber" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" required>
                                     </div>
                                     <div>
                                         <label for="email" class="text-sm font-medium text-gray-600">Email Address</label>
-                                        <input type="email" id="email" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                        <input type="email" id="email" name="email" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
                                     </div>
                                 </div>
                                  <div>
                                     <label for="nidNumber" class="text-sm font-medium text-gray-600">Owner's NID (Optional)</label>
-                                    <input type="text" id="nidNumber" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                    <input type="text" id="nidNumber" name="nidNumber" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
                                 </div>
                                 <div>
                                     <label for="problemDescription" class="text-sm font-medium text-gray-600">Reason for Visit</label>
-                                    <textarea id="problemDescription" rows="3" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Briefly describe the patient's problem..." required></textarea>
+                                    <textarea id="problemDescription" name="problemDescription" rows="3" class="mt-1 w-full p-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Briefly describe the patient's problem..." required></textarea>
                                 </div>
                             </form>
                         </div>
@@ -300,7 +319,6 @@
             const modal = document.getElementById('appointmentModal');
             const modalContent = document.getElementById('modalContent');
             const closeModalBtn = document.getElementById('closeModalBtn');
-            const openModalBtns = document.querySelectorAll('.open-modal-btn');
             const confirmBtn = document.getElementById('confirmAppointmentBtn');
             const confirmationMessage = document.getElementById('confirmationMessage');
             const modalDoctorName = document.getElementById('modalDoctorName');
@@ -312,6 +330,7 @@
             const nextMonthBtn = document.getElementById('nextMonth');
             const selectedDateText = document.getElementById('selectedDateText');
             const timeSlotsContainer = document.getElementById('timeSlotsContainer');
+            const patientForm = document.getElementById('patientForm');
             
             let currentDate = new Date();
             
@@ -328,7 +347,7 @@
             };
 
             function updateConfirmButton() {
-                const isFormValid = document.getElementById('patientName').value && document.getElementById('contactNumber').value && document.getElementById('problemDescription').value;
+                const isFormValid = patientForm.checkValidity(); // Checks all required fields
                 if (state.selectedDate && state.selectedTime && isFormValid) {
                     confirmBtn.disabled = false;
                     confirmBtn.textContent = `Confirm Appointment for ${state.selectedTime}`;
@@ -338,7 +357,7 @@
                 }
             }
             
-            document.getElementById('patientForm').addEventListener('input', updateConfirmButton);
+            patientForm.addEventListener('input', updateConfirmButton);
 
             const generateCalendar = (year, month) => {
                 calendarGrid.innerHTML = '';
@@ -367,11 +386,15 @@
                     } else {
                         dayClasses += ' cursor-pointer hover:bg-indigo-100 text-gray-700';
                     }
-                    if (isToday && !state.selectedDate) {
+                    if (isToday && !state.selectedDate && !isUnavailable && !isPast) {
                         dayClasses += ' bg-indigo-600 text-white';
                     }
                      if (state.selectedDate && dayDate.getTime() === state.selectedDate.getTime()) {
-                        dayClasses += ' border-2 border-indigo-500 bg-indigo-100 text-indigo-600 font-bold';
+                        // Apply selected style to the selected date only
+                        const selectedDateString = `${state.selectedDate.getFullYear()}-${String(state.selectedDate.getMonth() + 1).padStart(2, '0')}-${String(state.selectedDate.getDate()).padStart(2, '0')}`;
+                        if (selectedDateString === dateString) {
+                            dayClasses += ' border-2 border-indigo-500 bg-indigo-100 text-indigo-600 font-bold';
+                        }
                     }
 
                     calendarGrid.insertAdjacentHTML('beforeend', `<div class="${dayClasses}" data-day="${i}">${i}</div>`);
@@ -381,11 +404,18 @@
             calendarGrid.addEventListener('click', (e) => {
                 const dayEl = e.target.closest('[data-day]');
                 if (dayEl && !dayEl.classList.contains('cursor-not-allowed')) {
+                    // Remove current selection style from all days
+                    calendarGrid.querySelectorAll('.calendar-day').forEach(day => {
+                        day.classList.remove('border-2', 'border-indigo-500', 'bg-indigo-100', 'text-indigo-600', 'font-bold');
+                    });
+                    
                     const day = parseInt(dayEl.dataset.day);
                     state.selectedDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-                    state.selectedTime = null;
+                    state.selectedTime = null; // Reset time selection on new date selection
                     
-                    generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+                    // Apply new selection style
+                    dayEl.classList.add('border-2', 'border-indigo-500', 'bg-indigo-100', 'text-indigo-600', 'font-bold');
+                    
                     generateTimeSlots();
                     updateConfirmButton();
                     
@@ -395,12 +425,22 @@
 
             prevMonthBtn.addEventListener('click', () => {
                 currentDate.setMonth(currentDate.getMonth() - 1);
+                state.selectedDate = null; // Reset date selection when changing month
+                state.selectedTime = null; // Reset time selection when changing month
+                selectedDateText.textContent = `Please select a date`;
                 generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+                generateTimeSlots();
+                updateConfirmButton();
             });
 
             nextMonthBtn.addEventListener('click', () => {
                 currentDate.setMonth(currentDate.getMonth() + 1);
+                state.selectedDate = null; // Reset date selection when changing month
+                state.selectedTime = null; // Reset time selection when changing month
+                selectedDateText.textContent = `Please select a date`;
                 generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+                generateTimeSlots();
+                updateConfirmButton();
             });
             
             const generateTimeSlots = () => {
@@ -440,7 +480,7 @@
                 
                 state.reset();
                 currentDate = new Date();
-                document.getElementById('patientForm').reset();
+                patientForm.reset();
                 selectedDateText.textContent = `Please select a date`;
                 
                 generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
@@ -454,23 +494,125 @@
             const closeModal = () => {
                 modalContent.classList.add('scale-95');
                 modal.classList.add('opacity-0');
+                // Use a short delay for the animation to complete
                 setTimeout(() => {
                     modal.classList.add('pointer-events-none');
+                    // Reset confirmation state
+                    confirmationMessage.querySelector('.bg-red-500')?.classList.replace('bg-red-500', 'bg-green-500');
+                    confirmationMessage.querySelector('i')?.classList.replace('fa-times', 'fa-check');
                     confirmationMessage.classList.add('opacity-0', 'pointer-events-none');
                 }, 300);
             };
 
-            openModalBtns.forEach(btn => btn.addEventListener('click', () => openModal(btn.dataset.doctorName, btn.dataset.doctorSpecialty)));
+            // FIX: Using Event Delegation for "Book an Appointment" buttons
+            document.body.addEventListener('click', (e) => {
+                const btn = e.target.closest('.open-modal-btn');
+                if (btn) {
+                    e.preventDefault(); 
+                    const doctorName = btn.getAttribute('data-doctor-name');
+                    const doctorSpecialty = btn.getAttribute('data-doctor-specialty');
+                    openModal(doctorName, doctorSpecialty);
+                }
+            });
+            
             closeModalBtn.addEventListener('click', closeModal);
             modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
             document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
+            // AJAX Submission Handler
             confirmBtn.addEventListener('click', () => {
-                if (confirmBtn.disabled) return;
+                if (confirmBtn.disabled || !patientForm.checkValidity()) return;
                 
-                confirmationMessage.classList.remove('opacity-0', 'pointer-events-none');
-                setTimeout(() => closeModal(), 2500);
+                // Format the selected date for the database (YYYY-MM-DD)
+                const appointmentDate = state.selectedDate.toISOString().split('T')[0];
+
+                // Format the selected time for the database (HH:MM:SS) 
+                const timeParts = state.selectedTime.match(/(\d+):(\d+) (AM|PM)/);
+                let hour = parseInt(timeParts[1]);
+                const minute = timeParts[2];
+                const ampm = timeParts[3];
+
+                if (ampm === 'PM' && hour !== 12) hour += 12;
+                if (ampm === 'AM' && hour === 12) hour = 0;
+                
+                const appointmentTime = `${String(hour).padStart(2, '0')}:${minute}:00`;
+                
+                const appointmentData = {
+                    doctorName: state.doctorName,
+                    doctorSpecialty: state.doctorSpecialty,
+                    appointmentDate: appointmentDate,
+                    appointmentTime: appointmentTime,
+                    patientName: document.getElementById('patientName').value,
+                    contactNumber: document.getElementById('contactNumber').value,
+                    email: document.getElementById('email').value,
+                    nidNumber: document.getElementById('nidNumber').value,
+                    problemDescription: document.getElementById('problemDescription').value
+                };
+                
+                confirmBtn.disabled = true;
+                confirmBtn.textContent = 'Booking...';
+
+                // Send data to PHP script
+                fetch('submit_appointment.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(appointmentData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Show success message
+                        confirmationMessage.querySelector('.bg-green-500').classList.remove('bg-red-500');
+                        confirmationMessage.querySelector('i').classList.replace('fa-times', 'fa-check');
+                        confirmationMessage.querySelector('h3').textContent = "Appointment Booked!";
+                        confirmationMessage.querySelector('p').textContent = `Your appointment with ${state.doctorName} on ${state.selectedDate.toLocaleDateString()} at ${state.selectedTime} is confirmed.`;
+                        confirmationMessage.classList.remove('opacity-0', 'pointer-events-none');
+                        
+                        // Close modal after a delay
+                        setTimeout(() => closeModal(), 3000);
+                    } else {
+                        // Show error message
+                        confirmationMessage.querySelector('.bg-green-500').classList.replace('bg-green-500', 'bg-red-500');
+                        confirmationMessage.querySelector('i').classList.replace('fa-check', 'fa-times');
+                        confirmationMessage.querySelector('h3').textContent = "Booking Failed!";
+                        confirmationMessage.querySelector('p').textContent = data.message || "Please try again later. (Error: " + (data.error || "Unknown") + ")";
+                        confirmationMessage.classList.remove('opacity-0', 'pointer-events-none');
+                        
+                        // Re-enable button
+                        confirmBtn.disabled = false;
+                        confirmBtn.textContent = `Try Again`;
+                        
+                        // Close after a delay, but longer for an error
+                        setTimeout(() => {
+                             confirmationMessage.classList.add('opacity-0', 'pointer-events-none');
+                             updateConfirmButton();
+                        }, 5000);
+                    }
+                })
+                .catch(error => {
+                    console.error('Submission Error:', error);
+                    // Handle network/fetch error
+                    confirmationMessage.querySelector('.bg-green-500').classList.replace('bg-green-500', 'bg-red-500');
+                    confirmationMessage.querySelector('i').classList.replace('fa-check', 'fa-times');
+                    confirmationMessage.querySelector('h3').textContent = "Network Error!";
+                    confirmationMessage.querySelector('p').textContent = "Could not connect to the server. Check your connection.";
+                    confirmationMessage.classList.remove('opacity-0', 'pointer-events-none');
+                    
+                    // Re-enable button
+                    confirmBtn.disabled = false;
+                    confirmBtn.textContent = `Try Again`;
+                     
+                    setTimeout(() => {
+                        confirmationMessage.classList.add('opacity-0', 'pointer-events-none');
+                        updateConfirmButton();
+                    }, 5000);
+                });
             });
+            // Initial call to set up the calendar and button state
+            generateCalendar(currentDate.getFullYear(), currentDate.getMonth());
+            updateConfirmButton();
         });
     </script>
 </body>

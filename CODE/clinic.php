@@ -1,3 +1,8 @@
+<?php
+// config.php content moved to configure.php, now included
+include 'config.php'; 
+// Note: $conn is defined in configure.php, but not explicitly used on this page
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +54,7 @@
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
             <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
             <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
-            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="clinic.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
             <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
             <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
             <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
@@ -85,7 +90,7 @@
 
         <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
         <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
@@ -110,11 +115,11 @@
             </p>
 
             <div class="flex flex-col sm:flex-row justify-center items-center gap-5 sm:gap-8">
-                <button onclick="window.location.href='firstaid.html'" class="px-8 py-4 bg-custom-purple text-white font-bold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-custom-blue focus:outline-none focus:ring-4 focus:ring-purple-300 w-64 sm:w-auto">
+                <button onclick="window.location.href='firstaid.php'" class="px-8 py-4 bg-custom-purple text-white font-bold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-custom-blue focus:outline-none focus:ring-4 focus:ring-purple-300 w-64 sm:w-auto">
                     <i class="fas fa-first-aid mr-2"></i> First Aid
                 </button>
 
-                <button onclick="window.location.href='enjoy_service.html'" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-white hover:text-custom-purple focus:outline-none focus:ring-4 focus:ring-gray-300 w-64 sm:w-auto">
+                <button onclick="window.location.href='enjoy_service.php'" class="px-8 py-4 bg-transparent border-2 border-white text-white font-bold rounded-full shadow-lg transform transition-all duration-300 hover:scale-105 hover:bg-white hover:text-custom-purple focus:outline-none focus:ring-4 focus:ring-gray-300 w-64 sm:w-auto">
                     <i class="fas fa-concierge-bell mr-2"></i> Enjoy Service
                 </button>
             </div>
@@ -151,7 +156,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
-                        <button onclick="window.location.href='appoinment.html'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
                             view doctors & schedules
                         </button>
                     </div>
@@ -180,7 +185,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
-                        <button onclick="window.location.href='appoinment.html'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
                             view doctors & schedules
                         </button>
                     </div>
@@ -209,7 +214,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
-                        <button onclick="window.location.href='appoinment.html'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
                             view doctors & schedules
                         </button>
                     </div>
@@ -240,7 +245,7 @@
                         </p>
                     </div>
                     <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
-                        <button onclick="window.location.href='appoinment.html'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
                             view doctors & schedules
                         </button>
                     </div>

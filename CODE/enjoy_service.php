@@ -1,3 +1,19 @@
+<?php
+// config.php
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db   = "savepaws";
+
+// Create mysqli connection (object oriented)
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+    die("Database Connection Failed: " . $conn->connect_error);
+}
+
+// Optional: set charset
+$conn->set_charset("utf8mb4");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -45,21 +61,21 @@
     <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
                     <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
-            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
-            <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
-            <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+            <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="marketplace.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="clinic.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="blog.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
 
         <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
         
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -69,7 +85,6 @@
     </button>
     </nav>
 
-    <!-- Mobile Dropdown -->
     <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
 
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
@@ -77,18 +92,18 @@
 
         
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
         </div>
 
-        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
-        <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
-        <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
-        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
-        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
-        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+        <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="marketplace.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Rescue Team</a></li>
+        <li><a href="blog.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
     <section class="container mx-auto px-4 mt-8">
@@ -113,17 +128,17 @@
                             </div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div><label for="your_name" class="block text-gray-700 font-medium mb-1">Your Name *</label><input type="text" id="your_name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
-                        <div><label for="pet_name" class="block text-gray-700 font-medium mb-1">Pet Name(s) *</label><input type="text" id="pet_name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
+                        <div><label for="your_name" class="block text-gray-700 font-medium mb-1">Your Name *</label><input type="text" id="your_name" name="client_name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
+                        <div><label for="pet_name" class="block text-gray-700 font-medium mb-1">Pet Name(s) *</label><input type="text" id="pet_name" name="pet_names" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div><label for="email" class="block text-gray-700 font-medium mb-1">Email *</label><input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
-                        <div><label for="phone" class="block text-gray-700 font-medium mb-1">Phone *</label><input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
+                        <div><label for="email" class="block text-gray-700 font-medium mb-1">Email *</label><input type="email" id="email" name="client_email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
+                        <div><label for="phone" class="block text-gray-700 font-medium mb-1">Phone *</label><input type="tel" id="phone" name="client_phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="pet_type" class="block text-gray-700 font-medium mb-1">Pet Type *</label>
-                            <select id="pet_type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple appearance-none bg-white" required>
+                            <select id="pet_type" name="pet_type" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple appearance-none bg-white" required>
                                 <option value="">Select Pet Type</option>
                                 <option>Dog</option>
                                 <option>Cat</option>
@@ -133,16 +148,16 @@
                         </div>
                         <div>
                             <label for="pet_breed" class="block text-gray-700 font-medium mb-1">Pet Breed</label>
-                            <input type="text" id="pet_breed" placeholder="e.g., Golden Retriever" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple">
+                            <input type="text" id="pet_breed" name="pet_breed" placeholder="e.g., Golden Retriever" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple">
                         </div>
                     </div>
                     <div>
                         <label for="share_location" class="block text-gray-700 font-medium mb-1">Share Location *</label>
-                        <input type="text" id="share_location" placeholder="Enter your full address" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required>
+                        <input type="text" id="share_location" name="service_location" placeholder="Enter your full address" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required>
                     </div>
                     <div>
                         <label for="help_text" class="block text-gray-700 font-medium mb-1">How can we help?</label>
-                        <textarea id="help_text" rows="2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple"></textarea>
+                        <textarea id="help_text" name="help_description" rows="2" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple"></textarea>
                     </div>
                     <button type="submit" id="request-service-btn" class="w-full bg-gray-300 text-white py-3 rounded-xl font-medium shadow-md transition duration-300 mt-6 cursor-not-allowed" disabled>Submit Your Service Request</button>
                 </form>
@@ -180,6 +195,7 @@
             const paymentModalContent = document.getElementById('payment-modal-content');
             let selectedServices = [];
 
+            // Define services and their prices (can be used for bill calculation)
             const services = [
                 { id: "wellness", name: "Wellness Exam", icon: `<svg class="w-6 h-6 text-custom-purple mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.618a1 1 0 010 1.414l-4.242 4.242a1 1 0 01-1.414 0L9.172 10.586a1 1 0 010-1.414l4.242-4.242a1 1 0 011.414 0z"></path></svg>`, price: 1500 },
                 { id: "vaccination", name: "Vaccination", icon: `<svg class="w-6 h-6 text-custom-purple mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2m-9 0V3h4m0 2h4m-4 0v2"></path></svg>`, price: 2000 },
@@ -247,9 +263,14 @@
                     </div>`;
             };
 
-            const renderThankYouView = () => {
+            const renderThankYouView = (message = "Your service request has been received. We will contact you shortly.") => {
                  paymentModalContent.innerHTML = `
-                    <div class="text-center p-10"><i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i><h2 class="text-3xl font-bold">Request Sent!</h2><p class="text-gray-600 mt-2">Thank you! Your service request has been received. We will contact you shortly.</p><button id="done-btn" class="mt-8 bg-custom-purple text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-custom-blue">Done</button></div>`;
+                    <div class="text-center p-10"><i class="fas fa-check-circle text-6xl text-green-500 mb-4"></i><h2 class="text-3xl font-bold">Request Sent!</h2><p class="text-gray-600 mt-2">${message}</p><button id="done-btn" class="mt-8 bg-custom-purple text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-custom-blue">Done</button></div>`;
+            };
+
+            const renderErrorView = (message) => {
+                 paymentModalContent.innerHTML = `
+                    <div class="text-center p-10"><i class="fas fa-times-circle text-6xl text-red-500 mb-4"></i><h2 class="text-3xl font-bold">Submission Failed!</h2><p class="text-gray-600 mt-2">${message}</p><button id="done-btn" class="mt-8 bg-custom-purple text-white font-semibold py-2 px-6 rounded-lg shadow-md hover:bg-custom-blue">Close</button></div>`;
             };
 
             // --- Event Listeners ---
@@ -268,7 +289,9 @@
                         selectedServices.push(serviceId);
                     }
                     
-                    if (selectedServices.length > 0) {
+                    // Check if form is valid (required fields + selected service)
+                    const isFormValid = serviceForm.checkValidity() && selectedServices.length > 0;
+                    if (isFormValid) {
                         requestServiceBtn.disabled = false;
                         requestServiceBtn.classList.remove('bg-gray-300', 'cursor-not-allowed');
                         requestServiceBtn.classList.add('bg-custom-purple', 'hover:bg-custom-blue');
@@ -279,16 +302,81 @@
                     }
                 }
             });
+            
+            // Re-enable/disable button on form input change
+            serviceForm.addEventListener('input', function() {
+                const isFormValid = serviceForm.checkValidity() && selectedServices.length > 0;
+                if (isFormValid) {
+                    requestServiceBtn.disabled = false;
+                    requestServiceBtn.classList.remove('bg-gray-300', 'cursor-not-allowed');
+                    requestServiceBtn.classList.add('bg-custom-purple', 'hover:bg-custom-blue');
+                } else {
+                    requestServiceBtn.disabled = true;
+                    requestServiceBtn.classList.add('bg-gray-300', 'cursor-not-allowed');
+                    requestServiceBtn.classList.remove('bg-custom-purple', 'hover:bg-custom-blue');
+                }
+            });
 
+            // Service Request Submission
             serviceForm.addEventListener('submit', function(e) {
                 e.preventDefault();
-                let totalBill = 0;
-                selectedServices.forEach(serviceId => {
-                    const service = services.find(s => s.id === serviceId);
-                    if(service) totalBill += service.price;
+                
+                if (!serviceForm.checkValidity() || selectedServices.length === 0) return;
+                
+                // Collect form data
+                const formData = new FormData(serviceForm);
+                const submissionData = {
+                    selected_services: selectedServices,
+                    client_name: formData.get('client_name'),
+                    pet_names: formData.get('pet_names'),
+                    client_email: formData.get('client_email'),
+                    client_phone: formData.get('client_phone'),
+                    pet_type: formData.get('pet_type'),
+                    pet_breed: formData.get('pet_breed'),
+                    service_location: formData.get('service_location'),
+                    help_description: formData.get('help_description'),
+                };
+                
+                requestServiceBtn.textContent = 'Submitting...';
+                requestServiceBtn.disabled = true;
+
+                // Send data to PHP
+                fetch('submit_service.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(submissionData)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    requestServiceBtn.textContent = 'Submit Your Service Request';
+                    
+                    if (data.success) {
+                        // Success: Show payment view first, then handle the payment confirmation
+                        let totalBill = 0;
+                        selectedServices.forEach(serviceId => {
+                            const service = services.find(s => s.id === serviceId);
+                            if(service) totalBill += service.price;
+                        });
+                        
+                        renderPaymentView(totalBill);
+                        openModal();
+                    } else {
+                        // Submission failed (e.g., database error)
+                        renderErrorView(data.message || "An unknown error occurred during submission.");
+                        openModal();
+                    }
+                    requestServiceBtn.disabled = false; // Re-enable if needed
+                })
+                .catch(error => {
+                    // Network or JSON parsing error
+                    requestServiceBtn.textContent = 'Submit Your Service Request';
+                    requestServiceBtn.disabled = false;
+                    renderErrorView("A network error occurred. Please try again.");
+                    openModal();
+                    console.error('Submission Error:', error);
                 });
-                renderPaymentView(totalBill);
-                openModal();
             });
 
             paymentModal.addEventListener('click', (e) => {
@@ -301,6 +389,8 @@
                     ['card-details', 'mobile-details', 'bank-details'].forEach(id => document.getElementById(id).classList.add('hidden'));
                     document.getElementById(`${method}-details`).classList.remove('hidden');
                 } else if (e.target.closest('#confirm-payment-btn')) {
+                    // NOTE: In a real app, this would trigger actual payment processing. 
+                    // For this task, we will just render the thank you view.
                     renderThankYouView();
                 }
             });

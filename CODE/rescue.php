@@ -1,3 +1,9 @@
+<?php
+// rescue.php - Protected page for displaying rescue, team, and abuse forms.
+
+session_start();
+include_once "config.php"; 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,19 +71,19 @@
     <nav class="flex flex-wrap justify-between items-center py-4 bg-white shadow-lg">
         <h1 class="font-semibold md:text-xl text-lg text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
-            <li><a href="guest.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
             <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
             <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
-            <li><a href="rescue.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
             <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
             <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
-            <li><a href="donation.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+            <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
         <div class=" hidden lg:flex sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="log_in.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -91,17 +97,17 @@
         <div class="flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="log_in.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="log_in.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="sign_up.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
             </div>
         </div>
-        <li><a href="guest.html" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
-        <li><a href="rescue.html" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
         <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
         <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
-        <li><a href="donation.html" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+        <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 
     <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
@@ -125,7 +131,7 @@
                         <p class="text-gray-500">Your report helps us dispatch help quickly. Please provide as much detail as possible.</p>
                     </div>
 
-           <form id="rescueForm" action="handle_rescue.php" method="POST" **enctype="multipart/form-data"** class="space-y-6">
+           <form id="rescueForm" action="handle_rescue.php" method="POST" enctype="multipart/form-data" class="space-y-6">
     
                         <fieldset>
                             <legend class="text-lg font-semibold text-gray-700 mb-3">Your Information</legend>
@@ -258,6 +264,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const locationInput = document.getElementById('location');
     const locationStatus = document.getElementById('locationStatus');
 
+    // Correction: Added disabled=false after successful location retrieval, 
+    // and fixed the location link format to be usable.
     shareLocationBtn.addEventListener('click', () => {
         if (!navigator.geolocation) {
             locationStatus.textContent = 'Geolocation is not supported by your browser.';
@@ -272,17 +280,18 @@ document.addEventListener('DOMContentLoaded', function() {
             (position) => {
                 const { latitude, longitude } = position.coords;
                 
-                // --- CORRECT: Format location as a standard Google Maps link ---
-                const mapLink = `http://maps.google.com/?q=${latitude},${longitude}`;
+                // CORRECTED: Format location as a standard Google Maps query link
+                // The backend (handle_rescue.php) expects a string to store.
+                const mapLink = `https://maps.google.com/?q=${latitude},${longitude}`;
                 
-                locationInput.value = mapLink; // Save the full URL as the value
+                locationInput.value = mapLink; 
                 
-                locationStatus.textContent = `Location saved as link: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                locationStatus.textContent = `Location saved: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
                 locationStatus.style.color = 'green';
                 shareLocationBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Location Shared (Link Ready)';
                 shareLocationBtn.classList.remove('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
                 shareLocationBtn.classList.add('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
-                
+                shareLocationBtn.disabled = false; // Enable after success
             },
             () => {
                 locationStatus.textContent = 'Unable to retrieve location. Please grant permission.';
@@ -377,7 +386,5 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
-    <script src="j.js"></script>
-<script src="res.js"></script>
 </body>
 </html>
