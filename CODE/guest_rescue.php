@@ -1,0 +1,390 @@
+<?php
+// rescue.php - Protected page for displaying rescue, team, and abuse forms.
+
+session_start();
+include_once "config.php"; 
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SavePaws Rescue Center</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f7f7f7;
+        }
+   
+        #map { 
+            height: 100%;
+            width: 100%;
+            min-height: 60vh; 
+        }
+
+        /* Styles for the other modal form (unchanged) */
+        .form-input-container {
+            position: relative;
+        }
+        .form-input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af; 
+            pointer-events: none;
+        }
+        .form-input {
+            padding-left: 2.75rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .form-input:focus {
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-dark': '#1a202c',
+                        'danger-red': '#ef4444',
+                        'light-red': '#fee2e2',
+                        'input-bg': '#f3f4f6',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-white font-sans antialiased">
+
+    <nav class="flex flex-wrap justify-between items-center py-4 bg-white shadow-lg">
+        <h1 class="font-semibold md:text-xl text-lg text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
+        <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
+            <li><a href="guest_rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
+        </ul>
+
+        <div class=" hidden lg:flex sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
+            <div class="flex justify-center items-center">
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            </div>
+            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
+        </div>
+
+     <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    </nav>
+
+    <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
+        <div class="flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
+            <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
+            <div class="flex justify-center items-center">
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
+                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+            </div>
+        </div>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
+        <li><a href="guest_rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
+    </ul>
+
+    <div class="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
+
+        <nav class="flex justify-center mb-10 mt-4">
+            <div class="flex space-x-1 p-1 bg-gray-100 rounded-full shadow-sm border border-gray-200">
+                <button id="tab-report" onclick="switchView('report')" class="nav-tab py-2 px-5 text-sm font-semibold rounded-full transition-all duration-300">Report a Pet</button>
+                <button id="tab-teams" onclick="switchView('teams')" class="nav-tab py-2 px-5 text-sm font-semibold rounded-full transition-all duration-300">Find Teams</button>
+                <button id="tab-abuse" onclick="switchView('abuse')" class="nav-tab py-2 px-5 text-sm font-semibold rounded-full transition-all duration-300 flex items-center">
+                    <span class="w-2 h-2 mr-2 rounded-full bg-danger-red"></span> Report Abuse
+                </button>
+            </div>
+        </nav>
+
+        <main>
+            
+            <div id="view-report" class="max-w-3xl mx-auto">
+                <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-xl border border-gray-100">
+                    <div class="text-center mb-8">
+                        <h2 class="text-2xl font-bold text-gray-800 mb-2">🐾 Report a Pet in Need</h2>
+                        <p class="text-gray-500">Your report helps us dispatch help quickly. Please provide as much detail as possible.</p>
+                    </div>
+
+           <form id="rescueForm" action="handle_rescue.php" method="POST" enctype="multipart/form-data" class="space-y-6">
+    
+                        <fieldset>
+                            <legend class="text-lg font-semibold text-gray-700 mb-3">Your Information</legend>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <input type="text" name="name" placeholder="Your Name" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <input type="email" name="email" placeholder="Your Email" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="text-lg font-semibold text-gray-700 mb-3">Pet & Location Details</legend>
+                            <div class="space-y-4">
+                                <div>
+                                    <select name="animal_t" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500">
+                                        <option value="">Select pet type *</option>
+                                        <option value="dog">Dog</option>
+                                        <option value="cat">Cat</option>
+                                        <option value="bird">Bird</option>
+                                        <option value="other">Other / Wildlife</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <button type="button" id="shareLocationBtn" class="w-full py-3 flex items-center justify-center font-semibold text-indigo-700 bg-indigo-50 border-2 border-dashed border-indigo-200 rounded-lg hover:bg-indigo-100 transition">
+                                        <i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location *
+                                    </button>
+                                    <input type="hidden" name="loc" id="location" required>
+                                    <p id="locationStatus" class="text-xs text-gray-500 mt-2 text-center"></p>
+                                </div>
+                                <div>
+                                    <textarea name="des" rows="4" required placeholder="Describe the pet's condition and situation...*" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        
+                        <fieldset>
+                             <legend class="text-lg font-semibold text-gray-700 mb-3">Attach a Photo (Optional)</legend>
+                            <label for="fileUploadInput" class="cursor-pointer">
+                                <div id="fileUploadContainer" class="flex flex-col items-center justify-center p-6 border-2 border-dashed border-gray-300 rounded-lg bg-gray-50 hover:bg-gray-100 transition relative">
+                                    <div id="upload-prompt" class="text-center">
+                                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-gray-400 mb-2"></i>
+                                        <p class="text-sm text-gray-600">Click to upload or drag & drop</p>
+                                        <p class="text-xs text-gray-400">PNG, JPG up to 5MB</p>
+                                    </div>
+                                    <img id="image-preview" src="" alt="Image Preview" class="hidden absolute inset-0 w-full h-full object-cover rounded-lg">
+                                    <button type="button" id="remove-image-btn" class="hidden absolute top-2 right-2 bg-black bg-opacity-50 text-white rounded-full w-6 h-6 flex items-center justify-center text-xs">×</button>
+                                </div>
+                            </label>
+                            <input type="file" name="image" id="fileUploadInput" class="hidden" accept="image/*">
+                        </fieldset>
+
+                        <button type="submit" class="w-full py-3 text-lg font-bold text-white bg-indigo-600 rounded-xl shadow-md hover:bg-indigo-700 transition-transform transform hover:scale-105">
+                            Submit Rescue Request
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <section id="view-teams" class="hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                    <div class="lg:col-span-4 bg-white p-4 rounded-xl shadow-lg border border-gray-100 flex flex-col h-[75vh]">
+                        <h2 class="text-xl font-bold text-gray-800 mb-4 px-2">Find Help Near You</h2>
+                        <div id="team-list" class="flex-grow overflow-y-auto pr-2 space-y-1">
+                             <div class="team-item p-4 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors" data-lat="23.8103" data-lng="90.4125"><div class="flex justify-between items-start"><h3 class="font-semibold text-gray-900 group-hover:text-indigo-700">Paws & Hearts Rescue</h3><span class="text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">2.3 km</span></div><p class="text-sm text-gray-500">1234 Main St, Dhaka</p></div>
+                             <div class="team-item p-4 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors" data-lat="23.7771" data-lng="90.3994"><div class="flex justify-between items-start"><h3 class="font-semibold text-gray-900 group-hover:text-indigo-700">Safe Haven Pet Shelter</h3><span class="text-xs font-medium text-indigo-700 bg-indigo-100 px-2 py-0.5 rounded-full">3.7 km</span></div><p class="text-sm text-gray-500">5678 Oak Ave, Dhaka</p></div>
+                             <div class="team-item p-4 rounded-lg hover:bg-indigo-50 cursor-pointer transition-colors" data-lat="23.7547" data-lng="90.3931"><div class="flex justify-between items-start"><h3 class="font-semibold text-gray-900 group-hover:text-indigo-700">Emergency Pet Care</h3><span class="text-xs font-medium text-red-700 bg-red-100 px-2 py-0.5 rounded-full">4.2 km</span></div><p class="text-sm text-gray-500">9012 Elm St, Dhaka</p></div>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-8 w-full h-[75vh] rounded-xl overflow-hidden shadow-lg border border-gray-100">
+                        <iframe class="w-full h-full" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d233668.3839218764!2d90.27923773488734!3d23.780573257322944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b087026b81%3A0x8fa563bbdd5904c2!2sDhaka!5e0!3m2!1sen!2sbd!4v1672748834225!5m2!1sen!2sbd"></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section id="view-abuse" class="hidden">
+                 <div class="bg-white p-6 md:p-10 rounded-xl shadow-xl border border-gray-100 max-w-3xl mx-auto">
+                    <h2 class="text-2xl font-bold text-danger-red mb-2 text-center">Report Animal Abuse (Confidential)</h2>
+                    <p class="text-sm text-gray-500 mb-6 text-center">Your report will be sent to local authorities. Provide as much detail as possible.</p>
+                    <div class="p-4 mb-6 text-sm text-red-800 rounded-lg bg-red-50" role="alert"><span class="font-bold">Urgency!</span> Please note that we prioritize reports where an animal's life is in immediate danger.</div>
+                    <form id="abuseForm" action="handle_abuse.php" method="POST" class="space-y-8">
+                         <fieldset><legend class="text-lg font-semibold text-gray-700 mb-4">Incident Details</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><label for="date-incident" class="block text-sm font-medium text-gray-700 mb-1">Date of Incident <span class="text-danger-red">*</span></label><input type="date" name="date_incident" id="date-incident" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="type-incident" class="block text-sm font-medium text-gray-700 mb-1">Type of Incident <span class="text-danger-red">*</span></label><select name="type_incident" id="type-incident" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"><option value="">Select type</option><option value="Neglect">Neglect</option><option value="Physical Harm">Physical Harm</option><option value="Abandonment">Abandonment</option><option value="Other">Other</option></select></div></div><div class="mt-4"><label for="incident-address" class="block text-sm font-medium text-gray-700 mb-1">Street Address of Incident <span class="text-danger-red">*</span></label><input type="text" name="incident_address" id="incident-address" required placeholder="123 Main St" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4"><div><label for="abuse-city" class="block text-sm font-medium text-gray-700 mb-1">City <span class="text-danger-red">*</span></label><input type="text" name="abuse_city" id="abuse-city" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="abuse-state" class="block text-sm font-medium text-gray-700 mb-1">State <span class="text-danger-red">*</span></label><input type="text" name="abuse_state" id="abuse-state" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div><div><label for="abuse-zip" class="block text-sm font-medium text-gray-700 mb-1">ZIP Code <span class="text-danger-red">*</span></label><input type="text" name="abuse_zip" id="abuse-zip" required class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></div></div><div class="mt-4"><label for="detailed-description" class="block text-sm font-medium text-gray-700 mb-1">Detailed Description <span class="text-danger-red">*</span></label><textarea name="detailed_description" id="detailed-description" rows="5" required placeholder="Provide a complete account of events, dates, times, and any other relevant information." class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-danger-red"></textarea></div></fieldset>
+                         <fieldset class="border-t border-gray-200 pt-6"><legend class="text-lg font-semibold text-gray-700 mb-4">Your Information (Optional & Confidential)</legend><div class="grid grid-cols-1 sm:grid-cols-2 gap-6"><div><label for="abuse-name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label><input type="text" name="abuse_name" id="abuse-name" placeholder="John Doe" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div><div><label for="abuse-email" class="block text-sm font-medium text-gray-700 mb-1">Your Email</label><input type="email" name="abuse_email" id="abuse-email" placeholder="john@example.com" class="w-full p-3 border border-gray-300 bg-input-bg rounded-lg focus:ring-2 focus:ring-indigo-500"></div></div></fieldset>
+                        <button type="submit" class="w-full py-3 text-lg font-bold text-white bg-danger-red rounded-xl shadow-lg hover:bg-red-700 transition-transform transform hover:scale-105">Submit Confidential Report</button>
+                    </form>
+                </div>
+            </section>
+        </main>
+    </div>
+    
+    <div id="message-box" class="fixed inset-0 bg-gray-800 bg-opacity-75 hidden items-center justify-center p-4 z-50">
+        <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm w-full text-center transform transition-all scale-95 opacity-0" id="message-box-content">
+            <div id="message-icon" class="mx-auto w-12 h-12 flex items-center justify-center bg-green-100 rounded-full mb-4"><i class="fa-solid fa-check text-green-600 text-2xl"></i></div>
+            <h3 id="message-title" class="text-xl font-bold mb-2 text-gray-800">Success!</h3>
+            <p id="message-text" class="text-gray-600 mb-4"></p>
+            <button id="message-close-btn" class="w-full py-2 bg-primary-dark text-white font-semibold rounded-lg hover:bg-gray-700 transition">Close</button>
+        </div>
+    </div>
+    
+    <footer class="bg-[#1A253DF0] text-white py-12 px-6 w-full"><div class="max-w-6xl mx-auto"><div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left"><section><h3 class="text-xl md:text-2xl font-bold mb-4">Company</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">About Us</a></li><li><a href="#" class="hover:text-white transition-colors">Why Choose Us</a></li><li><a href="#" class="hover:text-white transition-colors">Pricing</a></li><li><a href="#" class="hover:text-white transition-colors">Testimonials</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Resources</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li><li><a href="#" class="hover:text-white transition-colors">Terms & Conditions</a></li><li><a href="blog.html" class="hover:text-white transition-colors">Blog</a></li><li><a href="tel:+8801727898421" class="hover:text-white transition-colors">Contact Us</a></li></ul></section><section><h3 class="text-xl md:text-2xl font-bold mb-4">Product</h3><ul class="space-y-2 text-gray-300"><li><a href="#" class="hover:text-white transition-colors">Project Management</a></li><li><a href="#" class="hover:text-white transition-colors">Time Tracker</a></li><li><a href="#" class="hover:text-white transition-colors">Time Schedule</a></li><li><a href="#" class="hover:text-white transition-colors">Lead Generate</a></li><li><a href="#" class="hover:text-white transition-colors">Remote Collaboration</a></li></ul></section><section><h3 class="text-2xl md:text-3xl font-bold mb-4">SavePaws Club</h3><p class="text-gray-300 mb-4">Subscribe to our Newsletter</p><form class="flex flex-col sm:flex-col gap-2"><input type="text" placeholder="Drop Your Feedback" class="bg-black flex-1 px-4 py-3 rounded-md border border-gray-600 focus:outline-none focus:ring-2 focus:ring-white text-white placeholder-gray-400"><button type="submit" class="bg-white text-[#1A253D] px-4 py-3 rounded-md font-semibold hover:bg-gray-200 transition-colors">Feedback</button></form></section></div><hr class="border-gray-700 my-10"><div class="flex flex-col sm:flex-row items-center justify-between text-gray-300 text-sm"><p class="text-lg">© 2025 SavePaws. All rights reserved.</p><div class="flex space-x-5 mt-4 sm:mt-0"><a href="#" class="hover:text-white transition"><i class="fab fa-facebook-f text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-xl"></i></a><a href="#" class="hover:text-white transition"><i class="fab fa-linkedin-in text-xl"></i></a></div></div></div></footer>
+
+<script>
+// Tab switching logic
+function switchView(tab) {
+    document.getElementById('view-report').style.display = 'none';
+    document.getElementById('view-teams').style.display = 'none';
+    document.getElementById('view-abuse').style.display = 'none';
+    document.querySelectorAll('.nav-tab').forEach(el => el.classList.remove('bg-indigo-600', 'text-white'));
+    if(tab === 'report') {
+        document.getElementById('view-report').style.display = 'block';
+        document.getElementById('tab-report').classList.add('bg-indigo-600', 'text-white');
+    } else if(tab === 'teams') {
+        document.getElementById('view-teams').style.display = 'block';
+        document.getElementById('tab-teams').classList.add('bg-indigo-600', 'text-white');
+    } else if(tab === 'abuse') {
+        document.getElementById('view-abuse').style.display = 'block';
+        document.getElementById('tab-abuse').classList.add('bg-indigo-600', 'text-white');
+    }
+}
+switchView('report');
+</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const rescueForm = document.getElementById('rescueForm');
+    
+    // Location handling elements
+    const shareLocationBtn = document.getElementById('shareLocationBtn');
+    const locationInput = document.getElementById('location');
+    const locationStatus = document.getElementById('locationStatus');
+
+    // Correction: Added disabled=false after successful location retrieval, 
+    // and fixed the location link format to be usable.
+    shareLocationBtn.addEventListener('click', () => {
+        if (!navigator.geolocation) {
+            locationStatus.textContent = 'Geolocation is not supported by your browser.';
+            locationStatus.style.color = 'red';
+            return;
+        }
+        
+        shareLocationBtn.disabled = true;
+        shareLocationBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-2"></i> Fetching Location...';
+        
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                const { latitude, longitude } = position.coords;
+                
+                // CORRECTED: Format location as a standard Google Maps query link
+                // The backend (handle_rescue.php) expects a string to store.
+                const mapLink = `https://maps.google.com/?q=${latitude},${longitude}`;
+                
+                locationInput.value = mapLink; 
+                
+                locationStatus.textContent = `Location saved: ${latitude.toFixed(4)}, ${longitude.toFixed(4)}`;
+                locationStatus.style.color = 'green';
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-check mr-2"></i> Location Shared (Link Ready)';
+                shareLocationBtn.classList.remove('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
+                shareLocationBtn.classList.add('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                shareLocationBtn.disabled = false; // Enable after success
+            },
+            () => {
+                locationStatus.textContent = 'Unable to retrieve location. Please grant permission.';
+                locationStatus.style.color = 'red';
+                shareLocationBtn.disabled = false;
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location *';
+                shareLocationBtn.classList.remove('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                shareLocationBtn.classList.add('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
+            }
+        );
+    });
+
+ 
+    const fileUploadInput = document.getElementById('fileUploadInput');
+    const uploadPrompt = document.getElementById('upload-prompt');
+    const imagePreview = document.getElementById('image-preview');
+    const removeImageBtn = document.getElementById('remove-image-btn');
+    
+    fileUploadInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                imagePreview.src = event.target.result;
+                imagePreview.classList.remove('hidden');
+                uploadPrompt.classList.add('hidden');
+                removeImageBtn.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    removeImageBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        fileUploadInput.value = ''; 
+        imagePreview.src = '';
+        imagePreview.classList.add('hidden');
+        uploadPrompt.classList.remove('hidden');
+        removeImageBtn.classList.add('hidden');
+    });
+    
+
+    rescueForm.addEventListener('submit', async (e) => {
+        e.preventDefault(); 
+        
+        const submitButton = rescueForm.querySelector('button[type="submit"]');
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        const formData = new FormData(rescueForm);
+        
+        try {
+            const response = await fetch('handle_rescue.php', {
+                method: 'POST',
+                body: formData
+            });
+            
+           
+            if (!response.ok) {
+                throw new Error(`HTTP Error! Status: ${response.status}`);
+            }
+
+            const result = await response.json(); 
+            
+            if (result.success) {
+                alert('Report submitted successfully!');
+                
+             
+                rescueForm.reset();
+                
+            
+                shareLocationBtn.disabled = false;
+                shareLocationBtn.innerHTML = '<i class="fa-solid fa-location-crosshairs mr-2"></i> Share Live Location *';
+                locationStatus.textContent = '';
+                shareLocationBtn.classList.remove('bg-green-100', 'border-green-200', 'text-green-700', 'hover:bg-green-200');
+                shareLocationBtn.classList.add('bg-indigo-50', 'border-indigo-200', 'text-indigo-700', 'hover:bg-indigo-100');
+
+                removeImageBtn.click(); 
+                
+            } else {
+                alert('Submission Failed: ' + result.message);
+            }
+            
+        } catch (error) {
+            alert('A serious network or server error occurred. Check console for details. (Error: ' + error.message + ')');
+            console.error('Fetch error:', error);
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Rescue Request';
+        }
+    });
+});
+</script>
+
+</body>
+</html>

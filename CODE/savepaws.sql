@@ -120,3 +120,29 @@ CREATE TABLE clinics (
     -- Add any other fields you need here
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+--rescue table--
+CREATE TABLE rescue_reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(150) NOT NULL,
+    email VARCHAR(150) NOT NULL,
+    animal_type VARCHAR(100) NOT NULL,
+    description TEXT NOT NULL,
+    image VARCHAR(255) DEFAULT NULL,
+    location VARCHAR(255) DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE abuse_reports (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date_incident VARCHAR(20) NOT NULL,   
+    type_incident VARCHAR(50) NOT NULL,      
+    incident_address VARCHAR(255) NOT NULL,    
+    city VARCHAR(100) NOT NULL,                
+    state VARCHAR(100) NOT NULL,               
+    zip_code VARCHAR(20) NOT NULL,          
+    detailed_description TEXT NOT NULL,       
+    reporter_name VARCHAR(100),             
+    reporter_email VARCHAR(100),              
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

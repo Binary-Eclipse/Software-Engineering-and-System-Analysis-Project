@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             Sign up
           </button>
 
-                <button onclick="window.location.href='rescue.php'" type="button" class="cursor-pointer w-full mt-8 py-3 bg-red-600 text-white font-semibold rounded-3xl hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300">
+                <button onclick="window.location.href='guest_rescue.php'" type="button" class="cursor-pointer w-full mt-8 py-3 bg-red-600 text-white font-semibold rounded-3xl hover:bg-red-700 focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition duration-300">
           Guest Mode ->
           </button>
         </form>

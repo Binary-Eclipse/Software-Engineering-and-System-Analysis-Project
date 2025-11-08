@@ -75,16 +75,14 @@ include_once "config.php";
             <li><a href="marketplace.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
             <li><a href="clinic.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Clinics</a></li>
             <li><a href="rescue.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Rescue</a></li>
-            <li><a href="blog.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
-            <li><a href="adopt.html" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
+            <li><a href="blog.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Blog</a></li>
+            <li><a href="adopt.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Adopt</a></li>
             <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
         <div class=" hidden lg:flex sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
             <div class="flex justify-center items-center">
-                <a href="log_in.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
-            </div>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>            </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
 
@@ -97,16 +95,14 @@ include_once "config.php";
         <div class="flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="log_in.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="sign_up.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
-            </div>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>            </div>
         </div>
         <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.html" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.html" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>
         <li><a href="rescue.php" class="text-lg font-bold text-black hover:text-indigo-600">Resque Team</a></li>
-        <li><a href="blog.html" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
-        <li><a href="adopt.html" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
+        <li><a href="blog.php" class="text-lg font-bold text-black hover:text-indigo-600">Blog</a></li>
+        <li><a href="adopt.php" class="text-lg font-bold text-black hover:text-indigo-600">Adopt</a></li>
         <li><a href="donation.php" class="text-lg font-bold text-black hover:text-indigo-600">Donate</a></li>
     </ul>
 

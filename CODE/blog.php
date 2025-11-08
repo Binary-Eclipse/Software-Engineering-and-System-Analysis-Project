@@ -64,8 +64,7 @@ $is_logged_in = isset($_SESSION['user_id']);
         <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
         
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
             <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
         </div>
@@ -82,8 +81,7 @@ $is_logged_in = isset($_SESSION['user_id']);
 
         
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Login/</a>
-                <a href="signup.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Signup</a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
         </div>
 

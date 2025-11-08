@@ -41,7 +41,7 @@ $stmt->bind_param(
 
 // Execute
 if ($stmt->execute()) {
-    echo "<script>alert('Report submitted successfully!'); window.location.href='rescue.html';</script>";
+    echo "<script>alert('Report submitted successfully!'); window.location.href='rescue.php';</script>";
 } else {
     echo "<script>alert('Error: Could not submit report.'); window.history.back();</script>";
 }
