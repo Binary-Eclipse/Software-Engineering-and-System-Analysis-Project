@@ -1,44 +1,50 @@
 <?php
-// signup.php - Combined file for displaying the form and processing the submission
-
 session_start();
-// The 'config.php' file is assumed to contain your database connection logic ($conn).
 include_once "config.php";
 
-// --- Database Connection & Form Processing Logic ---
+// ======================
+// FORM PROCESSING
+// ======================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $name  = trim($_POST['name'] ?? '');
     $email = trim($_POST['email'] ?? '');
-    $contact = trim($_POST['contact_number'] ?? ''); // NEW FIELD
+    $contact = trim($_POST['contact_number'] ?? '');
     $pass  = trim($_POST['password'] ?? '');
 
-    if ($conn === null || $conn->connect_error) { // Check connect_error
-        echo "<script>alert('Server configuration error: Database connection not established. Details: " . ($conn->connect_error ?? 'NULL conn') . "'); window.location.href='signup.php';</script>";
+    // Database connection check
+    if ($conn === null || $conn->connect_error) {
+        $_SESSION['message'] = "Server configuration error: Database connection not established.";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
         exit();
     }
 
-    // Check for required fields (name, email, contact, password)
+    // Required fields check
     if ($name === '' || $email === '' || $contact === '' || $pass === '') {
-        echo "<script>alert('Please fill all required fields.'); window.location.href='signup.php';</script>";
+        $_SESSION['message'] = "Please fill all required fields.";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
         exit();
     }
 
-    // Check if email or contact exists (prepared statement)
+    // Check if email/contact exists
     $check = $conn->prepare("SELECT id FROM users WHERE email = ? OR contact_number = ?");
     if (!$check) {
-        error_log("Prepare failed (check): " . $conn->error);
-        echo "<script>alert('Server error. Try again later.'); window.location.href='signup.php';</script>";
-        $conn->close();
+        $_SESSION['message'] = "Server error. Try again later.";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
         exit();
     }
-    $check->bind_param("ss", $email, $contact); // Bind both email and contact
+
+    $check->bind_param("ss", $email, $contact);
     $check->execute();
     $check->store_result();
     
     if ($check->num_rows > 0) {
-        echo "<script>alert('Email or Contact number already registered!'); window.location.href='signup.php';</script>";
-        $check->close();
-        $conn->close();
+        $_SESSION['message'] = "Email or Contact number already registered!";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
         exit();
     }
     $check->close();
@@ -46,30 +52,70 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Hash password
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
-    // Insert new user (updated prepared statement with contact_number)
+    // Insert new user
     $insert = $conn->prepare("INSERT INTO users (name, email, contact_number, password) VALUES (?, ?, ?, ?)");
     if (!$insert) {
-        error_log("Prepare failed: " . $conn->error);
-        echo "<script>alert('Server error. Try again later.'); window.location.href='signup.php';</script>";
-        $conn->close();
+        $_SESSION['message'] = "Server error. Try again later.";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
         exit();
     }
-    // Updated binding with one extra 's' for contact_number
+
     $insert->bind_param("ssss", $name, $email, $contact, $hashed_pass);
 
     if ($insert->execute()) {
-        echo "<script>alert('Signup Successful! You can now log in.'); window.location.href='login.php';</script>";
+        $_SESSION['message'] = "Signup successful! You can now log in.";
+        $_SESSION['type'] = "success";
+        header("Location: login.php");
+        exit();
     } else {
-        error_log("Insert failed: " . $insert->error);
-        echo "<script>alert('Error registering user. Please try again.'); window.location.href='signup.php';</script>";
+        $_SESSION['message'] = "Error registering user. Please try again.";
+        $_SESSION['type'] = "error";
+        header("Location: signup.php");
+        exit();
     }
-
-    $insert->close();
-    $conn->close();
-    exit(); // Stop execution after processing the POST request
 }
-// --- End of Form Processing Logic ---
 ?>
+
+<!-- ✅ SPLASH CARD (KEEP THIS IN SAME FILE) -->
+<?php if (!empty($_SESSION['message'])): ?>
+<style>
+.splash {
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 15px auto;
+    max-width: 500px;
+    animation: fadeIn 0.3s ease;
+}
+
+.splash.success {
+    background: #d8ffe4;
+    border: 1px solid #9ef5bd;
+    color: #0c7a30;
+}
+
+.splash.error {
+    background: #ffe1e1;
+    border: 1px solid #ffb3b3;
+    color: #b30000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="splash <?php echo $_SESSION['type']; ?>">
+    <?php 
+        echo $_SESSION['message']; 
+        unset($_SESSION['message']);
+        unset($_SESSION['type']);
+    ?>
+</div>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">

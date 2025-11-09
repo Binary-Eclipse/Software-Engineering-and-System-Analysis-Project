@@ -443,9 +443,23 @@ include_once "config.php";
 
             const sendOtpBtn = document.getElementById('send-otp-btn');
             sendOtpBtn.addEventListener('click', () => { if (document.getElementById('adopter-contact').value) { alert(`OTP functionality simulated.`); } else { alert('Please enter contact number.'); } });
-            
-            const shareLocationBtn = document.getElementById('share-location-btn');
-            shareLocationBtn.addEventListener('click', () => { if (navigator.geolocation) { navigator.geolocation.getCurrentPosition((pos) => { document.getElementById('adopter-address').value = `Lat: ${pos.coords.latitude.toFixed(4)}, Lon: ${pos.coords.longitude.toFixed(4)}`; }); } else { alert('Geolocation is not supported.'); } });
+         const shareLocationBtn = document.getElementById('share-location-btn');
+
+shareLocationBtn.addEventListener('click', () => {
+    if (!navigator.geolocation) {
+        return; // No alerts
+    }
+
+    navigator.geolocation.getCurrentPosition((pos) => {
+        const lat = pos.coords.latitude.toFixed(6);
+        const lon = pos.coords.longitude.toFixed(6);
+        const mapsUrl = `https://maps.google.com/?q=${lat},${lon}`;
+
+        // Put the link inside input text
+        document.getElementById('adopter-address').value = mapsUrl;
+    });
+});
+
         });
     </script>
     

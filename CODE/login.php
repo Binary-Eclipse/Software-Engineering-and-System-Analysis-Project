@@ -1,34 +1,37 @@
 <?php
-// login.php - Combined file for displaying the form and processing the submission
-
 session_start();
-// The 'config.php' file is assumed to contain your database connection logic ($conn).
 include_once "config.php";
 
-// --- Login Processing Logic ---
+// -----------------------
+// Login Processing
+// -----------------------
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Check if DB connection is active (assuming config.php sets $conn)
-    if ($conn === null || $conn->connect_error) { 
-        error_log("Database connection not established: " . ($conn->connect_error ?? 'NULL conn'));
-        echo "<script>alert('Server error: Database connection failed.'); window.location.href='login.php';</script>";
+
+    // Check DB connection
+    if ($conn === null || $conn->connect_error) {
+        $_SESSION['message'] = "Server error: Database connection failed.";
+        $_SESSION['type'] = "error";
+        header("Location: login.php");
         exit();
     }
 
     $email = trim($_POST['email'] ?? '');
     $pass  = trim($_POST['password'] ?? '');
 
-    // Basic validation
+    // Required fields
     if ($email === '' || $pass === '') {
-        echo "<script>alert('Please enter email and password.'); window.location.href='login.php';</script>";
+        $_SESSION['message'] = "Please enter email and password.";
+        $_SESSION['type'] = "error";
+        header("Location: login.php");
         exit();
     }
 
-    // Prepared statement - fetch user by email
+    // Fetch user by email
     $stmt = $conn->prepare("SELECT id, name, password FROM users WHERE email = ?");
     if (!$stmt) {
-        error_log("Prepare failed: " . $conn->error);
-        echo "<script>alert('Server error. Try again later.'); window.location.href='login.php';</script>";
-        $conn->close();
+        $_SESSION['message'] = "Server error. Try again later.";
+        $_SESSION['type'] = "error";
+        header("Location: login.php");
         exit();
     }
 
@@ -36,40 +39,80 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->execute();
     $stmt->store_result();
 
+    // If email exists
     if ($stmt->num_rows === 1) {
+
         $stmt->bind_result($id, $name, $hash);
         $stmt->fetch();
 
-        // Verify password
+        // Check password
         if (password_verify($pass, $hash)) {
-            // Successful login
-            session_regenerate_id(true); 
+
+            session_regenerate_id(true);
             $_SESSION['user_id']   = $id;
             $_SESSION['user_name'] = $name;
             $_SESSION['email']     = $email;
 
-            header("Location: gst.php"); // Redirect to protected page
+            header("Location: gst.php");
             exit();
-        } 
-        else {
-            // Wrong password
-            echo "<script>alert('Invalid email or password.'); window.location.href='login.php';</script>";
-            $stmt->close();
-            $conn->close();
+
+        } else {
+
+            $_SESSION['message'] = "Invalid email or password.";
+            $_SESSION['type'] = "error";
+            header("Location: login.php");
             exit();
         }
-    } 
-    else {
-        // Email not found
-        echo "<script>alert('Invalid email or password.'); window.location.href='login.php';</script>";
-        $stmt->close();
-        $conn->close();
+
+    } else {
+
+        $_SESSION['message'] = "Invalid email or password.";
+        $_SESSION['type'] = "error";
+        header("Location: login.php");
         exit();
     }
 }
-// If not a POST request, fall through to display the HTML form.
-// --- End of Login Processing Logic ---
 ?>
+
+<!-- ✅ SPLASH CARD (NO ALERTS — SAME FILE) -->
+<?php if (!empty($_SESSION['message'])): ?>
+<style>
+.splash {
+    padding: 14px;
+    border-radius: 8px;
+    font-weight: bold;
+    margin: 15px auto;
+    max-width: 500px;
+    animation: fadeIn 0.3s ease;
+}
+
+.splash.success {
+    background: #d8ffe4;
+    border: 1px solid #9ef5bd;
+    color: #0c7a30;
+}
+
+.splash.error {
+    background: #ffe1e1;
+    border: 1px solid #ffb3b3;
+    color: #b30000;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+<div class="splash <?php echo $_SESSION['type']; ?>">
+    <?php 
+        echo $_SESSION['message'];
+        unset($_SESSION['message']);
+        unset($_SESSION['type']);
+    ?>
+</div>
+<?php endif; ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
