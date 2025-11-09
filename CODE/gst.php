@@ -561,13 +561,13 @@ if (!isset($_SESSION['user_id'])) {
                 type: 'image',
                 src: 'https://images.unsplash.com/photo-1534361960057-19889db9621e?q=80&w=2070&auto=format&fit=crop',
                 alt: 'Happy dog with sunglasses'
-            }, {
-                category: 'video',
-                type: 'video',
-                src: 'https://www.youtube.com/embed/1vrEljMfXYo?autoplay=1&mute=1&loop=1&playlist=1vrEljMfXYo',
-                thumbnail: 'https://img.youtube.com/vi/1vrEljMfXYo/0.jpg',
-                alt: 'Funny and cute pet moments'
-            }, {
+            }, const videoData = {
+  category: 'video',
+  type: 'video',
+  src: 'img/cat_veo.mp4',
+  thumbnail: 'img/cat_thumbnail.jpg', // This should be an image
+  alt: 'Funny and cute pet moments'
+}, {
                 category: 'image',
                 type: 'image',
                 src: 'https://images.unsplash.com/photo-1596854407944-bf87f6fdd49e?q=80&w=1780&auto=format&fit=crop',
@@ -580,8 +580,8 @@ if (!isset($_SESSION['user_id'])) {
             }, {
                 category: 'video',
                 type: 'video',
-                src: 'https://www.youtube.com/embed/j_n4Xb-T71M?autoplay=1&mute=1&loop=1&playlist=j_n4Xb-T71M',
-                thumbnail: 'https://img.youtube.com/vi/j_n4Xb-T71M/0.jpg',
+                src: 'img/dog_veo.mp4',
+                thumbnail: 'img/dog_veo.mp4',
                 alt: 'Adorable puppies compilation'
             }, {
                 category: 'image',
@@ -591,8 +591,8 @@ if (!isset($_SESSION['user_id'])) {
             }, {
                 category: 'video',
                 type: 'video',
-                src: 'https://www.youtube.com/embed/4nC0O1-S9gI?autoplay=1&mute=1&loop=1&playlist=4nC0O1-S9gI',
-                thumbnail: 'https://img.youtube.com/vi/4nC0O1-S9gI/0.jpg',
+                src: 'img/rabbit_veo.mp4',
+                thumbnail: 'img/rabbit_veo.mp4',
                 alt: 'Heartwarming kitten moments'
             }, {
                 category: 'image',

@@ -105,9 +105,9 @@ $conn->set_charset("utf8mb4");
 
     <section class="container mx-auto px-4 mt-8">
         <div class="relative rounded-xl overflow-hidden shadow-lg">
-            <img src="https://images.unsplash.com/photo-1548658607-4e26214151a1?q=80&w=1850&auto=format=fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pets playing" class="w-full h-64 object-cover">
+            <img src="img/service.jpg" alt="Pets playing" class="w-full h-64 object-cover">
             <div class="absolute inset-y-0 right-0 w-full md:w-1/2 bg-yellow-300 bg-opacity-90 flex flex-col justify-center p-8 md:p-12 clip-yellow-box">
-                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2">READY TO ROMP. WAG. PLAY?</h2>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2">The Best Things In Life Are Rescued</h2>
                 <p class="text-lg text-gray-700">Fill the form below</p>
             </div>
         </div>
@@ -164,9 +164,9 @@ $conn->set_charset("utf8mb4");
                     <h2 class="text-3xl font-bold text-gray-800 mb-4">Contact Us</h2>
                     <p class="text-gray-600 mb-8">We're open for any suggestion or just to have a chat!</p>
                     <div class="space-y-6">
-                        <div class="flex items-start"><i class="fas fa-phone-alt w-6 h-6 text-custom-purple flex-shrink-0 mt-1"></i><div class="ml-4"><p class="text-gray-500 text-sm">Phone</p><p class="font-medium text-gray-800">02135617-608-3131</p></div></div>
+                        <div class="flex items-start"><i class="fas fa-phone-alt w-6 h-6 text-custom-purple flex-shrink-0 mt-1"></i><div class="ml-4"><p class="text-gray-500 text-sm">Phone</p><p class="font-medium text-gray-800">0171-608-3131</p></div></div>
                         <div class="flex items-start"><i class="fas fa-envelope w-6 h-6 text-custom-purple flex-shrink-0 mt-1"></i><div class="ml-4"><p class="text-gray-500 text-sm">Email</p><p class="font-medium text-gray-800">happypetcare@gmail.com</p></div></div>
-                        <div class="flex items-start"><i class="fas fa-map-marker-alt w-6 h-6 text-custom-purple flex-shrink-0 mt-1"></i><div class="ml-4"><p class="text-gray-500 text-sm">Address</p><p class="font-medium text-gray-800">Happy Pet Care 151 Sutherland Rd, Brighton, MA</p></div></div>
+                        <div class="flex items-start"><i class="fas fa-map-marker-alt w-6 h-6 text-custom-purple flex-shrink-0 mt-1"></i><div class="ml-4"><p class="text-gray-500 text-sm">Address</p><p class="font-medium text-gray-800">Happy Pet Care 151 Mirpur road, Dhaka</p></div></div>
                     </div>
                 </div>
             </div>
