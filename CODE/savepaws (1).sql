@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 09, 2025 at 03:41 PM
+-- Generation Time: Nov 09, 2025 at 08:45 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -74,7 +74,8 @@ CREATE TABLE `adoption_applications` (
 
 INSERT INTO `adoption_applications` (`application_id`, `pet_id`, `adopter_name`, `adopter_email`, `adopter_address`, `adopter_nid`, `adopter_contact`, `agree_care`, `agree_visit`, `agree_return`, `application_date`) VALUES
 (1, 2, 'Helal Uddin Patwary', 'f@gmail.com', 'Vatara,Notunbaza', '4555', '56565655556', 1, 1, 1, '2025-11-09 14:09:39'),
-(2, 2, 'rock', 'n@gmail.com', 'Lat: 23.7984, Lon: 90.4237', '454545t54', '56565655556', 1, 1, 1, '2025-11-09 14:26:36');
+(2, 2, 'rock', 'n@gmail.com', 'Lat: 23.7984, Lon: 90.4237', '454545t54', '56565655556', 1, 1, 1, '2025-11-09 14:26:36'),
+(3, 2, 'nobita', 'f@gmail.com', 'Vatara,Notunbaza', '56y6756', '56565655556', 1, 1, 1, '2025-11-09 14:43:21');
 
 -- --------------------------------------------------------
 
@@ -115,6 +116,13 @@ CREATE TABLE `doctor_appointments` (
   `submission_time` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `doctor_appointments`
+--
+
+INSERT INTO `doctor_appointments` (`appointment_id`, `doctor_name`, `doctor_specialty`, `appointment_date`, `appointment_time`, `patient_name`, `contact_number`, `owner_email`, `owner_nid`, `reason_for_visit`, `submission_time`) VALUES
+(1, 'Dr. Urmi', 'Cardiology & Internal Medicine', '2025-11-11', '09:00:00', '565', '098', 'admin@app.com', '6775', 'tt', '2025-11-09 18:30:36');
+
 -- --------------------------------------------------------
 
 --
@@ -149,7 +157,8 @@ INSERT INTO `donated_pets` (`donation_id`, `pet_name`, `species`, `breed`, `age`
 (5, 'ss', 'Rabbit', 'hh', '6', 'Male', '67767', 'Helal Uddin Patwary', 'a@gmail.com', '0978777', '7uy', 'uploads_donated_petpet_6910a18aa4173.jpg', '2025-11-09 14:13:30'),
 (6, 'cutie', 'Dog', 'cvcvc', '23', 'Male', 'adds', 'joy', 'joy@gmail.com', '0978777', 'fafd', 'uploads_donated_petpet_6910a1fa5584e.png', '2025-11-09 14:15:22'),
 (7, 'ss', 'Dog', 'hh', '6', 'Male', 'dggffgg', 'Helal Uddin Patwary', 'ff@gmail.com', 'ff', 'gfgggfgf', 'uploads_donated_petpet_6910a31ec0cbb.png', '2025-11-09 14:20:14'),
-(8, 'ss', 'Other', 'hggdd', '6', 'Male', 'ggfdfgvfrffr', 'rock', 'r@gmail.com', '0867654343', 'ffvv v', 'uploads_donated_petpet_6910a4eae7a47.png', '2025-11-09 14:27:54');
+(8, 'ss', 'Other', 'hggdd', '6', 'Male', 'ggfdfgvfrffr', 'rock', 'r@gmail.com', '0867654343', 'ffvv v', 'uploads_donated_petpet_6910a4eae7a47.png', '2025-11-09 14:27:54'),
+(9, 'manush', 'Dog', 'ff', '23', 'Male', 'dfdd', 'Helal Uddin Patwary', 'ff@gmail.com', '0978777', 'now', 'uploads_donated_petpet_6910a8d60ebf9.png', '2025-11-09 14:44:38');
 
 -- --------------------------------------------------------
 
@@ -174,7 +183,8 @@ CREATE TABLE `donation` (
 --
 
 INSERT INTO `donation` (`donation_id`, `amount`, `type`, `reason`, `payment_method`, `transaction_id`, `cardholder_name`, `card_number_last_four`, `donation_date`) VALUES
-(1, 100.00, 'Monthly', 'rtrtgrt', 'Card', 'SP17626991956017', 'SHkail', '8445', '2025-11-09 14:39:55');
+(1, 100.00, 'Monthly', 'rtrtgrt', 'Card', 'SP17626991956017', 'SHkail', '8445', '2025-11-09 14:39:55'),
+(2, 1000.00, 'Monthly', 'buo', 'Bank', 'SP17626995225389', 'Helal', NULL, '2025-11-09 14:45:22');
 
 -- --------------------------------------------------------
 
@@ -337,7 +347,7 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `contact_number` varchar(20) DEFAULT NULL,
+  `contact_number` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
   `registration_date` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -349,7 +359,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `name`, `email`, `contact_number`, `password`, `registration_date`) VALUES
 (1, 'Helal Uddin Patwary', 'n@gmail.com', '123', '$2y$10$R3c8B7HKAjAJ14Z6N7xWY.MVAHCEddSPkYAn8ntrET00peN7GL2a.', '2025-11-08 10:32:22'),
 (2, 'Helal Uddin', 'new@gmail.com', '01987762332', '$2y$10$58Ah3t7A0mjokk2IXmE.7OR5UOW0PcrlUBHfDoEmplAibmonNv74K', '2025-11-08 16:26:39'),
-(3, 'Helal Uddin Patwary', 'am@gmail.com', '8976', '$2y$10$NvhEKnPL5NHfwGhwSyLUV.hbQ2bsHI6heNlmqVfBVgCqhNBaubVaS', '2025-11-08 17:45:35');
+(3, 'Helal Uddin Patwary', 'am@gmail.com', '8976', '$2y$10$NvhEKnPL5NHfwGhwSyLUV.hbQ2bsHI6heNlmqVfBVgCqhNBaubVaS', '2025-11-08 17:45:35'),
+(11, 'nn', 'b@gmail.com', '01987762332', '$2y$10$jvCsYeA7TCndERkulnwT5.CtAQdLTzQ0mZxa/Hn/LH0WmbrMgWsCq', '2025-11-09 19:22:30'),
+(12, 'Helal Uddin Patwary', 'bb@gmail.com', '01987762332', '$2y$10$S113Djrv3ZhJXlf5jYDS1edoEqC.DhzaRZOerCYkwY47FNKgskxJW', '2025-11-09 19:27:48');
 
 --
 -- Indexes for dumped tables
@@ -428,8 +440,7 @@ ALTER TABLE `service_requests`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `email` (`email`),
-  ADD UNIQUE KEY `contact_number` (`contact_number`);
+  ADD UNIQUE KEY `email` (`email`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -445,7 +456,7 @@ ALTER TABLE `abuse_reports`
 -- AUTO_INCREMENT for table `adoption_applications`
 --
 ALTER TABLE `adoption_applications`
-  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `application_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `clinics`
@@ -457,19 +468,19 @@ ALTER TABLE `clinics`
 -- AUTO_INCREMENT for table `doctor_appointments`
 --
 ALTER TABLE `doctor_appointments`
-  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appointment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `donated_pets`
 --
 ALTER TABLE `donated_pets`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `donation`
 --
 ALTER TABLE `donation`
-  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `donation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `first_aid_requests`
@@ -505,7 +516,7 @@ ALTER TABLE `service_requests`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

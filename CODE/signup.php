@@ -28,8 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    // Check if email/contact exists
-    $check = $conn->prepare("SELECT id FROM users WHERE email = ? OR contact_number = ?");
+    // FIX: Only check if the email already exists, as requested. (Lines 40-57 handle this check)
+    $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
     if (!$check) {
         $_SESSION['message'] = "Server error. Try again later.";
         $_SESSION['type'] = "error";
@@ -37,12 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $check->bind_param("ss", $email, $contact);
+    $check->bind_param("s", $email); // Only bind email
     $check->execute();
     $check->store_result();
     
     if ($check->num_rows > 0) {
-        $_SESSION['message'] = "Email or Contact number already registered!";
+        // Updated error message
+        $_SESSION['message'] = "Email already registered!";
         $_SESSION['type'] = "error";
         header("Location: signup.php");
         exit();
@@ -53,6 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $hashed_pass = password_hash($pass, PASSWORD_DEFAULT);
 
     // Insert new user
+    // Line 67 is where the execute() call happens which was throwing the fatal error.
     $insert = $conn->prepare("INSERT INTO users (name, email, contact_number, password) VALUES (?, ?, ?, ?)");
     if (!$insert) {
         $_SESSION['message'] = "Server error. Try again later.";
@@ -63,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $insert->bind_param("ssss", $name, $email, $contact, $hashed_pass);
 
-    if ($insert->execute()) {
+    if ($insert->execute()) { // This line should now succeed after the database fix.
         $_SESSION['message'] = "Signup successful! You can now log in.";
         $_SESSION['type'] = "success";
         header("Location: login.php");
@@ -77,7 +79,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!-- ✅ SPLASH CARD (KEEP THIS IN SAME FILE) -->
 <?php if (!empty($_SESSION['message'])): ?>
 <style>
 .splash {

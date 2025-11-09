@@ -74,7 +74,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!-- ✅ SPLASH CARD (NO ALERTS — SAME FILE) -->
 <?php if (!empty($_SESSION['message'])): ?>
 <style>
 .splash {
