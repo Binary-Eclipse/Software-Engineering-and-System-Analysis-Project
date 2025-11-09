@@ -1,31 +1,3 @@
-<?php
-// config.php content moved to configure.php, now included
-// NOTE: Assuming config.php defines $conn as a mysqli connection object.
-include 'config.php';
-
-// Check for database connection and fetch data
-$clinics = [];
-if (isset($conn) && $conn->connect_error) {
-    // If connection failed in config.php
-    die("Database connection failed: " . $conn->connect_error);
-}
-
-// Check if $conn is defined and is a valid mysqli object before querying
-if (isset($conn) && is_object($conn)) {
-    // SQL to fetch clinic data
-    // ASSUMING TABLE STRUCTURE: clinic_name, address, phone, main_doctor, open_time, close_time, days_open, image_url
-    $sql = "SELECT clinic_name, address, phone, main_doctor, open_time, close_time, days_open, image_url FROM clinics ORDER BY clinic_name ASC";
-    $result = $conn->query($sql);
-
-    if ($result && $result->num_rows > 0) {
-        while ($row = $result->fetch_assoc()) {
-            $clinics[] = $row;
-        }
-    }
-    // $conn->close(); // Connection should be closed at the end of the script if needed
-}
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -156,54 +128,123 @@ if (isset($conn) && is_object($conn)) {
 
         <div id="clinic-cards" class="space-y-6">
 
-            <?php if (!empty($clinics)): ?>
-                <?php foreach ($clinics as $clinic): ?>
-                    <?php
-                        // Format the working hours
-                        $hours = date('g:i A', strtotime($clinic['open_time'])) . ' - ' . date('g:i A', strtotime($clinic['close_time']));
-                        // Assuming days_open contains comma-separated days or a simple string: e.g., "Sun Mon Tu, Wed Thu, Fri"
-                        $days_raw = htmlspecialchars($clinic['days_open']);
-                        
-                        // Simple highlighting logic based on the original static HTML pattern
-                        $days_display = str_replace(
-                            ['Sun', 'Mon', 'Tu', 'Fri'],
-                            ['<span class="font-bold text-custom-purple">Sun</span>', '<span class="font-bold text-custom-purple">Mon</span>', '<span class="font-bold text-custom-purple">Tu</span>', '<span class="font-bold text-custom-purple">Fri</span>'],
-                            $days_raw
-                        );
-                    ?>
-                    
-                    <div class="bg-light-gray p-4 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center clinic-card">
-                        <div class="flex-shrink-0 w-full md:w-60 h-40 rounded-xl overflow-hidden">
-                            <img src="<?php echo htmlspecialchars($clinic['image_url']); ?>" alt="<?php echo htmlspecialchars($clinic['clinic_name']); ?> exterior" class="w-full h-full object-cover" />
-                        </div>
-                        <div class="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
-                            <div class="lg:col-span-1">
-                                <h3 class="text-xl font-bold text-gray-800 mb-2"><?php echo htmlspecialchars($clinic['clinic_name']); ?></h3>
-                                <div class="space-y-1 text-gray-600 text-sm">
-                                    <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg><?php echo htmlspecialchars($clinic['address']); ?></p>
-                                    <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg><?php echo htmlspecialchars($clinic['phone']); ?></p>
-                                    <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 17a6 6 0 00-6-6v4H6m-2-4v4h2"></path></svg>Dr.
-                                        <?php echo htmlspecialchars($clinic['main_doctor']); ?></p>
-                                </div>
-                            </div>
-                            <div class="lg:col-span-1 border-t md:border-t-0 md:border-l border-gray-300 md:pl-6 pt-4 md:pt-0">
-                                <p class="text-base font-semibold text-gray-800 mb-2"><?php echo htmlspecialchars($hours); ?></p>
-                                <p class="text-sm text-gray-600">
-                                    <?php echo $days_display; ?>
-                                </p>
-                            </div>
-                            <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
-                                <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
-                                    view doctors & schedules
-                                </button>
-                            </div>
+            <div class="bg-light-gray p-4 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center clinic-card">
+                <div class="flex-shrink-0 w-full md:w-60 h-40 rounded-xl overflow-hidden">
+                    <img src="img/BACC.png" alt="Veterinarian New Braunfels exterior" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bangladesh Animal Care Center (BACC)</h3>
+                        <div class="space-y-1 text-gray-600 text-sm">
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>                                 House no: 24, Road No # 36, Dhaka 1212</p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>                                 +880 1770-476749</p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 17a6 6 0 00-6-6v4H6m-2-4v4h2"></path></svg>Dr.
+                                 Jake Grey</p>
                         </div>
                     </div>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <p class="text-center text-xl text-gray-500 py-10">No clinic results available. Check database connection and table data.</p>
-            <?php endif; ?>
+                    <div class="lg:col-span-1 border-t md:border-t-0 md:border-l border-gray-300 md:pl-6 pt-4 md:pt-0">
+                        <p class="text-base font-semibold text-gray-800 mb-2">8:00 AM - 7:00 PM</p>
+                        <p class="text-sm text-gray-600">
+                            Sat <span class="font-bold text-custom-purple">Sun Mon Tu</span> Wed Thu <span class="font-bold text-custom-purple">Fri</span>
+                        </p>
+                    </div>
+                    <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                            view doctors & schedules
+                        </button>
+                    </div>
+                </div>
+            </div>
 
+            <div class="bg-light-gray p-4 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center clinic-card">
+                <div class="flex-shrink-0 w-full md:w-60 h-40 rounded-xl overflow-hidden">
+                    <img src="img/anwar.png" alt="Veterinarian New Braunfels exterior" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Dr. Anawar's Pet Care - Veterinary Clinic</h3>
+                        <div class="space-y-1 text-gray-600 text-sm">
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>                                 House#11 Road#04, Dhaka 1229</p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>                                 +880 1723-256771
+                            </p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 17a6 6 0 00-6-6v4H6m-2-4v4h2"></path></svg>Dr.
+                                 Jake Grey</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 border-t md:border-t-0 md:border-l border-gray-300 md:pl-6 pt-4 md:pt-0">
+                        <p class="text-base font-semibold text-gray-800 mb-2">8:00 AM - 7:00 PM</p>
+                        <p class="text-sm text-gray-600">
+                            Sat <span class="font-bold text-custom-purple">Sun Mon Tu</span> Wed Thu <span class="font-bold text-custom-purple">Fri</span>
+                        </p>
+                    </div>
+                    <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                            view doctors & schedules
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light-gray p-4 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center clinic-card">
+                <div class="flex-shrink-0 w-full md:w-60 h-40 rounded-xl overflow-hidden">
+                    <img src="img/bala.png" alt="Veterinarian New Braunfels exterior" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Bala G Pet Clinic</h3>
+                        <div class="space-y-1 text-gray-600 text-sm">
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>                                 364 DIT Rd, Dhaka 1219</p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>                                 +880 1881-227204
+                            </p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 17a6 6 0 00-6-6v4H6m-2-4v4h2"></path></svg>Dr.
+                                 Jake Grey</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 border-t md:border-t-0 md:border-l border-gray-300 md:pl-6 pt-4 md:pt-0">
+                        <p class="text-base font-semibold text-gray-800 mb-2">8:00 AM - 7:00 PM</p>
+                        <p class="text-sm text-gray-600">
+                            Sat <span class="font-bold text-custom-purple">Sun Mon Tu</span> Wed Thu <span class="font-bold text-custom-purple">Fri</span>
+                        </p>
+                    </div>
+                    <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                            view doctors & schedules
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-light-gray p-4 md:p-6 rounded-2xl shadow-md flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 items-center clinic-card">
+                <div class="flex-shrink-0 w-full md:w-60 h-40 rounded-xl overflow-hidden">
+                    <img src="img/pet and bird.png" alt="Veterinarian New Braunfels exterior" class="w-full h-full object-cover" />
+                </div>
+                <div class="flex-grow grid grid-cols-1 lg:grid-cols-3 gap-4 w-full">
+                    <div class="lg:col-span-1">
+                        <h3 class="text-xl font-bold text-gray-800 mb-2">Pet And Bird Care</h3>
+                        <div class="space-y-1 text-gray-600 text-sm">
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>House-
+                                 13/14, Lane- 1, Block- A, Mirpu 6, ঢাকা 1216</p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>+880
+                                 1701-073107
+                            </p>
+                            <p class="flex items-center"><svg class="w-4 h-4 mr-2 text-custom-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM12 17a6 6 0 00-6-6v4H6m-2-4v4h2"></path></svg>Dr.
+                                 Jake Grey</p>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-1 border-t md:border-t-0 md:border-l border-gray-300 md:pl-6 pt-4 md:pt-0">
+                        <p class="text-base font-semibold text-gray-800 mb-2">8:00 AM - 7:00 PM</p>
+                        <p class="text-sm text-gray-600">
+                            Sat <span class="font-bold text-custom-purple">Sun Mon Tu</span> Wed Thu <span class="font-bold text-custom-purple">Fri</span>
+                        </p>
+                    </div>
+                    <div class="lg:col-span-1 flex items-center justify-start md:justify-end">
+                        <button onclick="window.location.href='appoinment.php'" class="bg-custom-purple text-white px-6 py-2 rounded-lg font-medium shadow-md hover:bg-custom-blue transition duration-300 w-full md:w-auto">
+                            view doctors & schedules
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
         <div class="text-center mt-8">
@@ -268,17 +309,7 @@ if (isset($conn) && is_object($conn)) {
 
     <script>
         function showMoreCards() {
-            // Since the PHP loop now outputs all available data, this function 
-            // acts as a fallback or for future pagination/client-side hiding logic.
-            const hiddenCards = document.querySelectorAll('.clinic-card.hidden');
-
-            // Show all currently hidden cards (if any were hidden initially by JS)
-            hiddenCards.forEach(card => {
-                card.classList.remove('hidden');
-                card.classList.add('flex'); // Restore the display: flex for the card layout
-            });
-
-            // Hide the "view more" button after all currently known cards are shown
+            // Since all four cards are now visible by default, this function will simply hide the button.
             document.getElementById('view-more-btn').classList.add('hidden');
         }
 
