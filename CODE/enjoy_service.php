@@ -105,7 +105,7 @@ $conn->set_charset("utf8mb4");
 
     <section class="container mx-auto px-4 mt-8">
         <div class="relative rounded-xl overflow-hidden shadow-lg">
-            <img src="img/service.jpg" alt="Pets playing" class="w-full h-64 object-cover">
+            <img src="img/pet_care.jpg" alt="Pets playing" class="w-full h-64 object-cover">
             <div class="absolute inset-y-0 right-0 w-full md:w-1/2 bg-yellow-300 bg-opacity-90 flex flex-col justify-center p-8 md:p-12 clip-yellow-box">
                 <h2 class="text-4xl md:text-5xl font-extrabold text-gray-800 mb-2">The Best Things In Life Are Rescued</h2>
                 <p class="text-lg text-gray-700">Fill the form below</p>

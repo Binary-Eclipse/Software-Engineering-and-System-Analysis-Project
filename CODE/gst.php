@@ -554,7 +554,7 @@ if (!isset($_SESSION['user_id'])) {
             const allSlidesData = [{
                 category: 'image',
                 type: 'image',
-                src: 'https://images.unsplash.com/photo-1574158622682-e40e69841006?q=80&w=2080&auto=format&fit=crop',
+                src: 'img/nutrition.png',
                 alt: 'Curious kitten looking up'
             }, {
                 category: 'image',
