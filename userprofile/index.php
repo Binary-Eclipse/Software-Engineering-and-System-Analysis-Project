@@ -79,7 +79,7 @@ if (!in_array($page, $allowed_pages) || !file_exists($page_path)) {
                     <li><a href="profile.php?page=dashboard" class="<?= $page == 'dashboard' ? 'active' : '' ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
                     <li><a href="profile.php?page=my_profile" class="<?= $page == 'my_profile' ? 'active' : '' ?>"><i class="fas fa-user-circle"></i> My Profile</a></li>
                     <li><a href="profile.php?page=order_history" class="<?= $page == 'order_history' ? 'active' : '' ?>"><i class="fas fa-box"></i> Order History</a></li>
-                    <li><a href="profile.php?page=my_rescues" class="<?= $page == 'my_rescues' ? 'active' : '' ?>"><i class="fas fa-ambulance"></i> My Rescues</a></li>
+                    <li><a href="profile.php?page=my_rescues" class="<?= $page == 'my_rescues' ? 'active' : '' ?>"><i class="fas fa-ambulance"></i>Rescues Report</a></li>
                     <li><a href="profile.php?page=clinic_visits" class="<?= $page == 'clinic_visits' ? 'active' : '' ?>"><i class="fas fa-stethoscope"></i> Clinic Visits</a></li>
                     <li><a href="profile.php?page=rewards" class="<?= $page == 'rewards' ? 'active' : '' ?>"><i class="fas fa-star"></i> Rewards & Badges</a></li>
                 </ul>
