@@ -1,57 +1,95 @@
 <?php
-header('Content-Type: application/json');
+// handle_donation_ajax.php - Handles the actual database insertion for donations
+session_start();
 
-// Ensure config.php provides the active $conn object
-include_once "config.php";
+include_once "config.php"; // Assumes $conn is established here
 
-// 1. Check the existing global connection
-if (!isset($conn) || $conn->connect_error) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => 'Database connection failed.']);
-    exit();
-}
+// Initialize session status variables
+$_SESSION['donation_status'] = 'error_validation';
+$_SESSION['donation_message'] = 'An unknown error occurred during submission.';
 
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
-    $conn->close();
+    $_SESSION['donation_message'] = 'Invalid request method.';
+    header("Location: donation.php");
     exit();
 }
 
-// 2. Extract Data from POST
-$amount = (float)($_POST["amount_final"] ?? 0); // Amount determined in JS
-$type = $_POST["type"] ?? null;
-$reason = $_POST["reason"] ?? null;
+// --- 1. Collect and Sanitize Donation Data ---
+$final_amount = filter_input(INPUT_POST, 'amount_final', FILTER_VALIDATE_FLOAT);
+$donation_type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$reason = filter_input(INPUT_POST, 'reason', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-// Final validation
-if (!is_numeric($amount) || $amount <= 0 || $type === null) {
-    http_response_code(400);
-    echo json_encode(['success' => false, 'message' => 'Invalid amount or donation type received.']);
-    $conn->close();
+// --- 2. Collect and Sanitize Payment Data (SIMULATED from POST) ---
+// IMPORTANT: In a real app, this data would come from the payment modal 
+// fields and passed via hidden inputs or AJAX. We simulate them here.
+
+// We need a mechanism to know which payment method was selected in the modal.
+// Assuming a hidden field 'payment_method' is passed (e.g., 'Card', 'Mobile', 'Bank')
+$payment_method = filter_input(INPUT_POST, 'payment_method', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'Card';
+
+// Simulation of Payment Gateway Interaction: A successful transaction generates an ID.
+$transaction_id = 'SP' . time() . rand(1000, 9999); 
+
+// Cardholder Name (assuming passed in POST request)
+$cardholder_name = filter_input(INPUT_POST, 'cardholder_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$cardholder_name = $cardholder_name ?: 'Anonymous Donor';
+
+// Card Number (Only capture last 4 digits for security. Full number is NOT stored.)
+$card_full_number = filter_input(INPUT_POST, 'card_number', FILTER_SANITIZE_NUMBER_INT); 
+$card_last_four = substr($card_full_number, -4) ?: NULL;
+
+
+// --- 3. Basic Validation Checks ---
+if ($final_amount === false || $final_amount <= 0) {
+    $_SESSION['donation_message'] = 'Invalid or missing donation amount.';
+    header("Location: donation.php");
     exit();
 }
 
-// 3. Insert into database using prepared statement
-$stmt=$conn->prepare("INSERT INTO donation(amount,type,reason) VALUES (?, ?, ?)");
-if (!$stmt) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => "DB Prepare failed: " . $conn->error]);
-    $conn->close();
+// --- 4. Database Insertion Logic ---
+if ($conn->connect_error) {
+    $_SESSION['donation_status'] = 'error_connection';
+    $_SESSION['donation_message'] = 'Database connection failed: ' . $conn->connect_error;
+    header("Location: donation.php");
     exit();
 }
 
-// 'd' for DECIMAL/double, 's' for string, 's' for string
-$stmt->bind_param("dss", $amount, $type, $reason); 
+// Updated SQL statement with new fields
+$sql = "INSERT INTO donation (amount, type, reason, payment_method, transaction_id, cardholder_name, card_number_last_four) 
+        VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-if($stmt->execute()){
-    // Success: Return clean JSON
-    echo json_encode(['success' => true, 'message' => 'Donation recorded successfully.']);
+if ($stmt = $conn->prepare($sql)) {
+    // Bind parameters: d=decimal, s=string
+    $stmt->bind_param("dssssss", 
+        $final_amount, 
+        $donation_type, 
+        $reason, 
+        $payment_method, 
+        $transaction_id, 
+        $cardholder_name, 
+        $card_last_four
+    );
+
+    if ($stmt->execute()) {
+        // Success
+        $_SESSION['donation_status'] = 'success';
+        $_SESSION['donation_message'] = 'Thank you! Your donation of ৳' . number_format($final_amount, 2) . ' (Txn ID: ' . $transaction_id . ') was recorded.';
+    } else {
+        // Database execution error
+        $_SESSION['donation_status'] = 'error_db_execute';
+        $_SESSION['donation_message'] = 'Database error: Could not execute the statement. Error: ' . $stmt->error;
+    }
+
+    $stmt->close();
 } else {
-    // Failure: Return SQL error
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => "SQL Execute failed: " . $stmt->error]);
+    // Statement preparation error
+    $_SESSION['donation_status'] = 'error_prepare';
+    $_SESSION['donation_message'] = 'Database error: Could not prepare the statement. Error: ' . $conn->error;
 }
 
-$stmt->close();
 $conn->close();
-// NO CLOSING PHP TAG
+
+// Redirect back to donation.php to display the result (toast)
+header("Location: donation.php");
+exit();
+?>

@@ -1,74 +1,83 @@
 <?php
-// Set header first. Ensure no output precedes this.
+// handle_adoption.php
+
+// 1. Configuration and Session Setup
+session_start();
+// Include the database connection and configuration
+include_once "config.php"; 
+
+// Set the response header to JSON
 header('Content-Type: application/json');
-$error_flag = false;
-$error_message = '';
 
-// --- 1. Include Configuration Safely ---
-// Use require_once to stop script execution with a recoverable error 
-// if config.php is missing, then handle the error flag.
-if (!@require_once "config.php") {
-    $error_flag = true;
-    $error_message = "Configuration Error: config.php not found or inaccessible.";
+// --- Basic Security Check ---
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method.']);
+    exit;
 }
 
-// --- 2. Check Connection Health ---
-if (!$error_flag && (!isset($conn) || $conn->connect_error)) {
-    $error_flag = true;
-    $error_message = "Database connection failed. Details: " . ($conn->connect_error ?? 'Unknown connection error.');
+// 2. Data Validation and Sanitization
+// Filter and retrieve form data
+$pet_id         = filter_input(INPUT_POST, 'pet_id', FILTER_VALIDATE_INT);
+$adopter_name   = filter_input(INPUT_POST, 'adopter_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$adopter_email  = filter_input(INPUT_POST, 'adopter_email', FILTER_VALIDATE_EMAIL);
+$adopter_address = filter_input(INPUT_POST, 'adopter_address', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$adopter_nid    = filter_input(INPUT_POST, 'adopter_nid', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$adopter_contact = filter_input(INPUT_POST, 'adopter_contact', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$agree_care     = isset($_POST['agree_care']) ? 1 : 0;
+$agree_visit    = isset($_POST['agree_visit']) ? 1 : 0;
+$agree_return   = isset($_POST['agree_return']) ? 1 : 0;
+
+// Simple check for required fields
+if (!$pet_id || !$adopter_name || !$adopter_email || !$adopter_address || !$adopter_contact) {
+    echo json_encode(['success' => false, 'message' => 'Please fill all required fields.']);
+    exit;
 }
 
-// --- 3. Handle Error Flag Immediately ---
-if ($error_flag) {
-    http_response_code(500); // Set HTTP status code to internal server error
-    echo json_encode(['success' => false, 'message' => $error_message]);
-    exit();
-}
+// 3. Database Insertion using Prepared Statement (Security!)
 
-// --- 4. Process Data (Only proceeds if no error) ---
-$pet_id = $_POST['pet_id'] ?? null;
-$name = trim($_POST['adopter_name'] ?? '');
-$email = trim($_POST['adopter_email'] ?? '');
-$address = trim($_POST['adopter_address'] ?? '');
-$nid = trim($_POST['adopter_nid'] ?? '');
-$contact = trim($_POST['adopter_contact'] ?? '');
+// SQL statement to insert application data. 
+// You should have a table like 'adoption_applications'.
+$sql = "INSERT INTO adoption_applications 
+        (pet_id, adopter_name, adopter_email, adopter_address, adopter_nid, adopter_contact, agree_care, agree_visit, agree_return, application_date) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
 
-$agree_care = isset($_POST['agree_care']) ? 1 : 0;
-$agree_visit = isset($_POST['agree_visit']) ? 1 : 0;
-$agree_return = isset($_POST['agree_return']) ? 1 : 0;
-
-// Basic validation
-if (empty($pet_id) || empty($name) || empty($email) || empty($contact)) {
-    http_response_code(400); // Bad request status
-    echo json_encode(['success' => false, 'message' => 'Required fields missing.']);
-    $conn->close();
-    exit();
-}
-
-// --- 5. Database Operation ---
 try {
-    $sql = "INSERT INTO adoption_applications (pet_id, adopter_name, adopter_email, adopter_address, adopter_nid, adopter_contact, agree_care, agree_visit, agree_return, application_date) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())";
-
+    // Prepare the statement
     $stmt = $conn->prepare($sql);
-
-    if ($stmt === false) {
-        throw new Exception("SQL Prepare failed: " . $conn->error);
-    }
-
-    // Bind parameters: issssssiii (1 int, 6 strings, 3 ints)
-    $stmt->bind_param("issssssiii", $pet_id, $name, $email, $address, $nid, $contact, $agree_care, $agree_visit, $agree_return);
-
+    
+    // Bind parameters (s=string, i=integer)
+    $stmt->bind_param("isssssiii", 
+        $pet_id, 
+        $adopter_name, 
+        $adopter_email, 
+        $adopter_address, 
+        $adopter_nid, 
+        $adopter_contact, 
+        $agree_care, 
+        $agree_visit, 
+        $agree_return
+    );
+    
+    // Execute the statement
     if ($stmt->execute()) {
-        echo json_encode(['success' => true, 'message' => 'Application submitted successfully!']);
+        // Success: Send a positive JSON response
+        echo json_encode(['success' => true, 'message' => 'Application successfully submitted.']);
     } else {
-        throw new Exception("Error executing statement: " . $stmt->error);
+        // Failure: Send an error JSON response
+        error_log("Database error: " . $stmt->error);
+        echo json_encode(['success' => false, 'message' => 'Database error: Could not save application.']);
     }
 
+    // Close statement
     $stmt->close();
 
 } catch (Exception $e) {
-    http_response_code(500);
-    echo json_encode(['success' => false, 'message' => "Application submission failed. " . $e->getMessage()]);
+    // Handle exceptions (e.g., connection lost)
+    error_log("General error: " . $e->getMessage());
+    echo json_encode(['success' => false, 'message' => 'An unexpected server error occurred.']);
 }
 
+// Close the database connection (assuming $conn is your connection object)
 $conn->close();
+
+?>

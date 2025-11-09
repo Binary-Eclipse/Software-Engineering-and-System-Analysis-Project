@@ -328,6 +328,15 @@ include_once "config.php";
                 </div>
             </div>
         </form>
+        
+        <div id="donate-success-message" class="p-10 text-center hidden">
+            <div class="mx-auto w-16 h-16 flex items-center justify-center bg-green-100 rounded-full mb-4">
+                <i class="fa-solid fa-check text-green-600 text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800">Pet Listed Successfully!</h2>
+            <p class="text-gray-600 mt-2">Thank you for submitting your pet. Our team will review the details shortly.</p>
+            <button id="close-donate-success-btn" class="mt-6 px-8 py-2 bg-indigo-600 text-white rounded-md font-semibold hover:bg-indigo-700 transition-colors">Done</button>
+        </div>
     </div>
     <div id="adoption-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center p-4 z-50 hidden transition-opacity duration-300">
         <div class="modal-content bg-gray-50 rounded-xl shadow-2xl max-w-2xl w-full max-h-[95vh] overflow-y-auto relative transform opacity-100 scale-100">
@@ -451,6 +460,11 @@ include_once "config.php";
                 document.getElementById('step-2-indicator'),
                 document.getElementById('step-3-indicator')
             ];
+            const donateSuccessMessage = document.getElementById('donate-success-message');
+            const closeDonateSuccessBtn = document.getElementById('close-donate-success-btn');
+            const donateHeader = document.querySelector('#donate-section header');
+            const donateProgress = document.querySelector('#donate-section .relative');
+
             let currentStep = 0;
 
             const updateProgress = () => {
@@ -476,17 +490,29 @@ include_once "config.php";
             };
 
             const validateStep = () => {
-                const currentStepInputs = steps[currentStep].querySelectorAll('input[required], select[required], textarea[required], input[type="file"][required]');
+                const currentStepInputs = steps[currentStep].querySelectorAll('input[required], select[required], textarea[required], input[type="file"][required], input[type="checkbox"][required]');
                 let isValid = true;
                 currentStepInputs.forEach(input => {
+                    // Specific check for file input
                     if (input.type === 'file' && input.required && !input.files.length) {
                         isValid = false;
                         previewContainer.classList.add('border-red-500');
-                    } else if (!input.value) {
+                    } 
+                    // Specific check for required checkbox
+                    else if (input.type === 'checkbox' && input.required && !input.checked) {
+                        isValid = false;
+                        // You could add styling here for the checkbox container if needed
+                    }
+                    // Check for general required fields
+                    else if (input.type !== 'file' && !input.value) {
                         isValid = false;
                         input.classList.add('border-red-500');
-                    } else {
+                    } 
+                    else {
                         input.classList.remove('border-red-500');
+                        if (input.type === 'file') {
+                            previewContainer.classList.remove('border-red-500');
+                        }
                     }
                 });
                 return isValid;
@@ -552,18 +578,28 @@ include_once "config.php";
                     }
                 }
             };
+
+            // HANDLE DONATION SUCCESS MESSAGE AND RESET
+            closeDonateSuccessBtn.addEventListener('click', () => {
+                donateSuccessMessage.classList.add('hidden');
+                donateHeader.classList.remove('hidden');
+                donateProgress.classList.remove('hidden'); 
+                
+                showStep(0); // Reset to the first step
+            });
             
             donateForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 
                 // Final validation (Step 3)
                 if (!validateStep()) {
-                    alert('Please fill out all required fields (*).');
+                    alert('Please fill out all required fields and agree to the terms.');
                     return;
                 }
                 
                 const submitBtn = e.submitter;
                 submitBtn.disabled = true;
+                const originalText = submitBtn.textContent;
                 submitBtn.textContent = 'Submitting...';
 
                 const formData = new FormData(donateForm);
@@ -579,12 +615,20 @@ include_once "config.php";
                     const result = await response.json();
                     
                     if (result.success) {
-                         alert('Thank you! Your pet has been submitted for review.');
+                         // 1. Reset Form & UI state
                          donateForm.reset();
-                         showStep(0);
                          previewContainer.style.backgroundImage = '';
                          uploadPrompt.style.display = 'block';
                          previewContainer.classList.remove('border-red-500');
+
+                         // 2. Hide form and progress
+                         donateHeader.classList.add('hidden');
+                         donateProgress.classList.add('hidden');
+                         steps.forEach(step => step.classList.remove('active')); // Hide all steps
+                         
+                         // 3. Display the success splash card
+                         donateSuccessMessage.classList.remove('hidden');
+
                     } else {
                         alert('Submission failed: ' + result.message);
                     }
@@ -594,7 +638,7 @@ include_once "config.php";
                     alert('There was an error communicating with the server. Please check file size and upload permissions.');
                 } finally {
                     submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit Pet for Adoption';
+                    submitBtn.textContent = originalText;
                 }
             });
 
