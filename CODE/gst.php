@@ -47,6 +47,7 @@ if (!isset($_SESSION['user_id'])) {
         
         .faq-item.open .faq-answer {
             max-height: 200px;
+            /* Adjust max-height for content length */
         }
         
         .faq-item.open .icon-plus {
@@ -183,18 +184,20 @@ if (!isset($_SESSION['user_id'])) {
         </ul>
 
 
-        <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
+        <div class=" hidden lg:flex items-center space-x-5 mr-5">
 
                      <a href="https://t.me/savepaws_petcommunity" class="flex items-center px-2 py-1 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">
                 <i class="fa-brands fa-twitch md:text-xs " style="color: #9146FF;"></i>
                 <span>Join Community</span>
             </a>
         
-            <div class="flex justify-center items-center">
+            <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
                 <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
-        </div>
+            </div>
 
        <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
       <i class="fa-solid fa-bars"></i>
@@ -204,7 +207,9 @@ if (!isset($_SESSION['user_id'])) {
     <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
 
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
-                      <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
+                      <a href="profile.php?page=dashboard" class="rounded-full bg-slate-300 shadow-md w-14 h-14 flex items-center justify-center text-2xl text-black hover:text-indigo-600" aria-label="User Profile">
+                        <i class="fa-solid fa-user-circle"></i>
+                     </a>
 
 
                      <a href="#" class="flex items-center px-2 py-3 rounded-xl bg-blue-300 hover:bg-blue-400 transition text-sm lg:text-base">

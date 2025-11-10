@@ -43,7 +43,7 @@ if (isset($_SESSION['donation_status'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate to SavePaws - Be a Hero for Animals</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" xintegrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer"
     />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -104,7 +104,7 @@ if (isset($_SESSION['donation_status'])) {
 
         
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>            </div>
+                <a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Logout</a>            </div>
         </div>
 
         <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
@@ -158,6 +158,15 @@ if (isset($_SESSION['donation_status'])) {
                 <form id="donationForm" action="handle_donation_ajax.php" method="POST">
                     <h2 class="text-2xl md:text-3xl font-bold text-gray-800 text-center mb-2">Make a Donation</h2>
                     <p class="text-center text-gray-500 mb-6">Your generosity saves lives.</p>
+                    
+                    <!-- NEW EMAIL FIELD ADDED HERE -->
+                    <div class="mb-6">
+                        <label for="donor_email" class="text-lg font-semibold text-gray-700 block mb-2">Your Email <span class="text-red-500">*</span></label>
+                        <input type="email" id="donor_email" name="donor_email" placeholder="you@example.com" required 
+                               class="w-full p-3 border-2 border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-lg">
+                    </div>
+                    
+                    <!-- Existing Amount Fields -->
                     <div class="mb-6">
                         <label class="text-lg font-semibold text-gray-700">Choose an Amount</label>
                         <div class="grid grid-cols-3 gap-3 mt-2">
@@ -389,13 +398,14 @@ if (isset($_SESSION['donation_status'])) {
                 const amountRadio = document.querySelector('input[name="amount"]:checked');
                 const customAmountField = document.getElementById('t_field');
                 const typeRadio = document.querySelector('input[name="type"]:checked');
+                const donorEmail = document.getElementById('donor_email').value; // Get the new email value
 
                 // Determine the final amount from checked radio or custom field
                 const amountValue = amountRadio ? amountRadio.value : customAmountField.value;
                 const finalAmount = parseFloat(amountValue);
 
-                if (isNaN(finalAmount) || finalAmount <= 0 || !typeRadio) {
-                    showToast('Please enter a valid donation amount and select a donation type.', true);
+                if (isNaN(finalAmount) || finalAmount <= 0 || !typeRadio || !donorEmail) {
+                    showToast('Please fill in your email, enter a valid amount, and select a donation type.', true);
                     return;
                 }
                 

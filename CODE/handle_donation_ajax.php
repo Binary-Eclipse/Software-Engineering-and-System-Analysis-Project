@@ -18,23 +18,12 @@ if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 $final_amount = filter_input(INPUT_POST, 'amount_final', FILTER_VALIDATE_FLOAT);
 $donation_type = filter_input(INPUT_POST, 'type', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 $reason = filter_input(INPUT_POST, 'reason', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
+$donor_email = filter_input(INPUT_POST, 'donor_email', FILTER_SANITIZE_EMAIL); // NEW FIELD
 
 // --- 2. Collect and Sanitize Payment Data (SIMULATED from POST) ---
-// IMPORTANT: In a real app, this data would come from the payment modal 
-// fields and passed via hidden inputs or AJAX. We simulate them here.
-
-// We need a mechanism to know which payment method was selected in the modal.
-// Assuming a hidden field 'payment_method' is passed (e.g., 'Card', 'Mobile', 'Bank')
 $payment_method = filter_input(INPUT_POST, 'payment_method', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'Card';
-
-// Simulation of Payment Gateway Interaction: A successful transaction generates an ID.
 $transaction_id = 'SP' . time() . rand(1000, 9999); 
-
-// Cardholder Name (assuming passed in POST request)
-$cardholder_name = filter_input(INPUT_POST, 'cardholder_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-$cardholder_name = $cardholder_name ?: 'Anonymous Donor';
-
-// Card Number (Only capture last 4 digits for security. Full number is NOT stored.)
+$cardholder_name = filter_input(INPUT_POST, 'cardholder_name', FILTER_SANITIZE_FULL_SPECIAL_CHARS) ?: 'Anonymous Donor';
 $card_full_number = filter_input(INPUT_POST, 'card_number', FILTER_SANITIZE_NUMBER_INT); 
 $card_last_four = substr($card_full_number, -4) ?: NULL;
 
@@ -42,6 +31,12 @@ $card_last_four = substr($card_full_number, -4) ?: NULL;
 // --- 3. Basic Validation Checks ---
 if ($final_amount === false || $final_amount <= 0) {
     $_SESSION['donation_message'] = 'Invalid or missing donation amount.';
+    header("Location: donation.php");
+    exit();
+}
+
+if (!filter_var($donor_email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['donation_message'] = 'Please enter a valid donor email address.';
     header("Location: donation.php");
     exit();
 }
@@ -54,20 +49,21 @@ if ($conn->connect_error) {
     exit();
 }
 
-// Updated SQL statement with new fields
-$sql = "INSERT INTO donation (amount, type, reason, payment_method, transaction_id, cardholder_name, card_number_last_four) 
-        VALUES (?, ?, ?, ?, ?, ?, ?)";
+// Updated SQL statement with the new 'donor_email' field
+$sql = "INSERT INTO donation (donor_email, amount, type, reason, payment_method, transaction_id, cardholder_name, card_number_last_four) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 if ($stmt = $conn->prepare($sql)) {
-    // Bind parameters: d=decimal, s=string
-    $stmt->bind_param("dssssss", 
-        $final_amount, 
-        $donation_type, 
-        $reason, 
-        $payment_method, 
-        $transaction_id, 
-        $cardholder_name, 
-        $card_last_four
+    // Bind parameters: s=string (donor_email), d=decimal, ssssss=string...
+    $stmt->bind_param("sdssssss", 
+        $donor_email,         // 1. Donor Email
+        $final_amount,        // 2. Amount
+        $donation_type,       // 3. Type
+        $reason,              // 4. Reason
+        $payment_method,      // 5. Payment Method
+        $transaction_id,      // 6. Transaction ID
+        $cardholder_name,     // 7. Cardholder Name
+        $card_last_four       // 8. Card Last Four
     );
 
     if ($stmt->execute()) {
