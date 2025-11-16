@@ -128,7 +128,11 @@ include_once "config.php";
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
             <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+           <a href="login.php"
+   class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold text-sm hover:bg-red-600 transition">
+   Logout
+</a>
+
             </div>
         </div>
         <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
