@@ -76,8 +76,12 @@ $conn->set_charset("utf8mb4");
             <div class="flex justify-center items-center">
                 <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
-        </div>
+   <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+            </div>        </div>
 
         <button id="menu-btn" class="lg:hidden text-xl text-black ml-4">
       <i class="fa-solid fa-bars"></i>
@@ -87,8 +91,12 @@ $conn->set_charset("utf8mb4");
     <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
 
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
-                      <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
-
+   <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+            </div>
         
             <div class="flex justify-center items-center">
                 <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>            </div>
@@ -130,7 +138,22 @@ $conn->set_charset("utf8mb4");
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div><label for="email" class="block text-gray-700 font-medium mb-1">Email *</label><input type="email" id="email" name="client_email" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
-                        <div><label for="phone" class="block text-gray-700 font-medium mb-1">Phone *</label><input type="tel" id="phone" name="client_phone" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple" required></div>
+<div>
+    <label for="phone" class="block text-gray-700 font-medium mb-1">Phone *</label>
+
+    <input
+        type="tel"
+        id="phone"
+        name="client_phone"
+        class="w-full p-3 border border-gray-300 rounded-lg focus:ring-custom-purple focus:border-custom-purple"
+        required
+        pattern="01[0-9]{9}"
+        minlength="11"
+        maxlength="11"
+        title="Phone number must start with 01 and be exactly 11 digits."
+        placeholder="01XXXXXXXXX"
+    >
+</div>
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>

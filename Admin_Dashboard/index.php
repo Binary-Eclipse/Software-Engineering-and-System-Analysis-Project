@@ -184,7 +184,7 @@ if (!in_array($page, $allowed_pages) || !file_exists($page_path)) {
                     <li><a href="index.php?page=overview" class="<?= $page == 'overview' ? 'active' : '' ?>"><i class="fas fa-tachometer-alt"></i> Overview</a></li>
                     <li><a href="index.php?page=shop" class="<?= $page == 'shop' ? 'active' : '' ?>"><i class="fas fa-store"></i> Shop</a></li>
                     <li><a href="index.php?page=rescue" class="<?= $page == 'rescue' ? 'active' : '' ?>"><i class="fas fa-paw"></i> Rescue Statistic</a></li>
-                    <li><a href="index.php?page=donation" class="<?= $page == 'donation' ? 'active' : '' ?>"><i class="fas fa-hand-holding-heart"></i> Donation Statistic</a></li>
+                    <li><a href="index.php?page=donation" class="<?= $page == 'donation' ? 'active' : '' ?>"><i class="fas fa-hand-holding-heart"></i> Donatted pets</a></li>
                     <li><a href="index.php?page=adoption" class="<?= $page == 'adoption' ? 'active' : '' ?>"><i class="fas fa-heart"></i> Adoption Statistic</a></li>
                     <li><a href="index.php?page=users" class="<?= $page == 'users' ? 'active' : '' ?>"><i class="fas fa-users"></i> Users Statistic</a></li>
                     <li><a href="index.php?page=clinic" class="<?= $page == 'clinic' ? 'active' : '' ?>"><i class="fas fa-clinic-medical"></i> Clinic Statistic</a></li>

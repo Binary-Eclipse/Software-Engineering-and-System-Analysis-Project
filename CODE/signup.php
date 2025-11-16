@@ -184,7 +184,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
               <input type="email" name="email" placeholder="Email" required class="w-full pl-10 pr-4 py-3 border border-[#595ee9] rounded-3xl focus:ring-2 focus:ring-indigo-500">
             </div>
 
-        <div class="relative">
+
+<div class="relative">
     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" class="text-gray-400">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-4.5-4.5 19.79 19.79 0 0 1-3.07-8.63A2 2 0 0 1 3.08 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 1 1 0 0 1-.17 1l-2.78 2.78a15.7 15.7 0 0 0 6.8 6.8l2.78-2.78a1 1 0 0 1 1-.17 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -199,11 +200,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         pattern="01[0-9]{9}"
         minlength="11"
         maxlength="11"
+        title="The Number is not valid it must start with (01)"
         class="w-full pl-10 pr-4 py-3 border border-[#595ee9] rounded-3xl focus:ring-2 focus:ring-indigo-500"
     >
 </div>
 
-<p class="text-red-500 text-sm mt-1">Phone must start with 01 and be 11 digits.</p>
+
+
 
             <div class="relative">
               <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">

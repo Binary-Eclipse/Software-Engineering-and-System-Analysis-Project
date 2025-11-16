@@ -71,8 +71,9 @@ if (isset($_SESSION['donation_status'])) {
 
 <body class="bg-gray-50">
 
-    <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
-                    <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
+  
+     <nav class="flex flex-wrap justify-between items-center   py-4 bg-white shadow-lg">
+                      <h1 class="font-semibold  md:text-xl text-lg  text-sky-500 my-auto ml-5"><i class="fa-solid fa-paw text-amber-950"></i>SavePaws</h1>
         <ul class="hidden lg:flex mx-auto justify-around flex-wrap">
             <li><a href="gst.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Home</a></li>
             <li><a href="marketplace.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Shop</a></li>
@@ -83,30 +84,35 @@ if (isset($_SESSION['donation_status'])) {
             <li><a href="donation.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600 lg:p-5 transform transition-transform hover:scale-120">Donate</a></li>
         </ul>
 
-
         <div class=" hidden lg:flex  sm:hidden items-center space-x-2 lg:space-x-5 mr-5">
-        
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a> 
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
-        </div>
+    <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+            </div>        </div>
+
         
-     <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
+
+        <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
       <i class="fa-solid fa-bars"></i>
     </button>
     </nav>
 
     <ul id="mobile-menu" class="hidden flex-col space-y-4 border-t-4 border-gray-500 bg-white shadow-md p-6 lg:hidden">
-
           <div class="  flex items-center justify-evenly space-x-2 lg:space-x-5 bg-gray-200 rounded-2xl py-2">
-                      <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
-
-        
+            <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
             <div class="flex justify-center items-center">
-                <a href="login.php" class="text-lg font-bold text-black hover:text-indigo-600">Logout</a>            </div>
-        </div>
+           <a href="login.php"
+   class="px-4 py-2 bg-red-500 text-white rounded-lg font-semibold text-sm hover:bg-red-600 transition">
+   Logout
+</a>
 
+            </div>
+        </div>
         <li><a href="gst.php" class="text-lg font-bold text-black hover:text-indigo-600">Home</a></li>
         <li><a href="marketplace.php" class="text-lg font-bold text-black hover:text-indigo-600">Shop</a></li>
         <li><a href="clinic.php" class="text-lg font-bold text-black hover:text-indigo-600">Clinics</a></li>

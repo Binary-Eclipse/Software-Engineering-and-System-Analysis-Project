@@ -86,8 +86,12 @@ $conn->set_charset("utf8mb4");
                 <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
                 
             </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-10 h-10 lg:w-12 lg:h-12 flex items-center justify-center text-xs lg:text-base">Img</div>
-        </div>
+    <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+            </div>        </div>
 
       <button id="menu-btn" class="lg:hidden text-xl text-black mr-5">
       <i class="fa-solid fa-bars"></i>
@@ -101,8 +105,12 @@ $conn->set_charset("utf8mb4");
         <i class="fas fa-shopping-cart text-2xl text-gray-600 hover:text-primary-indigo"></i>
         <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center hidden">0</span>
     </div>
-            <div class="rounded-full bg-slate-300 shadow-md w-20 h-20 lg:w-12 lg:h-12 flex items-center justify-center text-sm lg:text-base">Img</div>
-            <div class="flex justify-center items-center">
+    <div class="flex justify-center items-center space-x-2">
+                <a href="profile.php?page=dashboard" class="text-xl text-black hover:text-indigo-600 transition-colors" aria-label="User Profile">
+                    <i class="fa-solid fa-user-circle"></i> 
+                </a>
+                <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
+            </div>            <div class="flex justify-center items-center">
                 <a href="login.php" class="text-sm lg:text-sm font-bold text-black hover:text-indigo-600">Logout</a>
             </div>
         </div>
