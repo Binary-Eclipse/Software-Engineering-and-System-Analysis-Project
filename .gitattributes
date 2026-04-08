@@ -1,0 +1,8 @@
+# Ignore project documentation and diagrams from language stats
+DFD/* linguist-documentation
+ER Diagram/* linguist-documentation
+Sequence Diagram/* linguist-documentation
+UML Diagram/* linguist-documentation
+
+# If you want to hide the PHP code in the CODE folder
+CODE/* linguist-vendored
